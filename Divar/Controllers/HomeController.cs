@@ -43,24 +43,36 @@ namespace Practise1Divar.Controllers
         //}
 
         [HttpPost]
-        public IActionResult AddAd(string Category,string City,string Brand, string Model, string Color, string FunctionKilometers, string ChassisAndBodyCondition, string BasePrice, string EngineCondition, string RearChassisCondition, string FrontChassisCondition, string ThirdPartyInsuranceTerm, string Gearbox, string DoYouWantToReplace, string IsTheChatActivated, string IsThePhoneCallActive, string Title, string Description)
+        public IActionResult AddAd(string Category, string City, string Brand, string Model, string Color, string FunctionKilometers, string ChassisAndBodyCondition, string BasePrice, string EngineCondition, string RearChassisCondition, string FrontChassisCondition, string ThirdPartyInsuranceTerm, string Gearbox, string DoYouWantToReplace, string IsTheChatActivated, string IsThePhoneCallActive, string Title, string Description)
         {
             if (!ModelState.IsValid) { return View(); }
 
             var model = new Advertisement()
             {
-                Category = Category,
+                City=City,
+                Brand= Brand,
+                Model= Model,
+                Color= Color,
+                FunctionKilometers= FunctionKilometers,
+                ChassisAndBodyCondition= ChassisAndBodyCondition,
+                BasePrice= BasePrice,
+                EngineCondition= EngineCondition,
+                RearChassisCondition= RearChassisCondition,
+                FrontChassisCondition= FrontChassisCondition,
+                ThirdPartyInsuranceTerm= ThirdPartyInsuranceTerm,
+                Gearbox= Gearbox,
+                DoYouWantToReplace= DoYouWantToReplace,
+                IsTheChatActivated= IsTheChatActivated,
+                IsThePhoneCallActive= IsThePhoneCallActive,
+                Title= Title,
+                Description= Description
             };
             //{
             //    BasePrice = advertisement.BasePrice
             //};
-            model.Add(new Advertisement
-            {
-                Category = Category,
-                
-            });
+            _db.Advertisements.Add(model);
 
-        _db.SaveChanges();
+            _db.SaveChanges();
             return View();
 
         }
