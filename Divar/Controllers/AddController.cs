@@ -15,21 +15,6 @@ namespace Practise1Divar.Controllers
         {
             return View();
         }
-        //[HttpPost]
-        //public IActionResult AddAd(Advertisement advertisement)
-        //{
-            //if (!ModelState.IsValid) { return View(); }
-            //var model = new Advertisement()
-            //{
-            //    BasePrice = advertisement.BasePrice
-            //}
-            //_db.Advertisements.Add(new Advertisement
-            //{
 
-            //})
-            //_db.SaveChanges();
-            //return View();
-
-        //}
     }
 }
