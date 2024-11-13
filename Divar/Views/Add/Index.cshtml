@@ -4,9 +4,34 @@
 @{
 }
 
-<form action="/" method="post">
-    <select>
-        <option selected value="savariVaVanet">سواری و وانت</option>
-    </select>
-    <input type="text" name="name" value="" namespace="موقعیت آگهی" />
+
+<form asp-controller="Add" asp-action="Index" method="post">
+    <table style="border:none">
+        <tr>
+            <td>
+                Username:
+            </td>
+            <td>
+                <select>
+                    <option selected value="savariVaVanet">سواری و وانت</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Password:
+            </td>
+            <td>
+                <input type="text" class="form-control" id="password" name="password" required placeholder="موقعیت آگهی">
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td>
+                <button type="submit" class="btn btn-primary" style="float:right;" asp-action="">ثبت آگهی</button>
+            </td>
+        </tr>
+
+    </table>
 </form>
