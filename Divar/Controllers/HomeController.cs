@@ -1,12 +1,14 @@
 using Divar.Models;
 using Microsoft.AspNetCore.Mvc;
+using Divar.Models;
 using System.Diagnostics;
 
-namespace Divar.Controllers
+namespace Practise1Divar.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+
 
         public HomeController(ILogger<HomeController> logger)
         {
