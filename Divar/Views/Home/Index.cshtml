@@ -21,12 +21,12 @@
     </div>
 
 </form>*@
-<form asp-controller="Add" asp-action="Index" method="post">
+<form asp-controller="Add" asp-action="AddAd" method="post">
     <table style="border:none">
         <tr>
 
             <td>
-                <select>
+                <select name="Category">
                     <option selected value="savariVaVanet">سواری و وانت</option>
                 </select>
             </td>
@@ -42,7 +42,7 @@
 
             <td>
                 <label for="Brand">برند و تیپ</label>
-                <input type="text" class="form-control" id="Brand" name="password" required placeholder="نام برند و نام مدل و تیپ">
+                <input type="text" class="form-control" id="Brand" name="Brand" required placeholder="نام برند و نام مدل و تیپ">
             </td>
         </tr>
         <tr>
@@ -90,15 +90,15 @@
         <tr>
 
             <td>
-                <label for="ThirdPartyInsuranceTerm">وضعیت شاسی عقب</label>
-                <input type="text" class="form-control" id="ThirdPartyInsuranceTerm" name="ThirdPartyInsuranceTerm" required placeholder="">
+                <label for="RearChassisCondition">وضعیت شاسی عقب</label>
+                <input type="text" class="form-control" id="RearChassisCondition" name="RearChassisCondition" required placeholder="">
             </td>
         </tr>
         <tr>
 
             <td>
-                <label for="Brand">وضعیت شاسی جلو</label>
-                <input type="text" class="form-control" id="Brand" name="password" required placeholder="">
+                <label for="FrontChassisCondition">وضعیت شاسی جلو</label>
+                <input type="text" class="form-control" id="FrontChassisCondition" name="FrontChassisCondition" required placeholder="">
             </td>
         </tr>
         <tr>
@@ -118,21 +118,21 @@
         <tr>
 
             <td>
-                <input class="form-check-input" type="checkbox" value="DoYouWantToReplace" id="DoYouWantToReplace">
+                <input class="form-check-input" type="checkbox" name="DoYouWantToReplace" value="DoYouWantToReplace" id="DoYouWantToReplace">
                 <label class="form-check-label" for="DoYouWantToReplace">مایلم معاوضه کنم</label>
             </td>
         </tr>
         <tr>
 
             <td>
-                <input class="form-check-input" type="checkbox" value="IsTheChatActivated" id="IsTheChatActivated">
+                <input class="form-check-input" type="checkbox" name="IsTheChatActivated" value="IsTheChatActivated" id="IsTheChatActivated">
                 <label class="form-check-label" for="IsTheChatActivated">چت دیوار فعال شود.</label>
             </td>
         </tr>
         <tr>
 
             <td>
-                <input class="form-check-input" type="checkbox" value="IsThePhoneCallActive" id="IsThePhoneCallActive">
+                <input class="form-check-input" type="checkbox" name="IsThePhoneCallActive" value="IsThePhoneCallActive" id="IsThePhoneCallActive">
                 <label class="form-check-label" for="IsThePhoneCallActive">چت دیوار فعال شود</label>
             </td>
         </tr>.

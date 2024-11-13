@@ -1,6 +1,6 @@
+using Divar.Db;
 using Divar.Models;
 using Microsoft.AspNetCore.Mvc;
-using Divar.Models;
 using System.Diagnostics;
 
 namespace Practise1Divar.Controllers
@@ -31,23 +31,38 @@ namespace Practise1Divar.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        private readonly DivarContext _db;
+        public HomeController(DivarContext db)
+        {
 
-
-        //[HttpPost]
-        //public IActionResult AddAd(Advertisement advertisement)
+            _db = db;
+        }
+        //public IActionResult Index()
         //{
-        //if (!ModelState.IsValid) { return View(); }
-        //var model = new Advertisement()
-        //{
-        //    BasePrice = advertisement.BasePrice
+        //    return View();
         //}
-        //_db.Advertisements.Add(new Advertisement
-        //{
 
-        //})
-        //_db.SaveChanges();
-        //return View();
+        [HttpPost]
+        public IActionResult AddAd(string Category,string City,string Brand, string Model, string Color, string FunctionKilometers, string ChassisAndBodyCondition, string BasePrice, string EngineCondition, string RearChassisCondition, string FrontChassisCondition, string ThirdPartyInsuranceTerm, string Gearbox, string DoYouWantToReplace, string IsTheChatActivated, string IsThePhoneCallActive, string Title, string Description)
+        {
+            if (!ModelState.IsValid) { return View(); }
 
-        //}
+            var model = new Advertisement()
+            {
+                Category = Category,
+            };
+            //{
+            //    BasePrice = advertisement.BasePrice
+            //};
+            model.Add(new Advertisement
+            {
+                Category = Category,
+                
+            });
+
+        _db.SaveChanges();
+            return View();
+
+        }
     }
 }
