@@ -5,33 +5,126 @@
 }
 
 
- <!--<form asp-controller="Add" asp-action="Index" method="post">
-     <table style="border:none">
-         <tr>
-             <td>
-                 Username:
-             </td>
-             <td>
-                 <select>
-                     <option selected value="savariVaVanet">سواری و وانت</option>
-                 </select>
-             </td>
-         </tr>
-         <tr>
-             <td>
-                 Password:
-             </td>
-             <td>
-                 <input type="text" class="form-control" id="password" name="password" required placeholder="موقعیت آگهی">
-             </td>
-         </tr>
-         <tr>
-             <td>
-             </td>
-             <td>
-                 <button type="submit" class="btn btn-primary" style="float:right;" asp-action="">ثبت آگهی</button>
-             </td>
-         </tr>
+<form asp-controller="Home" asp-action="AddAd" method="post">
+    <table style="border:none">
+        <tr>
 
-     </table>
- </form>-->
+            <td>
+                <label for="Brand">برند و تیپ</label>
+                <input type="text" class="form-control" id="Brand" name="Brand" required placeholder="نام برند و نام مدل و تیپ">
+            </td>
+        </tr>
+        <tr>
+
+            <td>
+                <label for="Model">مدل</label>
+                <input type="text" class="form-control" id="Model" name="Model" required placeholder=" ">
+            </td>
+        </tr>
+        <tr>
+
+            <td>
+                <label for="Color">رنگ</label>
+                <input type="text" class="form-control" id="Color" name="Color" required placeholder=" ">
+            </td>
+        </tr>
+        <tr>
+
+            <td>
+                <label for="FunctionKilometers">کارکرد</label>
+                <input type="text" class="form-control" id="FunctionKilometers" required name="FunctionKilometers" placeholder=" ">
+            </td>
+        </tr>
+        <tr>
+
+            <td>
+                <label for="ChassisAndBodyCondition">وضعیت بدنه</label>
+                <input type="text" class="form-control" id="ChassisAndBodyCondition" required name="ChassisAndBodyCondition" placeholder=" ">
+            </td>
+        </tr>
+        <tr>
+
+            <td>
+                <label for="BasePrice">قیمت پایه</label>
+                <input type="number" class="form-control" id="BasePrice" required name="BasePrice" placeholder="قیمت به تومان">
+            </td>
+        </tr>
+        <tr>
+
+            <td>
+                <label for="EngineCondition">وضعیت موتور</label>
+                <input type="text" class="form-control" id="EngineCondition" name="EngineCondition" placeholder="">
+            </td>
+        </tr>
+        <tr>
+
+            <td>
+                <label for="RearChassisCondition">وضعیت شاسی عقب</label>
+                <input type="text" class="form-control" id="RearChassisCondition" name="RearChassisCondition" placeholder="">
+            </td>
+        </tr>
+        <tr>
+
+            <td>
+                <label for="FrontChassisCondition">وضعیت شاسی جلو</label>
+                <input type="text" class="form-control" id="FrontChassisCondition" name="FrontChassisCondition" placeholder="">
+            </td>
+        </tr>
+        <tr>
+
+            <td>
+                <label for="ThirdPartyInsuranceTerm">مهلت بیمٔه شخص ثالث</label>
+                <input type="text" class="form-control" id="ThirdPartyInsuranceTerm" name="ThirdPartyInsuranceTerm" placeholder="">
+            </td>
+        </tr>
+        <tr>
+
+            <td>
+                <label for="Gearbox">گیربکس</label>
+                <input type="text" class="form-control" id="Gearbox" name="Gearbox" placeholder="">
+            </td>
+        </tr>
+        <tr>
+
+            <td>
+                <input class="form-check-input" type="checkbox" name="DoYouWantToReplace" value="DoYouWantToReplace" id="DoYouWantToReplace">
+                <label class="form-check-label" for="DoYouWantToReplace">مایلم معاوضه کنم</label>
+            </td>
+        </tr>
+        <tr>
+
+            <td>
+                <input class="form-check-input" type="checkbox" name="IsTheChatActivated" value="IsTheChatActivated" id="IsTheChatActivated">
+                <label class="form-check-label" for="IsTheChatActivated">چت دیوار فعال شود.</label>
+            </td>
+        </tr>
+        <tr>
+
+            <td>
+                <input class="form-check-input" type="checkbox" name="IsThePhoneCallActive" value="IsThePhoneCallActive" id="IsThePhoneCallActive">
+                <label class="form-check-label" for="IsThePhoneCallActive">چت دیوار فعال شود</label>
+            </td>
+        </tr>.
+        <tr>
+
+            <td>
+                <label for="Title">عنوان آگهی</label>
+                <input type="text" class="form-control" id="Title" name="Title" required placeholder="">
+            </td>
+        </tr>
+        <tr>
+
+            <td>
+                <label for="Description">توضیحات آگهی</label>
+                <input type="text" class="form-control" id="Description" name="Description" required placeholder="">
+            </td>
+        </tr>
+        <tr>
+
+            <td>
+                <button type="submit" class="btn btn-primary" style="float:right;" asp-action="">ثبت آگهی</button>
+            </td>
+        </tr>
+
+    </table>
+</form>

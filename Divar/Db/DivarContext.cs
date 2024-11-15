@@ -21,11 +21,13 @@ public partial class DivarContext : DbContext
 
     public virtual DbSet<Category> Categories { get; set; }
 
+    public virtual DbSet<City> Cities { get; set; }
+
     public virtual DbSet<ViwShowAdvertisement> ViwShowAdvertisements { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-206H5QD;Initial Catalog=Divar;Integrated Security=True;Trust Server Certificate=True");
+        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-206H5QD;Initial Catalog=Divar;Integrated Security=True;Encrypt=True;Trust Server Certificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -40,16 +42,23 @@ public partial class DivarContext : DbContext
             entity.Property(e => e.ChassisAndBodyCondition).HasMaxLength(50);
             entity.Property(e => e.City).HasMaxLength(50);
             entity.Property(e => e.Color).HasMaxLength(50);
-            entity.Property(e => e.Description).HasMaxLength(300);
             entity.Property(e => e.EngineCondition).HasMaxLength(50);
             entity.Property(e => e.FrontChassisCondition).HasMaxLength(50);
             entity.Property(e => e.Gearbox).HasMaxLength(50);
             entity.Property(e => e.InsertDate)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
-            entity.Property(e => e.Latitude).IsUnicode(false);
-            entity.Property(e => e.Longitude).IsUnicode(false);
+            entity.Property(e => e.Latitude)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.Longitude)
+                .HasMaxLength(50)
+                .IsUnicode(false);
             entity.Property(e => e.Model).HasMaxLength(50);
+            entity.Property(e => e.NationalCode)
+                .HasMaxLength(11)
+                .IsFixedLength();
+            entity.Property(e => e.Nationality).HasMaxLength(15);
             entity.Property(e => e.RearChassisCondition).HasMaxLength(50);
             entity.Property(e => e.Status)
                 .HasMaxLength(50)
@@ -64,18 +73,20 @@ public partial class DivarContext : DbContext
             entity.HasOne(d => d.Category).WithMany(p => p.Advertisements)
                 .HasForeignKey(d => d.CategoryId)
                 .HasConstraintName("FK_Advertisement_Category1");
+
+            entity.HasOne(d => d.CityNavigation).WithMany(p => p.Advertisements)
+                .HasForeignKey(d => d.CityId)
+                .HasConstraintName("FK_Advertisement_City");
         });
 
         modelBuilder.Entity<AdvertisementImage>(entity =>
         {
             entity.ToTable("AdvertisementImage");
 
-            entity.Property(e => e.Image).HasColumnType("image");
-            entity.Property(e => e.InsertDate).HasColumnType("datetime");
             entity.Property(e => e.Status)
-                .HasMaxLength(50)
-                .IsUnicode(false);
-            entity.Property(e => e.UpdateDate).HasColumnType("datetime");
+                .HasMaxLength(15)
+                .IsUnicode(false)
+                .HasDefaultValue("Active");
             entity.Property(e => e.Url).IsUnicode(false);
 
             entity.HasOne(d => d.Advertisement).WithMany(p => p.AdvertisementImages)
@@ -88,13 +99,28 @@ public partial class DivarContext : DbContext
         {
             entity.ToTable("Category");
 
-            entity.Property(e => e.Description).HasMaxLength(100);
-            entity.Property(e => e.Icon).HasColumnType("image");
-            entity.Property(e => e.InsertDate).HasColumnType("datetime");
+            entity.Property(e => e.Description).HasMaxLength(200);
             entity.Property(e => e.Status)
-                .HasMaxLength(50)
-                .IsUnicode(false);
+                .HasMaxLength(15)
+                .IsUnicode(false)
+                .HasDefaultValue("Active");
             entity.Property(e => e.Title).HasMaxLength(50);
+        });
+
+        modelBuilder.Entity<City>(entity =>
+        {
+            entity.ToTable("City");
+
+            entity.Property(e => e.InsertDate)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.Name)
+                .HasMaxLength(10)
+                .IsFixedLength();
+            entity.Property(e => e.Status)
+                .HasMaxLength(15)
+                .IsUnicode(false)
+                .HasDefaultValue("Active");
         });
 
         modelBuilder.Entity<ViwShowAdvertisement>(entity =>

@@ -15,7 +15,7 @@ public partial class Advertisement
 
     public string? City { get; set; }
 
-    public string Longitude { get; set; } = null!;
+    public string? Longitude { get; set; }
 
     public string? Latitude { get; set; }
 
@@ -37,7 +37,7 @@ public partial class Advertisement
 
     public string? Gearbox { get; set; }
 
-    public bool DoYouWantToReplace { get; set; }
+    public bool? DoYouWantToReplace { get; set; }
 
     public bool IsTheChatActivated { get; set; }
 
@@ -53,7 +53,15 @@ public partial class Advertisement
 
     public string? RearChassisCondition { get; set; }
 
+    public string Nationality { get; set; } = null!;
+
+    public string NationalCode { get; set; } = null!;
+
+    public int? CityId { get; set; }
+
     public virtual ICollection<AdvertisementImage> AdvertisementImages { get; set; } = new List<AdvertisementImage>();
 
     public virtual Category? Category { get; set; }
+
+    public virtual City? CityNavigation { get; set; }
 }
