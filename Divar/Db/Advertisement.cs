@@ -13,15 +13,13 @@ public partial class Advertisement
 
     public int? CategoryId { get; set; }
 
-    public string? City { get; set; }
-
     public string? Longitude { get; set; }
 
     public string? Latitude { get; set; }
 
     public string? Brand { get; set; }
 
-    public string? Model { get; set; }
+    public string? ItsModel { get; set; }
 
     public string? Color { get; set; }
 
@@ -63,5 +61,5 @@ public partial class Advertisement
 
     public virtual Category? Category { get; set; }
 
-    public virtual City? CityNavigation { get; set; }
+    public virtual City? City { get; set; }
 }

@@ -4,8 +4,7 @@
 @{
 }
 
-
-<form asp-controller="Home" asp-action="AddAd" method="post">
+<form asp-controller="Add" asp-action="AddAd" method="post">
     <table style="border:none">
         <tr>
 
@@ -17,8 +16,8 @@
         <tr>
 
             <td>
-                <label for="Model">مدل</label>
-                <input type="text" class="form-control" id="Model" name="Model" required placeholder=" ">
+                <label for="ItsModel">مدل</label>
+                <input type="text" class="form-control" id="ItsModel" name="ItsModel" required placeholder=" ">
             </td>
         </tr>
         <tr>
@@ -82,6 +81,23 @@
             <td>
                 <label for="Gearbox">گیربکس</label>
                 <input type="text" class="form-control" id="Gearbox" name="Gearbox" placeholder="">
+            </td>
+        </tr>
+        <tr>
+
+            <td>
+                <label for="Nationality">ملیت</label>
+                <select id="Nationality" name="Nationality">
+                    <option value="ایرانی">ایرانی</option>
+                    <option value="اتباع خارجی">اتباع خارجی</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+
+            <td>
+                <label for="NationalCode">کد ملی</label>
+                <input type="text" class="form-control" id="NationalCode" name="NationalCode" placeholder="">
             </td>
         </tr>
         <tr>

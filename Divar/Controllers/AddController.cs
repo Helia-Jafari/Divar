@@ -23,17 +23,17 @@ namespace Practise1Divar.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddAd(string Brand, string Model, string Color, int FunctionKilometers, string ChassisAndBodyCondition, int BasePrice, string EngineCondition, string RearChassisCondition, string FrontChassisCondition, string ThirdPartyInsuranceTerm, string Gearbox, bool DoYouWantToReplace, bool IsTheChatActivated, bool IsThePhoneCallActive, string Title, string Description)
+        public IActionResult AddAd(string Brand, string ItsModel, string Color, int FunctionKilometers, string ChassisAndBodyCondition, int BasePrice, string EngineCondition, string RearChassisCondition, string FrontChassisCondition, string ThirdPartyInsuranceTerm, string Gearbox, bool DoYouWantToReplace, bool IsTheChatActivated, bool IsThePhoneCallActive, string Title, string Description, string Nationality, string NationalCode)
         {
             if (!ModelState.IsValid) { return View(); }
-            var model = new Advertisement()
+            var myModel = new Advertisement()
             {
                 Brand = Brand,
-                Model = Model,
+                ItsModel = ItsModel,
                 Color = Color,
-                FunctionKilometers = FunctionKilometers,
+                FunctionKilometers = Convert.ToInt32(FunctionKilometers),
                 ChassisAndBodyCondition = ChassisAndBodyCondition,
-                BasePrice = BasePrice,
+                BasePrice = Convert.ToInt32(BasePrice),
                 EngineCondition = EngineCondition,
                 RearChassisCondition = RearChassisCondition,
                 FrontChassisCondition = FrontChassisCondition,
@@ -43,9 +43,14 @@ namespace Practise1Divar.Controllers
                 IsTheChatActivated = IsTheChatActivated,
                 IsThePhoneCallActive = IsThePhoneCallActive,
                 Title = Title,
-                Description = Description
+                Description = Description,
+                Nationality = Nationality,
+                NationalCode = NationalCode,
+                Status = "Active",
+                InsertDate = DateTime.Now,
+                UpdateDate = DateTime.Now
             };
-            _context.Advertisements.Add(model);
+            _context.Advertisements.Add(myModel);
             _context.SaveChanges();
             return View();
         }

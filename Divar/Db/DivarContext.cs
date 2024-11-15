@@ -40,7 +40,6 @@ public partial class DivarContext : DbContext
             entity.Property(e => e.BasePrice).HasColumnType("money");
             entity.Property(e => e.Brand).HasMaxLength(50);
             entity.Property(e => e.ChassisAndBodyCondition).HasMaxLength(50);
-            entity.Property(e => e.City).HasMaxLength(50);
             entity.Property(e => e.Color).HasMaxLength(50);
             entity.Property(e => e.EngineCondition).HasMaxLength(50);
             entity.Property(e => e.FrontChassisCondition).HasMaxLength(50);
@@ -48,13 +47,13 @@ public partial class DivarContext : DbContext
             entity.Property(e => e.InsertDate)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
+            entity.Property(e => e.ItsModel).HasMaxLength(50);
             entity.Property(e => e.Latitude)
                 .HasMaxLength(50)
                 .IsUnicode(false);
             entity.Property(e => e.Longitude)
                 .HasMaxLength(50)
                 .IsUnicode(false);
-            entity.Property(e => e.Model).HasMaxLength(50);
             entity.Property(e => e.NationalCode)
                 .HasMaxLength(11)
                 .IsFixedLength();
@@ -74,7 +73,7 @@ public partial class DivarContext : DbContext
                 .HasForeignKey(d => d.CategoryId)
                 .HasConstraintName("FK_Advertisement_Category1");
 
-            entity.HasOne(d => d.CityNavigation).WithMany(p => p.Advertisements)
+            entity.HasOne(d => d.City).WithMany(p => p.Advertisements)
                 .HasForeignKey(d => d.CityId)
                 .HasConstraintName("FK_Advertisement_City");
         });
