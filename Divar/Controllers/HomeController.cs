@@ -2,6 +2,7 @@
 using Divar.Db;
 using Divar.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -54,14 +55,14 @@ namespace Divar.Controllers
             //var ads = _context.Advertisements.ToList();
             //var ads = from mem in _context.Advertisements
             //              select mem;
-            if (!String.IsNullOrEmpty(SearchString))
+            if (!SearchString.IsNullOrEmpty())
             {
-             var ads = _context.Advertisements.ToList().Where(m => m.Title.Contains(SearchString));
-             return View(ads);
+             var ads = _context.Advertisements.ToList().Where(m => m.Title.Contains(SearchString)|| m.Color.Contains(SearchString)||m.BasePrice.ToString().Contains(SearchString)).ToList();
+             return View("Index", ads);
             }
 
             var memberList = _context.Advertisements.ToList();
-            return View(memberList);
+            return View("Index",memberList);
 
         }
 

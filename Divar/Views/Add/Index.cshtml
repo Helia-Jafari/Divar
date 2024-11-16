@@ -1,93 +1,94 @@
-﻿@*
+﻿@using Divar.Db
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 }
-
+@model Advertisement
 <form asp-controller="Add" asp-action="AddAd" method="post">
     <table style="border:none">
         <tr>
 
             <td>
-                <label for="Brand">برند و تیپ</label>
-                <input type="text" class="form-control" id="Brand" name="Brand" required placeholder="نام برند و نام مدل و تیپ">
+                <label asp-for="Brand">برند و تیپ</label>
+                <input asp-for="Brand" type="text" class="form-control" id="Brand" required placeholder="نام برند و نام مدل و تیپ">
             </td>
         </tr>
         <tr>
 
             <td>
-                <label for="ItsModel">مدل</label>
-                <input type="text" class="form-control" id="ItsModel" name="ItsModel" required placeholder=" ">
+                <label asp-for="ItsModel">مدل</label>
+                <input asp-for="ItsModel" type="text" class="form-control" id="ItsModel" required placeholder=" ">
             </td>
         </tr>
         <tr>
 
             <td>
-                <label for="Color">رنگ</label>
-                <input type="text" class="form-control" id="Color" name="Color" required placeholder=" ">
+                <label asp-for="Color">رنگ</label>
+                <input asp-for="Color" type="text" class="form-control" id="Color" required placeholder=" ">
             </td>
         </tr>
         <tr>
 
             <td>
-                <label for="FunctionKilometers">کارکرد</label>
-                <input type="text" class="form-control" id="FunctionKilometers" required name="FunctionKilometers" placeholder=" ">
+                <label asp-for="FunctionKilometers">کارکرد</label>
+                <input asp-for="FunctionKilometers" type="text" class="form-control" id="FunctionKilometers" required placeholder=" ">
             </td>
         </tr>
         <tr>
 
             <td>
-                <label for="ChassisAndBodyCondition">وضعیت بدنه</label>
-                <input type="text" class="form-control" id="ChassisAndBodyCondition" required name="ChassisAndBodyCondition" placeholder=" ">
+                <label asp-for="ChassisAndBodyCondition">وضعیت بدنه</label>
+                <input asp-for="ChassisAndBodyCondition" type="text" class="form-control" id="ChassisAndBodyCondition" required  placeholder=" ">
             </td>
         </tr>
         <tr>
 
             <td>
-                <label for="BasePrice">قیمت پایه</label>
-                <input type="number" class="form-control" id="BasePrice" required name="BasePrice" placeholder="قیمت به تومان">
+                <label asp-for="BasePrice">قیمت پایه</label>
+                <input asp-for="BasePrice" type="number" class="form-control" id="BasePrice" required  placeholder="قیمت به تومان">
             </td>
         </tr>
         <tr>
 
             <td>
-                <label for="EngineCondition">وضعیت موتور</label>
-                <input type="text" class="form-control" id="EngineCondition" name="EngineCondition" placeholder="">
+                <label asp-for="EngineCondition">وضعیت موتور</label>
+                <input asp-for="EngineCondition" type="text" class="form-control" id="EngineCondition"  placeholder="">
             </td>
         </tr>
         <tr>
 
             <td>
-                <label for="RearChassisCondition">وضعیت شاسی عقب</label>
-                <input type="text" class="form-control" id="RearChassisCondition" name="RearChassisCondition" placeholder="">
+                <label asp-for="RearChassisCondition">وضعیت شاسی عقب</label>
+                <input asp-for="RearChassisCondition" type="text" class="form-control" id="RearChassisCondition"  placeholder="">
             </td>
         </tr>
         <tr>
 
             <td>
-                <label for="FrontChassisCondition">وضعیت شاسی جلو</label>
-                <input type="text" class="form-control" id="FrontChassisCondition" name="FrontChassisCondition" placeholder="">
+                <label asp-for="FrontChassisCondition">وضعیت شاسی جلو</label>
+                <input asp-for="FrontChassisCondition" type="text" class="form-control" id="FrontChassisCondition"  placeholder="">
             </td>
         </tr>
         <tr>
 
             <td>
-                <label for="ThirdPartyInsuranceTerm">مهلت بیمٔه شخص ثالث</label>
-                <input type="text" class="form-control" id="ThirdPartyInsuranceTerm" name="ThirdPartyInsuranceTerm" placeholder="">
+                <label asp-for="ThirdPartyInsuranceTerm">مهلت بیمٔه شخص ثالث</label>
+                <input asp-for="ThirdPartyInsuranceTerm" type="text" class="form-control" id="ThirdPartyInsuranceTerm" placeholder="">
             </td>
         </tr>
         <tr>
 
             <td>
-                <label for="Gearbox">گیربکس</label>
-                <input type="text" class="form-control" id="Gearbox" name="Gearbox" placeholder="">
+                <label asp-for="Gearbox">گیربکس</label>
+                <input asp-for="Gearbox" type="text" asp-for="Gearbox" class="form-control" id="Gearbox" placeholder="">
             </td>
         </tr>
         <tr>
 
             <td>
-                <label for="Nationality">ملیت</label>
-                <select id="Nationality" name="Nationality">
+                <label asp-for="Nationality">ملیت</label>
+                <select asp-for="Nationality" id="Nationality" >
                     <option value="ایرانی">ایرانی</option>
                     <option value="اتباع خارجی">اتباع خارجی</option>
                 </select>
@@ -96,43 +97,43 @@
         <tr>
 
             <td>
-                <label for="NationalCode">کد ملی</label>
-                <input type="text" class="form-control" id="NationalCode" name="NationalCode" placeholder="">
+                <label asp-for="NationalCode">کد ملی</label>
+                <input type="text" asp-for="NationalCode" asp-for="NationalCode" class="form-control" id="NationalCode" placeholder="">
             </td>
         </tr>
         <tr>
 
             <td>
-                <input class="form-check-input" type="checkbox" name="DoYouWantToReplace" value="DoYouWantToReplace" id="DoYouWantToReplace">
-                <label class="form-check-label" for="DoYouWantToReplace">مایلم معاوضه کنم</label>
+                <input class="form-check-input" asp-for="DoYouWantToReplace" value="DoYouWantToReplace" id="DoYouWantToReplace">
+                <label class="form-check-label" asp-for="DoYouWantToReplace">مایلم معاوضه کنم</label>
             </td>
         </tr>
         <tr>
 
             <td>
-                <input class="form-check-input" type="checkbox" name="IsTheChatActivated" value="IsTheChatActivated" id="IsTheChatActivated">
-                <label class="form-check-label" for="IsTheChatActivated">چت دیوار فعال شود.</label>
+                <input class="form-check-input" asp-for="IsTheChatActivated" value="IsTheChatActivated" id="IsTheChatActivated">
+                <label class="form-check-label" asp-for="IsTheChatActivated">چت دیوار فعال شود.</label>
             </td>
         </tr>
         <tr>
 
             <td>
-                <input class="form-check-input" type="checkbox" name="IsThePhoneCallActive" value="IsThePhoneCallActive" id="IsThePhoneCallActive">
-                <label class="form-check-label" for="IsThePhoneCallActive">چت دیوار فعال شود</label>
+                <input class="form-check-input"  asp-for="IsThePhoneCallActive" value="IsThePhoneCallActive" id="IsThePhoneCallActive">
+                <label class="form-check-label" asp-for="IsThePhoneCallActive">چت دیوار فعال شود</label>
             </td>
         </tr>.
         <tr>
 
             <td>
-                <label for="Title">عنوان آگهی</label>
-                <input type="text" class="form-control" id="Title" name="Title" required placeholder="">
+                <label asp-for="Title">عنوان آگهی</label>
+                <input type="text" class="form-control" id="Title" asp-for="Title" required placeholder="">
             </td>
         </tr>
         <tr>
 
             <td>
-                <label for="Description">توضیحات آگهی</label>
-                <input type="text" class="form-control" id="Description" name="Description" required placeholder="">
+                <label asp-for="Description">توضیحات آگهی</label>
+                <input type="text" class="form-control" id="Description" asp-for="Description" required placeholder="">
             </td>
         </tr>
         <tr>
