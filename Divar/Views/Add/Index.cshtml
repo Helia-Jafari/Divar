@@ -1,8 +1,11 @@
-﻿   @using Divar.Db
-   {
-   }
-  @model Advertisement
-<form asp-controller="Add" asp-action="Index" method="post">
+﻿@using Divar.Db
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Advertisement
+<form asp-controller="Add" asp-action="AddAd" method="post">
     <table style="border:none">
         <tr>
 
@@ -36,35 +39,35 @@
 
             <td>
                 <label asp-for="ChassisAndBodyCondition">وضعیت بدنه</label>
-                <input asp-for="ChassisAndBodyCondition" type="text" class="form-control" id="ChassisAndBodyCondition" required placeholder=" ">
+                <input asp-for="ChassisAndBodyCondition" type="text" class="form-control" id="ChassisAndBodyCondition" required  placeholder=" ">
             </td>
         </tr>
         <tr>
 
             <td>
                 <label asp-for="BasePrice">قیمت پایه</label>
-                <input asp-for="BasePrice" type="number" class="form-control" id="BasePrice" required placeholder="قیمت به تومان">
+                <input asp-for="BasePrice" type="number" class="form-control" id="BasePrice" required  placeholder="قیمت به تومان">
             </td>
         </tr>
         <tr>
 
             <td>
                 <label asp-for="EngineCondition">وضعیت موتور</label>
-                <input asp-for="EngineCondition" type="text" class="form-control" id="EngineCondition" placeholder="">
+                <input asp-for="EngineCondition" type="text" class="form-control" id="EngineCondition"  placeholder="">
             </td>
         </tr>
         <tr>
 
             <td>
                 <label asp-for="RearChassisCondition">وضعیت شاسی عقب</label>
-                <input asp-for="RearChassisCondition" type="text" class="form-control" id="RearChassisCondition" placeholder="">
+                <input asp-for="RearChassisCondition" type="text" class="form-control" id="RearChassisCondition"  placeholder="">
             </td>
         </tr>
         <tr>
 
             <td>
                 <label asp-for="FrontChassisCondition">وضعیت شاسی جلو</label>
-                <input asp-for="FrontChassisCondition" type="text" class="form-control" id="FrontChassisCondition" placeholder="">
+                <input asp-for="FrontChassisCondition" type="text" class="form-control" id="FrontChassisCondition"  placeholder="">
             </td>
         </tr>
         <tr>
@@ -85,7 +88,7 @@
 
             <td>
                 <label asp-for="Nationality">ملیت</label>
-                <select asp-for="Nationality" id="Nationality">
+                <select asp-for="Nationality" id="Nationality" >
                     <option value="ایرانی">ایرانی</option>
                     <option value="اتباع خارجی">اتباع خارجی</option>
                 </select>
@@ -100,25 +103,25 @@
         </tr>
         <!--<tr>
 
-             <td>
-                 <input class="form-check-input" type="checkbox" asp-for="DoYouWantToReplace" value="DoYouWantToReplace" id="DoYouWantToReplace">
-                 <label class="form-check-label" asp-for="DoYouWantToReplace">مایلم معاوضه کنم</label>
-             </td>
-         </tr>
+            <td>
+                <input class="form-check-input" asp-for="DoYouWantToReplace" value="DoYouWantToReplace" id="DoYouWantToReplace">
+                <label class="form-check-label" asp-for="DoYouWantToReplace">مایلم معاوضه کنم</label>
+            </td>
+        </tr>
         <tr>
 
-             <td>
-                 <input class="form-check-input" type="checkbox" asp-for="IsTheChatActivated" value="IsTheChatActivated" id="IsTheChatActivated">
-                 <label class="form-check-label" asp-for="IsTheChatActivated">چت دیوار فعال شود.</label>
-             </td>
-         </tr>
-         <tr>
+            <td>
+                <input class="form-check-input" asp-for="IsTheChatActivated" value="IsTheChatActivated" id="IsTheChatActivated">
+                <label class="form-check-label" asp-for="IsTheChatActivated">چت دیوار فعال شود.</label>
+            </td>
+        </tr>
+        <tr>
 
-             <td>
-                 <input class="form-check-input"  asp-for="IsThePhoneCallActive" value="IsThePhoneCallActive" id="IsThePhoneCallActive">
-                 <label class="form-check-label" asp-for="IsThePhoneCallActive">چت دیوار فعال شود</label>
-             </td>
-        </tr>-->
+            <td>
+                <input class="form-check-input"  asp-for="IsThePhoneCallActive" value="IsThePhoneCallActive" id="IsThePhoneCallActive">
+                <label class="form-check-label" asp-for="IsThePhoneCallActive">چت دیوار فعال شود</label>
+            </td>
+        </tr>.
         <tr>
 
             <td>
