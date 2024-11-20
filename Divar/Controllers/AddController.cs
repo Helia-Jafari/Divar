@@ -3,7 +3,7 @@
 using Divar.Db;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Practise1Divar.Controllers
+namespace Divar.Controllers
 {
     public class AddController : Controller
     {
