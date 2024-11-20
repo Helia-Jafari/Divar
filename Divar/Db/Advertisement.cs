@@ -37,9 +37,9 @@ public partial class Advertisement
 
     public bool? DoYouWantToReplace { get; set; }
 
-    public bool IsTheChatActivated { get; set; }
+    public bool? IsTheChatActivated { get; set; }
 
-    public bool IsThePhoneCallActive { get; set; }
+    public bool? IsThePhoneCallActive { get; set; }
 
     public DateTime InsertDate { get; set; }
 

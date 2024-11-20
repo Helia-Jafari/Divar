@@ -56,12 +56,12 @@ namespace Divar.Controllers
             //              select mem;
             if (!String.IsNullOrEmpty(SearchString))
             {
-             var ads = _context.Advertisements.ToList().Where(m => m.Title.Contains(SearchString));
-             return View(ads);
+                var ads = _context.Advertisements.ToList().Where(m => m.Title.Contains(SearchString));
+                return View("Index", ads);
             }
 
             var memberList = _context.Advertisements.ToList();
-            return View(memberList);
+            return View("Index", memberList);
 
         }
 
