@@ -5,8 +5,19 @@
 @{
 }
 @model Advertisement
-<form asp-controller="Add" asp-action="AddAd" method="post">
+<form asp-controller="Add" asp-action="Index" method="post">
     <table style="border:none">
+        <tr>
+
+            <td>
+                <select>
+                     @foreach (var category in )
+                     {
+                        
+                     }
+                </select>
+            </td>
+        </tr>
         <tr>
 
             <td>
@@ -101,7 +112,7 @@
                 <input type="text" asp-for="NationalCode" asp-for="NationalCode" class="form-control" id="NationalCode" placeholder="">
             </td>
         </tr>
-        <!--<tr>
+        <tr>
 
             <td>
                 <input class="form-check-input" asp-for="DoYouWantToReplace" value="DoYouWantToReplace" id="DoYouWantToReplace">
@@ -121,7 +132,7 @@
                 <input class="form-check-input"  asp-for="IsThePhoneCallActive" value="IsThePhoneCallActive" id="IsThePhoneCallActive">
                 <label class="form-check-label" asp-for="IsThePhoneCallActive">چت دیوار فعال شود</label>
             </td>
-        </tr>.
+        </tr>
         <tr>
 
             <td>
@@ -134,6 +145,12 @@
             <td>
                 <label asp-for="Description">توضیحات آگهی</label>
                 <input type="text" class="form-control" id="Description" asp-for="Description" required placeholder="">
+            </td>
+        </tr>
+        <tr>
+
+            <td>
+                <input value="Status" type="hidden" class="form-control" id="Status" asp-for="Status" placeholder="">
             </td>
         </tr>
         <tr>
