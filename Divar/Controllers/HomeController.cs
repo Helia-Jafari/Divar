@@ -57,8 +57,13 @@ namespace Divar.Controllers
             //              select mem;
             if (!SearchString.IsNullOrEmpty())
             {
+<<<<<<< HEAD
+             var ads = _context.Advertisements.ToList().Where(m => m.Title.Contains(SearchString)|| m.Color.Contains(SearchString)||m.BasePrice.ToString().Contains(SearchString) || m.FunctionKilometers.ToString().Contains(SearchString)).ToList();
+             return View("Index", ads);
+=======
                 var ads = _context.Advertisements.ToList().Where(m => m.Title.Contains(SearchString) || m.Color.Contains(SearchString) || m.BasePrice.ToString().Contains(SearchString)).ToList();
                 return View("Index", ads);
+>>>>>>> efddad44b9a3389db7740cf794372b237d9eb1a9
             }
 
             var memberList = _context.Advertisements.ToList();

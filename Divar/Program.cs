@@ -1,4 +1,6 @@
 
+
+
 using Divar.Db;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -29,3 +31,4 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
