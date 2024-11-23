@@ -8,25 +8,33 @@ namespace Divar.Controllers
     public class AddController : Controller
     {
         private readonly DivarContext _context;
-        public readonly List<Category> categories;
-        public readonly List<City> cities;
+        //public readonly List<Category> categories;
+        //public readonly List<City> cities;
 
         public AddController(DivarContext db)
-    {
-    _context = db;
-    //categories = _context.Categories.ToList();
-    //cities = _context.Cities.ToList();
-    }
-    public IActionResult Index()
-    {
-         return View();
-    }
+        {
+            _context = db;
+            //categories = _context.Categories.ToList();
+            //cities = _context.Cities.ToList();
+        }
+        public IActionResult Index()
+        {
+            return View();
+        }
 
-[HttpPost]
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
 public IActionResult Index(Advertisement model)
 {
-    if (!ModelState.IsValid) { return View("Index"); }
-    var myModel = new Advertisement()
+            model.Status = "Active";
+            model.InsertDate = DateTime.Now;
+            model.UpdateDate = DateTime.Now;
+    if (!ModelState.IsValid)
+            { 
+                return View();
+            }
+            var myModel = new Advertisement()
     {
         Brand = model.Brand,
         ItsModel = model.ItsModel,
@@ -46,13 +54,13 @@ public IActionResult Index(Advertisement model)
         Description = model.Description,
         Nationality = model.Nationality,
         NationalCode = model.NationalCode,
-        Status = "Active",
-        InsertDate = DateTime.Now,
-        UpdateDate = DateTime.Now
+        Status = model.Status,
+        InsertDate = model.InsertDate,
+        UpdateDate = model.UpdateDate
     };
     _context.Advertisements.Add(myModel);
     _context.SaveChanges();
-    return View("Index");
+    return View();
 }
     }
 }

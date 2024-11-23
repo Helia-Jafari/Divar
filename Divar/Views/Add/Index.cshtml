@@ -1,6 +1,5 @@
 ﻿   @using Divar.Db
-   {
-   }
+
   @model Advertisement
   <form asp-controller="Add" asp-action="Index" method="post">
       <table style="border:none">
@@ -133,6 +132,12 @@
                   <input type="text" class="form-control" id="Description" asp-for="Description" required placeholder="">
               </td>
           </tr>
+        <tr>
+
+            <td>
+                <input value="Status" type="hidden" class="form-control" id="Status" asp-for="Status" placeholder="">
+            </td>
+        </tr>
           <tr>
 
               <td>
