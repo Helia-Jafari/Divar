@@ -9,13 +9,13 @@ namespace Divar.Controllers
     public class AddController : Controller
     {
         private readonly DivarContext _context;
-        public readonly List<Category> categories;
-        public readonly List<City> cities;
+        //public readonly List<Category> categories;
+        //public readonly List<City> cities;
         public AddController(DivarContext db)
         {
             _context = db;
-            categories = db.Categories.ToList();
-            cities = db.Cities.ToList();
+            //categories = db.Categories.ToList();
+            //cities = db.Cities.ToList();
         }
         public IActionResult Index()
         {
