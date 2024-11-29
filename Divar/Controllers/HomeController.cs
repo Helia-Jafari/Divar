@@ -2,6 +2,7 @@
 using Divar.Db;
 using Divar.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 using Microsoft.IdentityModel.Tokens;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -13,12 +14,14 @@ namespace Divar.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly DivarContext _context;
+        private readonly IStringLocalizer<HomeController> _localizer;
 
 
-        public HomeController(ILogger<HomeController> logger, DivarContext db)
+        public HomeController(ILogger<HomeController> logger, DivarContext db, IStringLocalizer<HomeController> localizer)
         {
             _context = db;
             _logger = logger;
+            _localizer = localizer;
         }
 
         public IActionResult Index()
@@ -34,6 +37,10 @@ namespace Divar.Controllers
             //    };
             //    _context.ViwShowAdvertisements.Add(view);
             //}
+            ViewData["AdvertisementTitleViewData"] = _localizer["AdvertisementTitle"];
+            ViewData["AdvertisementColorViewData"] = _localizer["AdvertisementColor"];
+            ViewData["AdvertisementBasePriceViewData"] = _localizer["AdvertisementBasePrice"];
+            ViewData["AdvertisementFunctionKilometersViewData"] = _localizer["AdvertisementFunctionKilometers"];
             var Viesws = _context.Advertisements.ToList();
             return View(Viesws);
         }
@@ -55,15 +62,19 @@ namespace Divar.Controllers
             //var ads = _context.Advertisements.ToList();
             //var ads = from mem in _context.Advertisements
             //              select mem;
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
             if (!SearchString.IsNullOrEmpty())
             {
-<<<<<<< HEAD
-             var ads = _context.Advertisements.ToList().Where(m => m.Title.Contains(SearchString)|| m.Color.Contains(SearchString)||m.BasePrice.ToString().Contains(SearchString) || m.FunctionKilometers.ToString().Contains(SearchString)).ToList();
+
+                var ads = _context.Advertisements.ToList().Where(m => m.Title.Contains(SearchString) || m.Color.Contains(SearchString) || m.BasePrice.ToString().Contains(SearchString) || m.FunctionKilometers.ToString().Contains(SearchString)).ToList();
+                ViewData["SucceededSearch"] = _localizer["SucceededSearch"];
              return View("Index", ads);
-=======
-                var ads = _context.Advertisements.ToList().Where(m => m.Title.Contains(SearchString) || m.Color.Contains(SearchString) || m.BasePrice.ToString().Contains(SearchString)).ToList();
-                return View("Index", ads);
->>>>>>> efddad44b9a3389db7740cf794372b237d9eb1a9
+
+              
+
             }
 
             var memberList = _context.Advertisements.ToList();

@@ -47,8 +47,6 @@ public partial class DivarContext : DbContext
             entity.Property(e => e.InsertDate)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
-            entity.Property(e => e.IsTheChatActivated).HasDefaultValue(false);
-            entity.Property(e => e.IsThePhoneCallActive).HasDefaultValue(false);
             entity.Property(e => e.ItsModel).HasMaxLength(50);
             entity.Property(e => e.Latitude)
                 .HasMaxLength(50)
@@ -62,7 +60,7 @@ public partial class DivarContext : DbContext
             entity.Property(e => e.Nationality).HasMaxLength(15);
             entity.Property(e => e.RearChassisCondition).HasMaxLength(50);
             entity.Property(e => e.Status)
-                .HasMaxLength(50)
+                .HasMaxLength(15)
                 .IsUnicode(false)
                 .HasDefaultValue("Active");
             entity.Property(e => e.ThirdPartyInsuranceTerm).HasMaxLength(50);

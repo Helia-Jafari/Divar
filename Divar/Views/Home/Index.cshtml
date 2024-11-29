@@ -13,10 +13,10 @@
     @foreach (var ad in Model)
     {
         <div class="col-6 border border-primary bg-info">
-            <p>اسم اگهی: @ad.Title</p>
-            <p>رنگ: @ad.Color</p>
-            <p>قیمت پایه: @ad.BasePrice</p>
-            <p>کارکرد: @ad.FunctionKilometers</p>
+            <p>@ViewData["AdvertisementTitleViewData"] @ad.Title</p>
+            <p>@ViewData["AdvertisementColorViewData"] @ad.Color</p>
+            <p>@ViewData["AdvertisementBasePriceViewData"] @ad.BasePrice</p>
+            <p>@ViewData["AdvertisementFunctionKilometersViewData"] @ad.FunctionKilometers</p>
         </div>
     }
 </div> 

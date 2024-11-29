@@ -9,18 +9,21 @@ namespace Divar.Controllers
     public class AddController : Controller
     {
         private readonly DivarContext _context;
-        //public readonly List<Category> categories;
-        //public readonly List<City> cities;
+        public List<Category> categories;
+        //public List<City> cities;
 
         public AddController(DivarContext db)
         {
             _context = db;
-            //categories = _context.Categories.ToList();
+            categories = _context.Categories.ToList();
             //cities = _context.Cities.ToList();
         }
         public IActionResult Index()
         {
-            return View();
+            
+            ViewBag.categoriess = categories;
+            var tuple = new Tuple<Advertisement, DivarContext>(new Advertisement(),new DivarContext());
+            return View(tuple);
         }
 
 
@@ -31,7 +34,7 @@ public IActionResult Index(Advertisement model)
             model.Status = "Active";
             model.InsertDate = DateTime.Now;
             model.UpdateDate = DateTime.Now;
-    if (!ModelState.IsValid)
+            if (!ModelState.IsValid)
             { 
                 return View();
             }
@@ -48,10 +51,10 @@ public IActionResult Index(Advertisement model)
         FrontChassisCondition = model.FrontChassisCondition,
         ThirdPartyInsuranceTerm = model.ThirdPartyInsuranceTerm,
         Gearbox = model.Gearbox,
-        //DoYouWantToReplace = model.DoYouWantToReplace,
-        //IsTheChatActivated = model.IsTheChatActivated,
-        //IsThePhoneCallActive = model.IsThePhoneCallActive,
-        Title = model.Title,
+        DoYouWantToReplace = model.DoYouWantToReplace,
+        IsTheChatActivated = model.IsTheChatActivated,
+                IsThePhoneCallActive = model.IsThePhoneCallActive,
+                Title = model.Title,
         Description = model.Description,
         Nationality = model.Nationality,
         NationalCode = model.NationalCode,

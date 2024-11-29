@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Divar.Db;
 
 public partial class Advertisement
 {
     public int Id { get; set; }
-
+    [Required(ErrorMessage ="پر کردن نام اگهی اجباری است")]
+    [MinLength(6,ErrorMessage ="m")]
+    [Display(Name ="d")]
     public string Title { get; set; } = null!;
 
     public string Description { get; set; } = null!;
@@ -35,11 +38,11 @@ public partial class Advertisement
 
     public string? Gearbox { get; set; }
 
-    public bool? DoYouWantToReplace { get; set; }
+    public bool DoYouWantToReplace { get; set; }
 
-    public bool? IsTheChatActivated { get; set; }
+    public bool IsTheChatActivated { get; set; }
 
-    public bool? IsThePhoneCallActive { get; set; }
+    public bool IsThePhoneCallActive { get; set; }
 
     public DateTime InsertDate { get; set; }
 
