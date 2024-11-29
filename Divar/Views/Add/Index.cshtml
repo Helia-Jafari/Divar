@@ -4,15 +4,15 @@
   @model Tuple<Advertisement,List<Category>>
   <form asp-controller="Add" asp-action="Index" method="post">
       <table style="border:none">
-          <tr>
+                  <tr>
               <td>
                 <label asp-for="Item1.CategoryId">ملیت</label>
                 <select asp-for="Item1.CategoryId">
-                    @foreach(var cat in Model!.Item2)
-                    {
+        @foreach (var cat in Model!.Item2)
+        {
 
-                        <option value="@cat.Id">@cat.Title</option>
-                    }
+                            <option value="@cat.Id">@cat.Title</option>
+        }
 
                   </select>
               </td>
@@ -22,7 +22,7 @@
             <td>
                 <label asp-for="Item1.Title"></label>
                 <input type="text" class="form-control" id="Title" asp-for="Item1.Title" placeholder="">
-                <!--span asp-validation-for="Item1.Title" class="text-danger"></span>-->
+                <span asp-validation-for="Item1.Title" class="text-danger"></span>
             </td>
         </tr>
         <tr>

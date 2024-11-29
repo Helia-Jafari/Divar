@@ -4,6 +4,7 @@ using Divar.Db;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Divar.Controllers
 {
@@ -27,14 +28,12 @@ namespace Divar.Controllers
             Tuple<Advertisement, List<Category>> tuple = new Tuple<Advertisement, List<Category>>(new Advertisement(), categories);
             return View(tuple);
         }
-
-
         [HttpPost]
-public IActionResult Index(Advertisement model)
+public IActionResult Index(Tuple<Advertisement, List<Category>> myTuple)
 {
-            model.Status = "Active";
-            model.InsertDate = DateTime.Now;
-            model.UpdateDate = DateTime.Now;
+            myTuple.Item1.Title= "Active";
+            myTuple.Item1.InsertDate = DateTime.Now;
+            myTuple.Item1.UpdateDate = DateTime.Now;
             if (!ModelState.IsValid)
             {
                 Tuple<Advertisement, List<Category>> tuplee = new Tuple<Advertisement, List<Category>>(new Advertisement(), categories);
@@ -42,28 +41,28 @@ public IActionResult Index(Advertisement model)
             }
             var myModel = new Advertisement()
     {
-                CategoryId = model.CategoryId,
-        Brand = model.Brand,
-        ItsModel = model.ItsModel,
-        Color = model.Color,
-        FunctionKilometers = Convert.ToInt32(model.FunctionKilometers),
-        ChassisAndBodyCondition = model.ChassisAndBodyCondition,
-        BasePrice = Convert.ToInt32(model.BasePrice),
-        EngineCondition = model.EngineCondition,
-        RearChassisCondition = model.RearChassisCondition,
-        FrontChassisCondition = model.FrontChassisCondition,
-        ThirdPartyInsuranceTerm = model.ThirdPartyInsuranceTerm,
-        Gearbox = model.Gearbox,
-        DoYouWantToReplace = model.DoYouWantToReplace,
-        IsTheChatActivated = model.IsTheChatActivated,
-                IsThePhoneCallActive = model.IsThePhoneCallActive,
-                Title = model.Title,
-        Description = model.Description,
-        Nationality = model.Nationality,
-        NationalCode = model.NationalCode,
-        Status = model.Status,
-        InsertDate = model.InsertDate,
-        UpdateDate = model.UpdateDate
+                //CategoryId = model.CategoryId,
+        Brand = myTuple.Item1.Brand,
+        ItsModel = myTuple.Item1.ItsModel,
+        Color = myTuple.Item1.Color,
+        FunctionKilometers = Convert.ToInt32(myTuple.Item1.FunctionKilometers),
+        ChassisAndBodyCondition = myTuple.Item1.ChassisAndBodyCondition,
+        BasePrice = Convert.ToInt32(myTuple.Item1.BasePrice),
+        EngineCondition = myTuple.Item1.EngineCondition,
+        RearChassisCondition = myTuple.Item1.RearChassisCondition,
+        FrontChassisCondition = myTuple.Item1.FrontChassisCondition,
+        ThirdPartyInsuranceTerm = myTuple.Item1.ThirdPartyInsuranceTerm,
+        Gearbox = myTuple.Item1.Gearbox,
+        DoYouWantToReplace = myTuple.Item1.DoYouWantToReplace,
+        IsTheChatActivated =    myTuple.Item1.IsTheChatActivated,
+                IsThePhoneCallActive = myTuple.Item1.IsThePhoneCallActive,
+                Title = myTuple.Item1.Title,
+        Description = myTuple.Item1.Description,
+        Nationality = myTuple.Item1.Nationality,
+        NationalCode = myTuple.Item1.NationalCode,
+        Status = myTuple.Item1.Status,
+        InsertDate = myTuple.Item1.InsertDate,
+        UpdateDate = myTuple.Item1.UpdateDate
     };
     _context.Advertisements.Add(myModel);
     _context.SaveChanges();
