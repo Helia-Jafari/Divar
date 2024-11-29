@@ -6,8 +6,9 @@
       <table style="border:none">
           <tr>
               <td>
-                  <select>
-                    @foreach(var cat in Model.Item2)
+                <label asp-for="Item1.CategoryId">ملیت</label>
+                <select asp-for="Item1.CategoryId">
+                    @foreach(var cat in Model!.Item2)
                     {
 
                         <option value="@cat.Id">@cat.Title</option>
@@ -21,7 +22,7 @@
             <td>
                 <label asp-for="Item1.Title"></label>
                 <input type="text" class="form-control" id="Title" asp-for="Item1.Title" placeholder="">
-                <span asp-validation-for="Item1.Title" class="text-danger"></span>
+                <!--span asp-validation-for="Item1.Title" class="text-danger"></span>-->
             </td>
         </tr>
         <tr>
@@ -105,7 +106,7 @@
 
               <td>
                 <label asp-for="Item1.Gearbox">گیربکس</label>
-                <input asp-for="Item1.Gearbox" type="text" asp-for="Gearbox" class="form-control" id="Gearbox" placeholder="">
+                <input asp-for="Item1.Gearbox" type="text" class="form-control" id="Gearbox" placeholder="">
               </td>
           </tr>
           <tr>
@@ -122,7 +123,7 @@
 
             <td>
                 <label asp-for="Item1.NationalCode">کد ملی</label>
-                <input type="text" asp-for="Item1.NationalCode" asp-for="NationalCode" class="form-control" id="NationalCode" placeholder="">
+                <input type="text" asp-for="Item1.NationalCode" class="form-control" id="NationalCode" placeholder="">
             </td>
         </tr>
         <tr>

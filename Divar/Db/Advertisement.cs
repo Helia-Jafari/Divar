@@ -7,9 +7,9 @@ namespace Divar.Db;
 public partial class Advertisement
 {
     public int Id { get; set; }
-    [Required(ErrorMessage ="پر کردن نام اگهی اجباری است")]
-    [MinLength(6,ErrorMessage ="m")]
-    [Display(Name ="d")]
+    //[Required(ErrorMessage ="پر کردن نام اگهی اجباری است")]
+    //[MinLength(6,ErrorMessage ="m")]
+    //[Display(Name ="d")]
     public string Title { get; set; } = null!;
 
     public string Description { get; set; } = null!;

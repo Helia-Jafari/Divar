@@ -3,6 +3,7 @@
 using Divar.Db;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System;
 
 namespace Divar.Controllers
 {
@@ -23,24 +24,25 @@ namespace Divar.Controllers
 
             //var tuple = new Tuple<Advertisement, DivarContext>(new Advertisement(),new DivarContext());
             //return View(tuple);
-            var tuple = new Tuple<Advertisement, List<Category>>(new Advertisement(), categories);
+            Tuple<Advertisement, List<Category>> tuple = new Tuple<Advertisement, List<Category>>(new Advertisement(), categories);
             return View(tuple);
         }
 
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
 public IActionResult Index(Advertisement model)
 {
             model.Status = "Active";
             model.InsertDate = DateTime.Now;
             model.UpdateDate = DateTime.Now;
             if (!ModelState.IsValid)
-            { 
-                return View();
+            {
+                Tuple<Advertisement, List<Category>> tuplee = new Tuple<Advertisement, List<Category>>(new Advertisement(), categories);
+                return View(tuplee);
             }
             var myModel = new Advertisement()
     {
+                CategoryId = model.CategoryId,
         Brand = model.Brand,
         ItsModel = model.ItsModel,
         Color = model.Color,
@@ -65,7 +67,8 @@ public IActionResult Index(Advertisement model)
     };
     _context.Advertisements.Add(myModel);
     _context.SaveChanges();
-    return View();
-}
+            Tuple<Advertisement, List<Category>> tuple = new Tuple<Advertisement, List<Category>>(new Advertisement(), categories);
+            return View(tuple);
+        }
     }
 }
