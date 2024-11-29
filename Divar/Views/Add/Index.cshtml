@@ -1,13 +1,13 @@
 ﻿   @using Divar.Db
  
 
-  @model Tuple<Advertisement,DivarContext>
+  @model Tuple<Advertisement,List<Category>>
   <form asp-controller="Add" asp-action="Index" method="post">
       <table style="border:none">
           <tr>
               <td>
                   <select>
-                    @foreach(var cat in Model.Item2.Categories.ToList<Category>())
+                    @foreach(var cat in Model.Item2)
                     {
 
                         <option value="@cat.Id">@cat.Title</option>

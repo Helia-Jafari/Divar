@@ -20,9 +20,10 @@ namespace Divar.Controllers
         }
         public IActionResult Index()
         {
-            
-            ViewBag.categoriess = categories;
-            var tuple = new Tuple<Advertisement, DivarContext>(new Advertisement(),new DivarContext());
+
+            //var tuple = new Tuple<Advertisement, DivarContext>(new Advertisement(),new DivarContext());
+            //return View(tuple);
+            var tuple = new Tuple<Advertisement, List<Category>>(new Advertisement(), categories);
             return View(tuple);
         }
 
