@@ -1,119 +1,142 @@
 ﻿   @using Divar.Db
- 
+ @inject DivarContext _context
+@{
+    var categories = _context.Categories.ToList();
+    var cities = _context.Cities.ToList();
+}
 
-  @model Tuple<Advertisement,List<Category>>
+  @model Advertisement
   <form asp-controller="Add" asp-action="Index" method="post">
       <table style="border:none">
-                  <tr>
+          <tr>
               <td>
-                <label asp-for="Item1.CategoryId">ملیت</label>
-                <select asp-for="Item1.CategoryId">
-        @foreach (var cat in Model!.Item2)
-        {
+                <label for="CategoryId">@ViewData["CategoryIdAddViewData"]</label>
+                <select class="form-select" asp-for="@Model.CategoryId">
+                    @foreach(var category in categories)
+                    {
 
-                            <option value="@cat.Id">@cat.Title</option>
-        }
+                        <option value="@category.Id">@category.Title</option>
+                    }
 
                   </select>
               </td>
         </tr>
         <tr>
-
             <td>
-                <label asp-for="Item1.Title"></label>
-                <input type="text" class="form-control" id="Title" asp-for="Item1.Title" placeholder="">
-                <span asp-validation-for="Item1.Title" class="text-danger"></span>
+                <label for="CityId">@ViewData["CityIdAddViewData"]</label>
+                <select class="form-select" asp-for="@Model.CityId">
+                    @foreach (var city in cities)
+                    {
+
+                        <option value="@city.Id">@city.Name</option>
+                    }
+
+                </select>
             </td>
         </tr>
         <tr>
 
             <td>
-                <label asp-for="Item1.Description">توضیحات آگهی</label>
-                <input type="text" class="form-control" id="Description" asp-for="Item1.Description" required placeholder="">
+                <label for="Title">@ViewData["TitleAddViewData"]</label>
+                <input type="text" class="form-control" id="Title" asp-for="@Model.Title" placeholder="" required>
+                <span asp-validation-for="@Model.Title" class="text-danger"></span>
+            </td>
+        </tr>
+        <tr>
+
+            <td>
+                <label for="Description">@ViewData["DescriptionAddViewData"]</label>
+                <input type="text" class="form-control" id="Description" asp-for="@Model.Description" required placeholder="">
+                <span asp-validation-for="@Model.Description" class="text-danger"></span>
             </td>
         </tr>
           <tr>
 
               <td>
-                <label asp-for="Item1.Brand">برند و تیپ</label>
-                <input asp-for="Item1.Brand" type="text" class="form-control" id="Brand" required placeholder="نام برند و نام مدل و تیپ">
+                <label for="Brand">@ViewData["BrandAddViewData"]</label>
+                <input asp-for="@Model.Brand" type="text" class="form-control" id="Brand" required placeholder="">
+                <span asp-validation-for="@Model.Brand" class="text-danger"></span>
               </td>
           </tr>
           <tr>
 
               <td>
-                <label asp-for="Item1.ItsModel">مدل</label>
-                <input asp-for="Item1.ItsModel" type="text" class="form-control" id="ItsModel" required placeholder=" ">
+                <label for="ItsModel">@ViewData["ItsModelAddViewData"]</label>
+                <input asp-for="@Model.ItsModel" type="text" class="form-control" id="ItsModel" required placeholder=" ">
+                <span asp-validation-for="@Model.ItsModel" class="text-danger"></span>
               </td>
           </tr>
           <tr>
 
               <td>
-                <label asp-for="Item1.Color">رنگ</label>
-                <input asp-for="Item1.Color" type="text" class="form-control" id="Color" required placeholder=" ">
+                <label for="Color">@ViewData["ColorAddViewData"]</label>
+                <input asp-for="@Model.Color" type="text" class="form-control" id="Color" required placeholder=" ">
+                <span asp-validation-for="@Model.Color" class="text-danger"></span>
               </td>
           </tr>
           <tr>
 
               <td>
-                <label asp-for="Item1.FunctionKilometers">کارکرد</label>
-                <input asp-for="Item1.FunctionKilometers" type="text" class="form-control" id="FunctionKilometers" required placeholder=" ">
+                <label for="FunctionKilometers">@ViewData["FunctionKilometersAddViewData"]</label>
+                <input asp-for="@Model.FunctionKilometers" type="text" class="form-control" id="FunctionKilometers" required placeholder=" ">
+                <span asp-validation-for="@Model.FunctionKilometers" class="text-danger"></span>
               </td>
           </tr>
           <tr>
 
               <td>
-                <label asp-for="Item1.ChassisAndBodyCondition">وضعیت بدنه</label>
-                <input asp-for="Item1.ChassisAndBodyCondition" type="text" class="form-control" id="ChassisAndBodyCondition" required placeholder=" ">
+                <label for="ChassisAndBodyCondition">@ViewData["ChassisAndBodyConditionAddViewData"]</label>
+                <input asp-for="@Model.ChassisAndBodyCondition" type="text" class="form-control" id="ChassisAndBodyCondition" required placeholder=" ">
+                <span asp-validation-for="@Model.ChassisAndBodyCondition" class="text-danger"></span>
               </td>
           </tr>
           <tr>
 
               <td>
-                <label asp-for="Item1.BasePrice">قیمت پایه</label>
-                <input asp-for="Item1.BasePrice" type="number" class="form-control" id="BasePrice" required placeholder="قیمت به تومان">
+                <label for="BasePrice">@ViewData["BasePriceAddViewData"]</label>
+                <input asp-for="@Model.BasePrice" type="number" class="form-control" id="BasePrice" required placeholder="">
+                <span asp-validation-for="@Model.BasePrice" class="text-danger"></span>
+          </tr>
+          <tr>
+
+              <td>
+                <label for="EngineCondition">@ViewData["EngineConditionAddViewData"]</label>
+                <input asp-for="@Model.EngineCondition" type="text" class="form-control" id="EngineCondition" placeholder="">
               </td>
           </tr>
           <tr>
 
               <td>
-                <label asp-for="Item1.EngineCondition">وضعیت موتور</label>
-                <input asp-for="Item1.EngineCondition" type="text" class="form-control" id="EngineCondition" placeholder="">
+                <label for="RearChassisCondition">@ViewData["RearChassisConditionAddViewData"]</label>
+                <input asp-for="@Model.RearChassisCondition" type="text" class="form-control" id="RearChassisCondition" placeholder="">
               </td>
           </tr>
           <tr>
 
               <td>
-                <label asp-for="Item1.RearChassisCondition">وضعیت شاسی عقب</label>
-                <input asp-for="Item1.RearChassisCondition" type="text" class="form-control" id="RearChassisCondition" placeholder="">
+                <label for="FrontChassisCondition">@ViewData["FrontChassisConditionAddViewData"]</label>
+                <input asp-for="@Model.FrontChassisCondition" type="text" class="form-control" id="FrontChassisCondition" placeholder="">
               </td>
           </tr>
           <tr>
 
               <td>
-                <label asp-for="Item1.FrontChassisCondition">وضعیت شاسی جلو</label>
-                <input asp-for="Item1.FrontChassisCondition" type="text" class="form-control" id="FrontChassisCondition" placeholder="">
+                <label for="ThirdPartyInsuranceTerm">@ViewData["ThirdPartyInsuranceTermAddViewData"]</label>
+                <input asp-for="@Model.ThirdPartyInsuranceTerm" type="text" class="form-control" id="ThirdPartyInsuranceTerm" placeholder="">
               </td>
           </tr>
           <tr>
 
               <td>
-                <label asp-for="Item1.ThirdPartyInsuranceTerm">مهلت بیمٔه شخص ثالث</label>
-                <input asp-for="Item1.ThirdPartyInsuranceTerm" type="text" class="form-control" id="ThirdPartyInsuranceTerm" placeholder="">
+                <label for="Gearbox">@ViewData["GearboxAddViewData"]</label>
+                <input asp-for="@Model.Gearbox" type="text" class="form-control" id="Gearbox" placeholder="">
               </td>
           </tr>
           <tr>
 
               <td>
-                <label asp-for="Item1.Gearbox">گیربکس</label>
-                <input asp-for="Item1.Gearbox" type="text" class="form-control" id="Gearbox" placeholder="">
-              </td>
-          </tr>
-          <tr>
-
-              <td>
-                <label asp-for="Item1.Nationality">ملیت</label>
-                <select asp-for="Item1.Nationality" id="Nationality">
+                <label for="Nationality">@ViewData["NationalityAddViewData"]</label>
+                <select class="form-select" asp-for="@Model.Nationality" id="Nationality">
                       <option value="ایرانی">ایرانی</option>
                       <option value="اتباع خارجی">اتباع خارجی</option>
                   </select>
@@ -122,40 +145,41 @@
           <tr>
 
             <td>
-                <label asp-for="Item1.NationalCode">کد ملی</label>
-                <input type="text" asp-for="Item1.NationalCode" class="form-control" id="NationalCode" placeholder="">
+                <label for="NationalCode">@ViewData["NationalCodeAddViewData"]</label>
+                <input type="text" asp-for="@Model.NationalCode" class="form-control" id="NationalCode" placeholder="" required>
+                <span asp-validation-for="@Model.NationalCode" class="text-danger"></span>
             </td>
         </tr>
         <tr>
             <td>
-                <input asp-for="Item1.DoYouWantToReplace" class="form-check-input" type="checkbox" id="DoYouWantToReplace">
-                <label class="form-check-label" >مایلم معاوضه کنم</label>
+                <input asp-for="@Model.DoYouWantToReplace" class="form-check-input" type="checkbox" id="DoYouWantToReplace">
+                <label class="form-check-label">@ViewData["DoYouWantToReplaceAddViewData"]</label>
             </td>
         </tr>
         <tr>
 
               <td>
-                <input asp-for="Item1.IsTheChatActivated" class="form-check-input" type="checkbox" id="IsTheChatActivated">
-                  <label class="form-check-label" >چت دیوار فعال شود.</label>
+                <input asp-for="@Model.IsTheChatActivated" class="form-check-input" type="checkbox" id="IsTheChatActivated">
+                <label class="form-check-label">@ViewData["IsTheChatActivatedAddViewData"]</label>
               </td>
           </tr>
           <tr>
 
             <td>
-                <input asp-for="Item1.IsThePhoneCallActive" class="form-check-input" type="checkbox" id="IsThePhoneCallActive">
-                <label class="form-check-label" >قابلیت تماس فعال شود</label>
+                <input asp-for="@Model.IsThePhoneCallActive" class="form-check-input" type="checkbox" id="IsThePhoneCallActive">
+                <label class="form-check-label">@ViewData["IsThePhoneCallActiveAddViewData"]</label>
             </td>
         </tr>
         <tr>
 
             <td>
-                <input value="Status" type="hidden" class="form-control" id="Status" asp-for="Item1.Status" placeholder="">
+                <input value="Status" type="hidden" class="form-control" id="Status" asp-for="@Model.Status" placeholder="">
             </td>
         </tr>
           <tr>
 
               <td>
-                  <button type="submit" class="btn btn-primary" style="float:right;">ثبت آگهی</button>
+                <button type="submit" class="btn btn-primary" style="float:right;">@ViewData["SubmitAddViewData"]</button>
               </td>
           </tr>
 

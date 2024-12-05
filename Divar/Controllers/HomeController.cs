@@ -37,12 +37,19 @@ namespace Divar.Controllers
             //    };
             //    _context.ViwShowAdvertisements.Add(view);
             //}
-            ViewData["AdvertisementTitleViewData"] = _localizer["AdvertisementTitle"];
-            ViewData["AdvertisementColorViewData"] = _localizer["AdvertisementColor"];
-            ViewData["AdvertisementBasePriceViewData"] = _localizer["AdvertisementBasePrice"];
-            ViewData["AdvertisementFunctionKilometersViewData"] = _localizer["AdvertisementFunctionKilometers"];
+            ViewData["AdvertisementTitleHomeViewData"] = _localizer["AdvertisementTitle"];
+            ViewData["AdvertisementColorHomeViewData"] = _localizer["AdvertisementColor"];
+            ViewData["AdvertisementBasePriceHomeViewData"] = _localizer["AdvertisementBasePrice"];
+            ViewData["AdvertisementFunctionKilometersHomeViewData"] = _localizer["AdvertisementFunctionKilometers"];
             var Viesws = _context.Advertisements.ToList();
+
+            //List<Category> breadcrumbs = new List<Category>();
+            //Category c=_context.Categories.Where(c=>c.Id==id)
+
+
             return View(Viesws);
+
+
         }
 
         public IActionResult Privacy()
@@ -66,17 +73,19 @@ namespace Divar.Controllers
             {
                 return View();
             }
+            ViewData["SucceededSearch"] = _localizer["SucceededSearch"];
             if (!SearchString.IsNullOrEmpty())
             {
-
-                var ads = _context.Advertisements.ToList().Where(m => m.Title.Contains(SearchString) || m.Color.Contains(SearchString) || m.BasePrice.ToString().Contains(SearchString) || m.FunctionKilometers.ToString().Contains(SearchString)).ToList();
-                ViewData["SucceededSearch"] = _localizer["SucceededSearch"];
-             return View("Index", ads);
-
-              
-
+                //var category = _context.Advertisements.Where(ad => ad.Category.Title.Contains(SearchString)).ToList();
+                //if (!category.IsNullOrEmpty())
+                //{
+                //    var adss = _context.Advertisements.ToList().Where(m => m.Title.Contains(SearchString) || m.Color.Contains(SearchString) || m.BasePrice.ToString().Contains(SearchString) || m.FunctionKilometers.ToString().Contains(SearchString) || m.Category.Title.Contains(SearchString)).ToList();
+                //    return View("Index", adss);
+                //}
+                var ads = _context.Advertisements.ToList().Where(m => m.Title.Contains(SearchString) || m.Color.Contains(SearchString) || m.BasePrice.ToString().Contains(SearchString) || m.FunctionKilometers.ToString().Contains(SearchString)||_context.Categories.Where(cat=>cat.Id==m.CategoryId).FirstOrDefault().Title.Contains(SearchString)).ToList();
+                //var categories=_
+                return View("Index", ads);
             }
-
             var memberList = _context.Advertisements.ToList();
             return View("Index", memberList);
 

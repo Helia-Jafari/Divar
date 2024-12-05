@@ -7,11 +7,12 @@ namespace Divar.Db;
 public partial class Advertisement
 {
     public int Id { get; set; }
-    [Required(ErrorMessage ="پر کردن نام اگهی اجباری است")]
-    [MinLength(6,ErrorMessage ="m")]
-    [Display(Name ="d")]
+    [Required(ErrorMessage = "This fild is required")]
+    [MinLength(6, ErrorMessage = "This fild must have at least 6 charackters")]
+    [Display(Name = "Title")]
     public string Title { get; set; } = null!;
 
+    [Required(ErrorMessage = "This fild is required")]
     public string Description { get; set; } = null!;
 
     public int? CategoryId { get; set; }
@@ -20,16 +21,22 @@ public partial class Advertisement
 
     public string? Latitude { get; set; }
 
+    [Required(ErrorMessage = "This fild is required")]
     public string? Brand { get; set; }
 
+    [Required(ErrorMessage = "This fild is required")]
     public string? ItsModel { get; set; }
 
+    [Required(ErrorMessage = "This fild is required")]
     public string? Color { get; set; }
 
+    [Required(ErrorMessage = "This fild is required")]
     public int? FunctionKilometers { get; set; }
 
+    [Required(ErrorMessage = "This fild is required")]
     public string? ChassisAndBodyCondition { get; set; }
 
+    [Required(ErrorMessage = "This fild is required")]
     public decimal? BasePrice { get; set; }
 
     public string? EngineCondition { get; set; }
@@ -56,6 +63,9 @@ public partial class Advertisement
 
     public string Nationality { get; set; } = null!;
 
+    [Required(ErrorMessage = "This fild is required")]
+    [MinLength(10, ErrorMessage = "This fild must have 10 charackters")]
+    [MaxLength(10, ErrorMessage = "This fild must have 10 charackters")]
     public string NationalCode { get; set; } = null!;
 
     public int? CityId { get; set; }

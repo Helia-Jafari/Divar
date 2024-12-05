@@ -117,4 +117,70 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BrandAdd" xml:space="preserve">
+    <value>Brand: </value>
+  </data>
+  <data name="ItsModelAdd" xml:space="preserve">
+    <value>Model: </value>
+  </data>
+  <data name="ColorAdd" xml:space="preserve">
+    <value>Color: </value>
+  </data>
+  <data name="FunctionKilometersAdd" xml:space="preserve">
+    <value>Function Kilometers: </value>
+  </data>
+  <data name="ChassisAndBodyConditionAdd" xml:space="preserve">
+    <value>Chassis And Body Condition: </value>
+  </data>
+  <data name="BasePriceAdd" xml:space="preserve">
+    <value>Base Price: </value>
+  </data>
+  <data name="EngineConditionAdd" xml:space="preserve">
+    <value>Engine Condition: </value>
+  </data>
+  <data name="RearChassisConditionAdd" xml:space="preserve">
+    <value>Rear Chassis Condition: </value>
+  </data>
+  <data name="FrontChassisConditionAdd" xml:space="preserve">
+    <value>Front Chassis Condition: </value>
+  </data>
+  <data name="ThirdPartyInsuranceTermAdd" xml:space="preserve">
+    <value>Third Party Insurance Term: </value>
+  </data>
+  <data name="GearboxAdd" xml:space="preserve">
+    <value>Gearbox: </value>
+  </data>
+  <data name="DoYouWantToReplaceAdd" xml:space="preserve">
+    <value>Do You Want To Replace: </value>
+  </data>
+  <data name="IsTheChatActivatedAdd" xml:space="preserve">
+    <value>Is The Chat Activated: </value>
+  </data>
+  <data name="IsThePhoneCallActiveAdd" xml:space="preserve">
+    <value>Is The Phone Call Active: </value>
+  </data>
+  <data name="TitleAdd" xml:space="preserve">
+    <value>Title: </value>
+  </data>
+  <data name="DescriptionAdd" xml:space="preserve">
+    <value>Description: </value>
+  </data>
+  <data name="NationalityAdd" xml:space="preserve">
+    <value>Nationality: </value>
+  </data>
+  <data name="NationalCodeAdd" xml:space="preserve">
+    <value>NationalCode: </value>
+  </data>
+  <data name="CategoryIdAdd" xml:space="preserve">
+    <value>Category: </value>
+  </data>
+  <data name="CityIdAdd" xml:space="preserve">
+    <value>City: </value>
+  </data>
+  <data name="SubmitAdd" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="RequiredInputError" xml:space="preserve">
+    <value>This fild is required</value>
+  </data>
 </root>

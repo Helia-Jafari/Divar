@@ -132,4 +132,7 @@
   <data name="AdvertisementFunctionKilometers" xml:space="preserve">
     <value>کارکرد:</value>
   </data>
+  <data name="SearchHome" xml:space="preserve">
+    <value>جستجو</value>
+  </data>
 </root>
