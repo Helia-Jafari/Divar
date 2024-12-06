@@ -14,7 +14,16 @@
                 <select class="form-select" asp-for="@Model.CategoryId">
                     @foreach (var category in categories)
                     {
-                        <option value="@category.Id">@category.Title</option>
+                        <!--
+                        if (_context.Categories.Where(cat => cat.ParentId == category.Id).FirstOrDefault() == null)
+                        {
+                                <option value="category.Id">category.Title</option>
+                        }
+                        -->
+                        @if (_context.Categories.Where(cat => cat.ParentId == category.Id).FirstOrDefault() == null)
+                        {
+                            <option value="@category.Id">@category.Title</option>
+                        }
                     }
                 </select>
                 <!--
