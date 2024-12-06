@@ -135,4 +135,7 @@
   <data name="SearchHome" xml:space="preserve">
     <value>Search</value>
   </data>
+  <data name="AdvertisementCity" xml:space="preserve">
+    <value>Advertisement City:</value>
+  </data>
 </root>

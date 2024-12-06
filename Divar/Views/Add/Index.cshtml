@@ -1,5 +1,5 @@
 ﻿   @using Divar.Db
- @inject DivarContext _context
+@inject DivarContext _context;
 @{
     var categories = _context.Categories.ToList();
     var cities = _context.Cities.ToList();
@@ -12,21 +12,49 @@
               <td>
                 <label for="CategoryId">@ViewData["CategoryIdAddViewData"]</label>
                 <select class="form-select" asp-for="@Model.CategoryId">
-                    @foreach(var category in categories)
+                    @foreach (var category in categories)
                     {
-
                         <option value="@category.Id">@category.Title</option>
                     }
+                </select>
+                <!--
+                    <select class="form-select" asp-for="Model.CategoryId">
+                    <dl>
+                foreach (var category in categories)
+                {
+                    if (category.ParentId == null)
+                    {
+                                        <dt>
+                                    <option disabled value="category.Id">category.Title</option>
+                                    </dt>
+                    }
+                    else if ((_context.Categories.Where(cat => cat.ParentId == category.Id).ToList()) == null)
+                    {
+                                    <dd>
+                                    <option value="category.Id">category.Title</option>
+                                    </dd>
+                    }
+                    else
+                    {
+                                    <dd>
+                                    <option value="category.Id">category.Title</option>
+                                    </dd>
+                    }
 
+                }
+                    </dl>
                   </select>
+                -->
               </td>
         </tr>
         <tr>
             <td>
                 <label for="CityId">@ViewData["CityIdAddViewData"]</label>
                 <select class="form-select" asp-for="@Model.CityId">
+
                     @foreach (var city in cities)
                     {
+
 
                         <option value="@city.Id">@city.Name</option>
                     }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Divar.Controllers;
+using Microsoft.Extensions.Localization;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -6,8 +8,16 @@ namespace Divar.Db;
 
 public partial class Advertisement
 {
+
+    //private readonly IStringLocalizer<AddController> _localizer;
+    //public Advertisement(IStringLocalizer<AddController> localizer)
+    //{
+    //    _localizer = localizer;
+    //}
+
     public int Id { get; set; }
     [Required(ErrorMessage = "This fild is required")]
+    //[Required(ErrorMessage = (_localizer["RequiredInputError"]))]
     [MinLength(6, ErrorMessage = "This fild must have at least 6 charackters")]
     [Display(Name = "Title")]
     public string Title { get; set; } = null!;

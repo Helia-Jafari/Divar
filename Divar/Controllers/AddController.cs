@@ -1,6 +1,4 @@
-﻿
-
-using Divar.Db;
+﻿using Divar.Db;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Localization;
@@ -12,14 +10,13 @@ namespace Divar.Controllers
     {
         private readonly DivarContext _context;
         private readonly IStringLocalizer<AddController> _localizer;
-        public List<Category> categories;
+        //public List<Category> categories;
         //public List<City> cities;
 
         public AddController(DivarContext db, IStringLocalizer<AddController> localizer)
         {
             _context = db;
             _localizer = localizer;
-            categories = _context.Categories.ToList();
             //cities = _context.Cities.ToList();
         }
         public IActionResult Index()
@@ -57,7 +54,38 @@ namespace Divar.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 public IActionResult Index(Advertisement model)
-{
+        {
+
+            ViewData["BasePriceAddViewData"] = _localizer["BasePriceAdd"];
+            ViewData["BrandAddViewData"] = _localizer["BrandAdd"];
+            ViewData["CategoryIdAddViewData"] = _localizer["CategoryIdAdd"];
+            ViewData["ChassisAndBodyConditionAddViewData"] = _localizer["ChassisAndBodyConditionAdd"];
+            ViewData["CityIdAddViewData"] = _localizer["CityIdAdd"];
+            ViewData["ColorAddViewData"] = _localizer["ColorAdd"];
+            ViewData["DescriptionAddViewData"] = _localizer["DescriptionAdd"];
+            ViewData["DoYouWantToReplaceAddViewData"] = _localizer["DoYouWantToReplaceAdd"];
+            ViewData["EngineConditionAddViewData"] = _localizer["EngineConditionAdd"];
+            ViewData["FrontChassisConditionAddViewData"] = _localizer["FrontChassisConditionAdd"];
+            ViewData["FunctionKilometersAddViewData"] = _localizer["FunctionKilometersAdd"];
+            ViewData["GearboxAddViewData"] = _localizer["GearboxAdd"];
+            ViewData["IsTheChatActivatedAddViewData"] = _localizer["IsTheChatActivatedAdd"];
+            ViewData["IsThePhoneCallActiveAddViewData"] = _localizer["IsThePhoneCallActiveAdd"];
+            ViewData["ItsModelAddViewData"] = _localizer["ItsModelAdd"];
+            ViewData["NationalCodeAddViewData"] = _localizer["NationalCodeAdd"];
+            ViewData["NationalityAddViewData"] = _localizer["NationalityAdd"];
+            ViewData["RearChassisConditionAddViewData"] = _localizer["RearChassisConditionAdd"];
+            ViewData["ThirdPartyInsuranceTermAddViewData"] = _localizer["ThirdPartyInsuranceTermAdd"];
+            ViewData["TitleAddViewData"] = _localizer["TitleAdd"];
+            ViewData["SubmitAddViewData"] = _localizer["SubmitAdd"];
+            ViewData["RequiredInputErrorAddViewData"] = _localizer["RequiredInputErrorAdd"];
+
+            List<Category> categories = new List<Category>();
+            foreach (var item in _context.Categories.ToList<Category>())
+            {
+                categories.Add(item);
+            }
+            ViewData["categories"] = categories;
+
             model.Status = "Active";
             model.InsertDate = DateTime.Now;
             model.UpdateDate = DateTime.Now;

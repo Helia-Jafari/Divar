@@ -135,4 +135,7 @@
   <data name="SearchHome" xml:space="preserve">
     <value>جستجو</value>
   </data>
+  <data name="AdvertisementCity" xml:space="preserve">
+    <value>شهر:</value>
+  </data>
 </root>

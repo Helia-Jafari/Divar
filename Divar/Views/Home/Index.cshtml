@@ -1,6 +1,9 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@using Divar.Db;
+@inject DivarContext _context;
+
 
 <form asp-controller="Home" asp-action="HomeSearch" method="post">
     <div class="d-flex">
@@ -9,19 +12,29 @@
     </div>
 </form>
 
-<div class="row">
+<div class="row mt-4">
     @foreach (var ad in Model)
     {
         <div class="col-6 border border-primary bg-info">
-            <p>@ViewData["AdvertisementTitleHomeViewData"] @ad.Title</p>
-            <p>@ViewData["AdvertisementColorHomeViewData"] @ad.Color</p>
-            <p>@ViewData["AdvertisementBasePriceHomeViewData"] @ad.BasePrice</p>
-            <p>@ViewData["AdvertisementFunctionKilometersHomeViewData"] @ad.FunctionKilometers</p>
-  <!--
-                          <p>
-            ad.Category
-                      </p>
-  -->
+            <p>@ViewData["TitleHomeViewData"] @ad.Title</p>
+            <p>@ViewData["ColorHomeViewData"] @ad.Color</p>
+            <p>@ViewData["BasePriceHomeViewData"] @ad.BasePrice</p>
+            <p>@ViewData["FunctionKilometersHomeViewData"] @ad.FunctionKilometers</p>
+
+            <p>
+                @ViewData["CityHomeViewData"]
+                @ViewData["city" + ad.Id.ToString()]
+            </p>
+
+            <nav style="--bs-breadcrumb-divider: '<';" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    @foreach (var b in ViewData["breadcrumbs" + ad.Id.ToString()])
+                    {
+                        <li class="breadcrumb-item">@b.Title</li>
+                    }
+                    
+                </ol>
+            </nav>
         </div>
     }
 </div> 
