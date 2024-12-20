@@ -4,6 +4,7 @@
 @using Divar.Db;
 @inject DivarContext _context;
 
+<span>@ViewData["currentDate"]</span>
 
 <form asp-controller="Home" asp-action="HomeSearch" method="post">
     <div class="d-flex">
@@ -37,4 +38,23 @@
             </nav>
         </div>
     }
-</div> 
+</div>
+<!--<table style="border:none">
+    <tr>
+        <td>
+            <label for="CategoryId">ViewData["CategoryIdAddViewData"]</label>
+            <select class="form-select">
+                foreach (var category in (List<Category>)ViewData["categories"])
+                {
+
+                    if (_context.Categories.Where(cat => cat.ParentId == category.Id).FirstOrDefault() == null)
+                    {
+                        <option value="category.Id">category.Title</option>
+                    }
+                }
+            </select>
+          
+
+        </td>
+    </tr>
+-->

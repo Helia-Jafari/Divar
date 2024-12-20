@@ -4,11 +4,14 @@
 using Divar.Db;
 using Microsoft.AspNetCore.Localization;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DivarContext>();
+
+builder.Services.AddRazorPages().AddViewLocalization();
 
 builder.Services.AddLocalization(options => options.ResourcesPath = "Localization");
 var supportedCultures = new[]
@@ -19,8 +22,16 @@ var requestLocalizationOptions = new RequestLocalizationOptions
 {
     DefaultRequestCulture = new RequestCulture("fa-IR"),
     SupportedCultures = supportedCultures,
-    SupportedUICultures = supportedCultures
+    SupportedUICultures = supportedCultures,
+    RequestCultureProviders = [
+        new QueryStringRequestCultureProvider(),
+        new CookieRequestCultureProvider(),
+        new AcceptLanguageHeaderRequestCultureProvider()
+    ]
 };
+// /?culture=fa-IR&ui-culture=fa-IR
+
+
 
 var app = builder.Build();
 

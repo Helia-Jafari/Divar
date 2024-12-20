@@ -10,7 +10,7 @@ namespace Divar.Controllers
     {
         private readonly DivarContext _context;
         private readonly IStringLocalizer<AddController> _localizer;
-        //public List<Category> categories;
+        public List<Category> categories;
         //public List<City> cities;
 
         public AddController(DivarContext db, IStringLocalizer<AddController> localizer)
@@ -18,6 +18,7 @@ namespace Divar.Controllers
             _context = db;
             _localizer = localizer;
             //cities = _context.Cities.ToList();
+            categories=_context.Categories.ToList<Category>();
         }
         public IActionResult Index()
         {
@@ -25,6 +26,31 @@ namespace Divar.Controllers
             //var tuple = new Tuple<Advertisement, DivarContext>(new Advertisement(),new DivarContext());
             //return View(tuple);
             //Tuple<Advertisement, List<Category>> tuple = new Tuple<Advertisement, List<Category>>(new Advertisement(), categories);
+
+
+            //List<Category> categories = new List<Category>();
+            //foreach (var item in _context.Categories.ToList<Category>())
+            //{
+            //    categories.Add(item);
+            //}
+            //ViewData["categories"] = categories;
+
+            //List<Category> cs = new List<Category>();
+            //foreach (var item in categories)
+            //{
+            //    cs.Add(item);
+            //}
+
+            //ViewData["categories"] = cs;
+
+            List<Category> cs = new List<Category>();
+            foreach (var item in categories)
+            {
+                cs.Add(item);
+            }
+
+            ViewData["categories"] = cs;
+
             ViewData["BasePriceAddViewData"] = _localizer["BasePriceAdd"];
             ViewData["BrandAddViewData"] = _localizer["BrandAdd"];
             ViewData["CategoryIdAddViewData"] = _localizer["CategoryIdAdd"];
@@ -46,7 +72,7 @@ namespace Divar.Controllers
             ViewData["ThirdPartyInsuranceTermAddViewData"] = _localizer["ThirdPartyInsuranceTermAdd"];
             ViewData["TitleAddViewData"] = _localizer["TitleAdd"];
             ViewData["SubmitAddViewData"] = _localizer["SubmitAdd"];
-            ViewData["RequiredInputErrorAddViewData"] = _localizer["RequiredInputErrorAdd"];
+            ViewData["RequiredInputErrorAddViewData"] = _localizer["RequiredInputError"];
             return View();
         }
 
@@ -79,12 +105,7 @@ public IActionResult Index(Advertisement model)
             ViewData["SubmitAddViewData"] = _localizer["SubmitAdd"];
             ViewData["RequiredInputErrorAddViewData"] = _localizer["RequiredInputErrorAdd"];
 
-            List<Category> categories = new List<Category>();
-            foreach (var item in _context.Categories.ToList<Category>())
-            {
-                categories.Add(item);
-            }
-            ViewData["categories"] = categories;
+
 
             model.Status = "Active";
             model.InsertDate = DateTime.Now;

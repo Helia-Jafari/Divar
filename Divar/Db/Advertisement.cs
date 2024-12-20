@@ -9,15 +9,21 @@ namespace Divar.Db;
 public partial class Advertisement
 {
 
-    //private readonly IStringLocalizer<AddController> _localizer;
-    //public Advertisement(IStringLocalizer<AddController> localizer)
-    //{
-    //    _localizer = localizer;
-    //}
+    private readonly IStringLocalizer<Advertisement> _localizer;
+
+    public Advertisement()
+    {
+    }
+
+    public Advertisement(IStringLocalizer<Advertisement> localizer)
+    {
+        _localizer = localizer;
+    }
 
     public int Id { get; set; }
     [Required(ErrorMessage = "This fild is required")]
-    //[Required(ErrorMessage = (_localizer["RequiredInputError"]))]
+    //[Required(ErrorMessage = (string)_localizer["RequiredInputError"])]
+    //[Required(ErrorMessage = _localizer["RequiredInputError"])]
     [MinLength(6, ErrorMessage = "This fild must have at least 6 charackters")]
     [Display(Name = "Title")]
     public string Title { get; set; } = null!;
@@ -47,6 +53,7 @@ public partial class Advertisement
     public string? ChassisAndBodyCondition { get; set; }
 
     [Required(ErrorMessage = "This fild is required")]
+    [Range(10000000,999999999,ErrorMessage = "The base price must be between 10000000 and 999999999")]
     public decimal? BasePrice { get; set; }
 
     public string? EngineCondition { get; set; }
