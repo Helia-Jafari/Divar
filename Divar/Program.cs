@@ -11,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DivarContext>();
 
-builder.Services.AddRazorPages().AddViewLocalization();
+//builder.Services.AddRazorPages().AddViewLocalization();
 
 builder.Services.AddLocalization(options => options.ResourcesPath = "Localization");
 var supportedCultures = new[]

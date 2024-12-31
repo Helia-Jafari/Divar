@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using System.IO;
 
 namespace Divar.Controllers
 {
@@ -18,6 +19,9 @@ namespace Divar.Controllers
         private readonly DivarContext _context;
         private readonly IStringLocalizer<HomeController> _localizer;
         List<List<Category>> cats = new List<List<Category>>();
+        Dictionary<string, List<Category>> catsDictionary = new Dictionary<string, List<Category>>();
+        //catsDictionary.Add("aa", "aa");
+        //catsDictionary["uuu"] = "jjj";
 
         //public List<Category> categories;
 
@@ -74,6 +78,7 @@ namespace Divar.Controllers
                     c = parent;
                 }
                 ViewData["breadcrumbs"+ad.Id.ToString()] = breadcrumbs;
+                catsDictionary["breadcrumbs" + ad.Id.ToString()] = breadcrumbs;
                 this.cats.Add(breadcrumbs);
 
                 ViewData["city" + ad.Id.ToString()] = _context.Cities.Where(cat => cat.Id == ad.CityId).FirstOrDefault().Name;
@@ -120,6 +125,7 @@ namespace Divar.Controllers
                     c = parent;
                 }
                 ViewData["breadcrumbs" + ad.Id.ToString()] = breadcrumbs;
+                catsDictionary["breadcrumbs" + ad.Id.ToString()] = breadcrumbs;
 
                 this.cats.Add(breadcrumbs);
                 ViewData["city" + ad.Id.ToString()] = _context.Cities.Where(cat => cat.Id == ad.CityId).FirstOrDefault().Name;
@@ -132,37 +138,25 @@ namespace Divar.Controllers
             }
             if (!SearchString.IsNullOrEmpty())
             {
-                //var category = _context.Advertisements.Where(ad => ad.Category.Title.Contains(SearchString)).ToList();
-                //if (!category.IsNullOrEmpty())
-                //{
-                //    var adss = _context.Advertisements.ToList().Where(m => m.Title.Contains(SearchString) || m.Color.Contains(SearchString) || m.BasePrice.ToString().Contains(SearchString) || m.FunctionKilometers.ToString().Contains(SearchString) || m.Category.Title.Contains(SearchString)).ToList();
-                //    return View("Index", adss);
-                //}
-
                 SearchString = SearchString.Trim();
-                //List<Advertisement> ads = _context.Advertisements.ToList().Where
-                //    (m => m.Title.Contains(SearchString) 
-                //    || m.Color.Contains(SearchString) 
-                //    || m.BasePrice.ToString().Contains(SearchString) 
-                //    || m.FunctionKilometers.ToString().Contains(SearchString)
-                //    || _context.Categories.Where(cat=>cat.Id==m.CategoryId).FirstOrDefault().Title.Contains(SearchString) 
-                //    || _context.Categories.Where(cat => cat.Id== (_context.Categories.Where(cat => cat.Id == m.CategoryId).FirstOrDefault().ParentId)).FirstOrDefault().Title.Contains(SearchString)
-                //    || _context.Cities.Where(city => city.Id == m.CityId).FirstOrDefault().Name.Contains(SearchString)).ToList();
 
-                var ads = _context.Advertisements.ToList().Where(m => m.Title.Contains(SearchString) || m.Color.Contains(SearchString) || m.BasePrice.ToString().Contains(SearchString) || m.FunctionKilometers.ToString().Contains(SearchString) || _context.Categories.Where(a => a.Id==m.CategoryId).FirstOrDefault().Title.Contains(SearchString) || _context.Cities.Where(city => city.Id == m.CityId).FirstOrDefault().Name.Contains(SearchString)).ToList();
-                //var ads = _context.Advertisements.ToList().Where(m => cats.Where(a => a == (List<Category>)ViewData["breadcrumbs" + m.Id.ToString()]).FirstOrDefault<List<Category>>().Where(a => a.Title.Contains(SearchString)).FirstOrDefault<Category>().Title.Contains(SearchString)).ToList();
-                //List<Advertisement> ads = _context.Advertisements.ToList().Where(m => cats.Where(a => a == (List<Category>)ViewData["breadcrumbs" + m.Id.ToString()]).FirstOrDefault<List<Category>?>().Where(a => a.Title.Contains(SearchString)).FirstOrDefault<Category?>().Title.Contains(SearchString))?.ToList();
-                //var ads = _context.Advertisements.Where(m => cats.Where(a => a == (List<Category>)ViewData["breadcrumbs" + m.Id.ToString()]).FirstOrDefault().FirstOrDefault().Title.ToString().Contains(SearchString.ToString())).ToList();
-                //var ads = _context.Advertisements.Where(m => cats.Where(a => a == ViewData["breadcrumbs" + m.Id.ToString()]).ToList().Where(cat => cat.FirstOrDefault().Title.Contains(SearchString)).FirstOrDefault().Where(a => a.Title.Contains(SearchString)).FirstOrDefault().Title.Contains(SearchString)).ToList();
+                var ads = _context.Advertisements.Where(m => m.Title.Contains(SearchString) || m.Color.Contains(SearchString) || m.BasePrice.ToString().Contains(SearchString) || m.FunctionKilometers.ToString().Contains(SearchString) || _context.Categories.Where(a => a.Id==m.CategoryId).FirstOrDefault().Title.Contains(SearchString) || _context.Cities.Where(city => city.Id == m.CityId).FirstOrDefault().Name.Contains(SearchString)).ToList();
+                //var ads = _context.Advertisements.Where(m => cats.Where(a => a == catsDictionary["breadcrumbs" + m.Id.ToString()]).FirstOrDefault().AsQueryable().Where(a => a.Title.ToString().Contains(SearchString)).FirstOrDefault().Title.ToString().Contains(SearchString)).ToList();
+                //var avs = _context.Advertisements
+                //    .Where(m =>
+                //    {
+                //        // ???? ???? ????????? ??????
+                //         var categoriesList = cats.FirstOrDefault(a => a == catsDictionary["breadcrumbs" + m.Id.ToString()]);
+                //        // ??? ????????? ???? ?? ? ????? ?? ???? SearchString ???? ????? ????
+                //        var c = categoriesList.FirstOrDefault(a => a.Title.ToString().Contains(SearchString));
+                //        return c.Title.Contains(SearchString);
+                //    })
+                //    .ToList();
+                //var adv = _context.Advertisements.Where(m => cats.Where(a => a == catsDictionary["breadcrumbs" + m.Id.ToString()]).FirstOrDefault().Where(a => a.Title.ToString().Contains(SearchString)).FirstOrDefault().Title.ToString().Contains(SearchString)).ToList();
+                //var ads = _context.Advertisements.Where(m => m.Title.Contains(SearchString) || m.Color.Contains(SearchString) || m.BasePrice.ToString().Contains(SearchString) || m.FunctionKilometers.ToString().Contains(SearchString) || _context.Categories.Where(a => a.Id == m.CategoryId).FirstOrDefault().Title.Contains(SearchString) || _context.Cities.Where(city => city.Id == m.CityId).FirstOrDefault().Name.Contains(SearchString) || cats.Where(a => a == catsDictionary["breadcrumbs" + m.Id.ToString()]).FirstOrDefault().AsQueryable().Where(a => a.Title.ToString().Contains(SearchString)).FirstOrDefault().Title.ToString().Contains(SearchString)).ToList();
 
                 decimal price;
                 bool isDigit = decimal.TryParse(SearchString, out price);
-                //List<Advertisement> ads = _context.Advertisements.ToList().Where(m => m.Title.Contains(SearchString) || m.Color.Contains(SearchString) || (isDigit && m.BasePrice>=price-1000000 && m.BasePrice<=price+1000000) || m.FunctionKilometers.ToString().Contains(SearchString) || m.City.Name.Contains(SearchString) || m.Category.Title.Contains(SearchString)).ToList();
-                //foreach (var item in _context.Advertisements.ToList())
-                //{
-                //    List<Category> cats = ViewData["breadcrumbs" + item.Id.ToString()];
-                //}
-                //var ads = _context.Advertisements.ToList().Where(m => m.Title.Contains(SearchString) || m.Color.Contains(SearchString) || m.BasePrice.ToString().Contains(SearchString) || m.FunctionKilometers.ToString().Contains(SearchString)|| _context.Categories.Where(cat=>cat.Id==m.CategoryId).ToList().ToString().Contains(SearchString) || _context.Cities.Where(city => city.Id == m.CityId).FirstOrDefault().Name.Contains(SearchString)).ToList();
 
                 foreach (var ad in ads)
                 {
@@ -176,6 +170,7 @@ namespace Divar.Controllers
                         c = parent;
                     }
                     ViewData["breadcrumbs" + ad.Id.ToString()] = breadcrumbs;
+                    catsDictionary["breadcrumbs" + ad.Id.ToString()] = breadcrumbs;
 
                     this.cats.Add(breadcrumbs);
                     ViewData["city" + ad.Id.ToString()] = _context.Cities.Where(cat => cat.Id == ad.CityId).FirstOrDefault().Name;
@@ -196,6 +191,7 @@ namespace Divar.Controllers
                     c = parent;
                 }
                 ViewData["breadcrumbs" + ad.Id.ToString()] = breadcrumbs;
+                catsDictionary["breadcrumbs" + ad.Id.ToString()] = breadcrumbs;
 
                 this.cats.Add(breadcrumbs);
                 ViewData["city" + ad.Id.ToString()] = _context.Cities.Where(cat => cat.Id == ad.CityId).FirstOrDefault().Name;
