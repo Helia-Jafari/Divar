@@ -81,6 +81,13 @@ namespace Divar.Controllers
         [ValidateAntiForgeryToken]
 public IActionResult Index(Advertisement model)
         {
+            List<Category> cs = new List<Category>();
+            foreach (var item in categories)
+            {
+                cs.Add(item);
+            }
+
+            ViewData["categories"] = cs;
 
             ViewData["BasePriceAddViewData"] = _localizer["BasePriceAdd"];
             ViewData["BrandAddViewData"] = _localizer["BrandAdd"];
