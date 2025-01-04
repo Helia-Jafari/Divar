@@ -73,6 +73,8 @@ namespace Divar.Controllers
             ViewData["TitleAddViewData"] = _localizer["TitleAdd"];
             ViewData["SubmitAddViewData"] = _localizer["SubmitAdd"];
             ViewData["RequiredInputErrorAddViewData"] = _localizer["RequiredInputError"];
+            ViewData["HomeMenueLayouteViewData"] = _localizer["HomeMenueLayoute"];
+            ViewData["AddAdMenueLayouteViewData"] = _localizer["AddAdMenueLayoute"];
             return View();
         }
 
@@ -111,6 +113,8 @@ public IActionResult Index(Advertisement model)
             ViewData["TitleAddViewData"] = _localizer["TitleAdd"];
             ViewData["SubmitAddViewData"] = _localizer["SubmitAdd"];
             ViewData["RequiredInputErrorAddViewData"] = _localizer["RequiredInputErrorAdd"];
+            //ViewData["HomeMenueLayouteViewData"] = _localizer["HomeMenueLayoute"];
+            //ViewData["AddAdMenueLayouteViewData"] = _localizer["AddAdMenueLayoute"];
 
 
 

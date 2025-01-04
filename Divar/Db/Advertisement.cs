@@ -1,5 +1,11 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.Extensions.Localization;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Net.NetworkInformation;
+//using Microsoft.Extensions.Localization;
+//inject IStringLocalizer<Divar.Controllers.HomeController> localizer;
 
 namespace Divar.Db;
 
@@ -7,6 +13,7 @@ public partial class Advertisement
 {
     public int Id { get; set; }
 
+    //[Required(ErrorMessageResourceName = "RequiredInputError", ErrorMessageResourceType = typeof(Divar.Localization.Db.Advertisement))]
     public string Title { get; set; } = null!;
 
     public string Description { get; set; } = null!;

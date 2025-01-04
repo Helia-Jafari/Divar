@@ -65,6 +65,9 @@ namespace Divar.Controllers
             //ViewData["currentDate"] = DateTime.Now.ToString("D", new CultureInfo("fa-IR"));
             //ViewData["currentDate"] = DateTime.Now.ToString(CultureInfo.CurrentCulture);
             ViewData["currentDate"] = DateTime.Now.ToString("D",CultureInfo.CurrentCulture);
+            ViewData["SearchHomeViewData"] = _localizer["SearchHome"];
+            //ViewData["HomeMenueLayouteViewData"] = _localizer["HomeMenueLayoute"];
+            //ViewData["AddAdMenueLayouteViewData"] = _localizer["AddAdMenueLayoute"];
 
             var Viesws = _context.Advertisements.ToList();
             foreach (var ad in Viesws)

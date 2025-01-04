@@ -139,4 +139,13 @@
   <data name="AdvertisementCity" xml:space="preserve">
     <value />
   </data>
+  <data name="HomeMenueLayoute" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AddAdMenueLayoute" xml:space="preserve">
+    <value />
+  </data>
+  <data name="RequiredInputError" xml:space="preserve">
+    <value />
+  </data>
 </root>

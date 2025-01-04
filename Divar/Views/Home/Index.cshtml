@@ -8,8 +8,8 @@
 
 <form asp-controller="Home" asp-action="HomeSearch" method="post">
     <div class="d-flex">
-        <input value="@ViewData["serach"]" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="SearchString">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <input value="@ViewData["serach"]" class="form-control me-2" type="search" placeholder="@ViewData["SearchHomeViewData"]" aria-label="Search" name="SearchString">
+        <button class="btn btn-outline-success" type="submit">@ViewData["SearchHomeViewData"]</button>
     </div>
 </form>
 

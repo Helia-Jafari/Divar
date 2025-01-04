@@ -183,4 +183,10 @@
   <data name="RequiredInputError" xml:space="preserve">
     <value>This fild is required</value>
   </data>
+  <data name="HomeMenueLayoute" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="AddAdMenueLayoute" xml:space="preserve">
+    <value>Register Ad</value>
+  </data>
 </root>

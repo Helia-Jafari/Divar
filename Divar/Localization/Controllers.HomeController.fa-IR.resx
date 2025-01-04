@@ -138,4 +138,13 @@
   <data name="AdvertisementCity" xml:space="preserve">
     <value>شهر:</value>
   </data>
+  <data name="HomeMenueLayoute" xml:space="preserve">
+    <value>خانه</value>
+  </data>
+  <data name="AddAdMenueLayoute" xml:space="preserve">
+    <value>ثبت آگهی</value>
+  </data>
+  <data name="RequiredInputError" xml:space="preserve">
+    <value>پر کردن این فیلد اجباری است</value>
+  </data>
 </root>
