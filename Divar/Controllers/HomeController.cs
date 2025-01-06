@@ -70,23 +70,22 @@ namespace Divar.Controllers
             //ViewData["HomeMenueLayouteViewData"] = _localizer["HomeMenueLayoute"];
             //ViewData["AddAdMenueLayouteViewData"] = _localizer["AddAdMenueLayoute"];
 
-            
             //switch (CultureInfo.CurrentCulture.ToString())
             //{
             //    case "en-US":
             //        ViewData["dir"] = "ltr";
             //        break;
             //    case "fa-IR":
-            //        ViewData["dir"] = "rlt";
+            //        ViewData["dir"] = "rtl";
             //        break;
             //}
-            if (CultureInfo.CurrentCulture.ToString() == "fa-IR")
-            {
-                ViewData["dir"] = "ltr";
-            } else
-            {
-                ViewData["dir"] = "rlt";
-            }
+            //if (CultureInfo.CurrentCulture.ToString() == "fa-IR")
+            //{
+            //    ViewData["dir"] = "rtl";
+            //} else
+            //{
+            //    ViewData["dir"] = "ltr";
+            //}
 
             var Viesws = _context.Advertisements.ToList();
             foreach (var ad in Viesws)
@@ -134,23 +133,24 @@ namespace Divar.Controllers
             ViewData["FunctionKilometersHomeViewData"] = _localizer["AdvertisementFunctionKilometers"];
             ViewData["CityHomeViewData"] = _localizer["AdvertisementCity"];
             ViewData["SearchHomeViewData"] = _localizer["SearchHome"];
+
             //switch (CultureInfo.CurrentCulture.ToString())
             //{
             //    case "en-US":
             //        ViewData["dir"] = "ltr";
             //        break;
             //    case "fa-IR":
-            //        ViewData["dir"] = "rlt";
+            //        ViewData["dir"] = "rtl";
             //        break;
             //}
-            if (CultureInfo.CurrentCulture.ToString() == "fa-IR")
-            {
-                ViewData["dir"] = "rlt";
-            }
-            else
-            {
-                ViewData["dir"] = "ltr";
-            }
+            //if (CultureInfo.CurrentCulture.ToString() == "fa-IR")
+            //{
+            //    ViewData["dir"] = "rtl";
+            //}
+            //else
+            //{
+            //    ViewData["dir"] = "ltr";
+            //}
 
             var memberList = _context.Advertisements.ToList();
             foreach (var ad in memberList)
