@@ -117,25 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="SucceededSearch" xml:space="preserve">
-    <value>جستجو با موفقیت انجام شد</value>
-  </data>
-  <data name="AdvertisementTitle" xml:space="preserve">
-    <value>اسم آگهی:</value>
-  </data>
-  <data name="AdvertisementColor" xml:space="preserve">
+  <data name="ColorHome" xml:space="preserve">
     <value>رنگ:</value>
   </data>
-  <data name="AdvertisementBasePrice" xml:space="preserve">
-    <value>قیمت پایه:</value>
-  </data>
-  <data name="AdvertisementFunctionKilometers" xml:space="preserve">
+  <data name="FunctionKilometersHome" xml:space="preserve">
     <value>کارکرد:</value>
   </data>
-  <data name="SearchHome" xml:space="preserve">
-    <value>جستجو</value>
+  <data name="BasePriceHome" xml:space="preserve">
+    <value>قیمت پایه به تومان:</value>
   </data>
-  <data name="AdvertisementCity" xml:space="preserve">
+  <data name="TitleHome" xml:space="preserve">
+    <value>عنوان اگهی:</value>
+  </data>
+  <data name="CityIdHome" xml:space="preserve">
     <value>شهر:</value>
   </data>
   <data name="HomeMenueLayoute" xml:space="preserve">
@@ -144,7 +138,7 @@
   <data name="AddAdMenueLayoute" xml:space="preserve">
     <value>ثبت آگهی</value>
   </data>
-  <data name="RequiredInputError" xml:space="preserve">
-    <value>پر کردن این فیلد اجباری است</value>
+  <data name="SearchHome" xml:space="preserve">
+    <value>جستجو</value>
   </data>
 </root>

@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.IO;
+using System.Linq.Expressions;
 
 namespace Divar.Controllers
 {
@@ -57,17 +58,35 @@ namespace Divar.Controllers
             //    };
             //    _context.ViwShowAdvertisements.Add(view);
             //}
-            ViewData["TitleHomeViewData"] = _localizer["AdvertisementTitle"];
-            ViewData["ColorHomeViewData"] = _localizer["AdvertisementColor"];
-            ViewData["BasePriceHomeViewData"] = _localizer["AdvertisementBasePrice"];
-            ViewData["FunctionKilometersHomeViewData"] = _localizer["AdvertisementFunctionKilometers"];
-            ViewData["CityHomeViewData"] = _localizer["AdvertisementCity"];
+            ViewData["TitleHomeViewData"] = _localizer["TitleHome"];
+            ViewData["ColorHomeViewData"] = _localizer["ColorHome"];
+            ViewData["BasePriceHomeViewData"] = _localizer["BasePriceHome"];
+            ViewData["FunctionKilometersHomeViewData"] = _localizer["FunctionKilometersHome"];
+            ViewData["CityHomeViewData"] = _localizer["CityHome"];
             //ViewData["currentDate"] = DateTime.Now.ToString("D", new CultureInfo("fa-IR"));
             //ViewData["currentDate"] = DateTime.Now.ToString(CultureInfo.CurrentCulture);
             ViewData["currentDate"] = DateTime.Now.ToString("D",CultureInfo.CurrentCulture);
             ViewData["SearchHomeViewData"] = _localizer["SearchHome"];
             //ViewData["HomeMenueLayouteViewData"] = _localizer["HomeMenueLayoute"];
             //ViewData["AddAdMenueLayouteViewData"] = _localizer["AddAdMenueLayoute"];
+
+            
+            //switch (CultureInfo.CurrentCulture.ToString())
+            //{
+            //    case "en-US":
+            //        ViewData["dir"] = "ltr";
+            //        break;
+            //    case "fa-IR":
+            //        ViewData["dir"] = "rlt";
+            //        break;
+            //}
+            if (CultureInfo.CurrentCulture.ToString() == "fa-IR")
+            {
+                ViewData["dir"] = "ltr";
+            } else
+            {
+                ViewData["dir"] = "rlt";
+            }
 
             var Viesws = _context.Advertisements.ToList();
             foreach (var ad in Viesws)
@@ -114,6 +133,24 @@ namespace Divar.Controllers
             ViewData["BasePriceHomeViewData"] = _localizer["AdvertisementBasePrice"];
             ViewData["FunctionKilometersHomeViewData"] = _localizer["AdvertisementFunctionKilometers"];
             ViewData["CityHomeViewData"] = _localizer["AdvertisementCity"];
+            ViewData["SearchHomeViewData"] = _localizer["SearchHome"];
+            //switch (CultureInfo.CurrentCulture.ToString())
+            //{
+            //    case "en-US":
+            //        ViewData["dir"] = "ltr";
+            //        break;
+            //    case "fa-IR":
+            //        ViewData["dir"] = "rlt";
+            //        break;
+            //}
+            if (CultureInfo.CurrentCulture.ToString() == "fa-IR")
+            {
+                ViewData["dir"] = "rlt";
+            }
+            else
+            {
+                ViewData["dir"] = "ltr";
+            }
 
             var memberList = _context.Advertisements.ToList();
             foreach (var ad in memberList)

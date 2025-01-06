@@ -117,26 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="SucceededSearch" type="System.Resources.ResXNullRef, System.Windows.Forms">
+  <data name="ColorHome" xml:space="preserve">
     <value />
   </data>
-  <data name="AdvertisementTitle" xml:space="preserve">
+  <data name="FunctionKilometersHome" xml:space="preserve">
     <value />
   </data>
-  <data name="AdvertisementColor" xml:space="preserve">
+  <data name="BasePriceHome" xml:space="preserve">
     <value />
   </data>
-  <data name="AdvertisementBasePrice" xml:space="preserve">
+  <data name="TitleHome" xml:space="preserve">
     <value />
   </data>
-  <data name="AdvertisementFunctionKilometers" xml:space="preserve">
-    <value />
-  </data>
-  <data name="SearchHome" xml:space="preserve">
-    <value />
-  </data>
-  <data name="AdvertisementCity" xml:space="preserve">
+  <data name="CityIdHome" xml:space="preserve">
     <value />
   </data>
   <data name="HomeMenueLayoute" xml:space="preserve">
@@ -145,7 +138,7 @@
   <data name="AddAdMenueLayoute" xml:space="preserve">
     <value />
   </data>
-  <data name="RequiredInputError" xml:space="preserve">
+  <data name="SearchHome" xml:space="preserve">
     <value />
   </data>
 </root>

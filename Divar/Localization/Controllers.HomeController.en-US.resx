@@ -117,26 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="SucceededSearch" xml:space="preserve">
-    <value>Search was successful</value>
+  <data name="ColorHome" xml:space="preserve">
+    <value>Color: </value>
   </data>
-  <data name="AdvertisementTitle" xml:space="preserve">
-    <value>Advertisement title:</value>
+  <data name="FunctionKilometersHome" xml:space="preserve">
+    <value>Function Kilometers: </value>
   </data>
-  <data name="AdvertisementColor" xml:space="preserve">
-    <value>Advertisement Color:</value>
+  <data name="BasePriceHome" xml:space="preserve">
+    <value>Base Price: </value>
   </data>
-  <data name="AdvertisementBasePrice" xml:space="preserve">
-    <value>Advertisement Base Price:</value>
+  <data name="TitleHome" xml:space="preserve">
+    <value>Title: </value>
   </data>
-  <data name="AdvertisementFunctionKilometers" xml:space="preserve">
-    <value>Advertisement Function Kilometers:</value>
-  </data>
-  <data name="SearchHome" xml:space="preserve">
-    <value>Search</value>
-  </data>
-  <data name="AdvertisementCity" xml:space="preserve">
-    <value>Advertisement City:</value>
+  <data name="CityIdHome" xml:space="preserve">
+    <value>City: </value>
   </data>
   <data name="HomeMenueLayoute" xml:space="preserve">
     <value>Home</value>
@@ -144,7 +138,7 @@
   <data name="AddAdMenueLayoute" xml:space="preserve">
     <value>Register Ad</value>
   </data>
-  <data name="RequiredInputError" xml:space="preserve">
-    <value>This fild is required</value>
+  <data name="SearchHome" xml:space="preserve">
+    <value>Search</value>
   </data>
 </root>

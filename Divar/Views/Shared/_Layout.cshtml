@@ -1,7 +1,10 @@
 ﻿@using Microsoft.Extensions.Localization
+@using Divar.Extra
 @inject IStringLocalizer<Divar.Controllers.HomeController>   _localizer;
+@inject IDirLocalozation ;
 <!DOCTYPE html>
-<html lang="en" dir="rtl">
+@* <html lang="en" dir="@ViewData["dir"]"> *@
+<html lang="en" dir="@DirLocalozationClass.localizedDir">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

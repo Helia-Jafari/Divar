@@ -4,8 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Net.NetworkInformation;
-//using Microsoft.Extensions.Localization;
-//inject IStringLocalizer<Divar.Controllers.HomeController> localizer;
+using Microsoft.Extensions.Localization;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+//using Divar.Localization;
+//inject IStringLocalizer<Divar.Db.Advertisement> _localizer;
 
 namespace Divar.Db;
 
@@ -13,7 +15,8 @@ public partial class Advertisement
 {
     public int Id { get; set; }
 
-    //[Required(ErrorMessageResourceName = "RequiredInputError", ErrorMessageResourceType = typeof(Divar.Localization.Db.Advertisement))]
+    //[Required(ErrorMessageResourceName = "BasePriceHome", ErrorMessageResourceType = typeof(Divar.Controllers.HomeController))]
+
     public string Title { get; set; } = null!;
 
     public string Description { get; set; } = null!;

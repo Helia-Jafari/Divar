@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Localization;
 using System;
+using System.Globalization;
 
 namespace Divar.Controllers
 {
@@ -75,6 +76,23 @@ namespace Divar.Controllers
             ViewData["RequiredInputErrorAddViewData"] = _localizer["RequiredInputError"];
             ViewData["HomeMenueLayouteViewData"] = _localizer["HomeMenueLayoute"];
             ViewData["AddAdMenueLayouteViewData"] = _localizer["AddAdMenueLayoute"];
+            //switch (CultureInfo.CurrentCulture.ToString())
+            //{
+            //    case "en-US":
+            //        ViewData["dir"] = "ltr";
+            //        break;
+            //    case "fa-IR":
+            //        ViewData["dir"] = "rlt";
+            //        break;
+            //}
+            if (CultureInfo.CurrentCulture.ToString() == "fa-IR")
+            {
+                ViewData["dir"] = "rlt";
+            }
+            else
+            {
+                ViewData["dir"] = "ltr";
+            }
             return View();
         }
 
@@ -115,6 +133,23 @@ public IActionResult Index(Advertisement model)
             ViewData["RequiredInputErrorAddViewData"] = _localizer["RequiredInputErrorAdd"];
             //ViewData["HomeMenueLayouteViewData"] = _localizer["HomeMenueLayoute"];
             //ViewData["AddAdMenueLayouteViewData"] = _localizer["AddAdMenueLayoute"];
+            //switch (CultureInfo.CurrentCulture.ToString())
+            //{
+            //    case "en-US":
+            //        ViewData["dir"] = "ltr";
+            //        break;
+            //    case "fa-IR":
+            //        ViewData["dir"] = "rlt";
+            //        break;
+            //}
+            if (CultureInfo.CurrentCulture.ToString() == "fa-IR")
+            {
+                ViewData["dir"] = "rlt";
+            }
+            else
+            {
+                ViewData["dir"] = "ltr";
+            }
 
 
 
