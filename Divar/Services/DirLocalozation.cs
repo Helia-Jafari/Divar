@@ -1,17 +1,16 @@
-﻿using System.Globalization;
-using Divar.Interfaces;
-using Microsoft.Extensions.Localization;
+﻿using Divar.Interfaces;
+using System.Globalization;
 
-namespace Divar.Extra
+namespace Divar.Services
 {
-    public class DirLocalozation: IDirLocalozation
+    public class DirLocalozation : IDirLocalozation
     {
         private string localizedDir;
-        DirLocalozation()
+        public DirLocalozation()
         {
             if (CultureInfo.CurrentCulture.ToString() == "fa-IR")
             {
-                this.localizedDir = "rlt";
+                this.localizedDir = "rtl";
             }
             else
             {

@@ -2,8 +2,8 @@
 
 
 using Divar.Db;
-using Divar.Extra;
 using Divar.Interfaces;
+using Divar.Services;
 using Microsoft.AspNetCore.Localization;
 using System.Globalization;
 using System.Text.RegularExpressions;
@@ -13,7 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DivarContext>();
 
-builder.Services.AddSingleton<IDirLocalozation, DirLocalozation>();
+builder.Services.AddScoped<IDirLocalozation, DirLocalozation>();
 
 //builder.Services.AddRazorPages().AddViewLocalization();
 

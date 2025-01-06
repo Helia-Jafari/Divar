@@ -1,10 +1,11 @@
 ﻿@using Microsoft.Extensions.Localization
-@using Divar.Extra
+@using Divar.Services
+@using Divar.Interfaces
 @inject IStringLocalizer<Divar.Controllers.HomeController>   _localizer;
-@inject IDirLocalozation ;
+@inject IDirLocalozation DirLocalozation;
 <!DOCTYPE html>
 @* <html lang="en" dir="@ViewData["dir"]"> *@
-<html lang="en" dir="@DirLocalozationClass.localizedDir">
+<html lang="en" dir="@DirLocalozation.ReadLocalizedDir().ToString()">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
