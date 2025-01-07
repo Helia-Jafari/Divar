@@ -1,4 +1,4 @@
-
+﻿
 using Divar.Db;
 using Divar.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +11,7 @@ using System.Globalization;
 using System.Linq;
 using System.IO;
 using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
 
 namespace Divar.Controllers
 {
@@ -35,7 +36,7 @@ namespace Divar.Controllers
             //categories = _context.Categories.ToList<Category>();
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
 
             //List<Category> cs = new List<Category>();
@@ -87,27 +88,29 @@ namespace Divar.Controllers
             //    ViewData["dir"] = "ltr";
             //}
 
-            var Viesws = _context.Advertisements.ToList();
+            var Viesws = await _context.Advertisements.ToListAsync();
             foreach (var ad in Viesws)
             {
-                Category c = _context.Categories.Where(c => c.Id == ad.CategoryId).FirstOrDefault();
+                Category c = await _context.Categories.FirstOrDefaultAsync(c => c.Id == ad.CategoryId);
                 List<Category> breadcrumbs = new List<Category>();
                 breadcrumbs.Add(c);
-                while (c.ParentId != null){
-                    Category parent = _context.Categories.Where(cat => cat.Id == c.ParentId).FirstOrDefault();
+                while (c.ParentId != null)
+                {
+                    Category parent = await _context.Categories.FirstOrDefaultAsync(cat => cat.Id == c.ParentId);
                     breadcrumbs.Add(parent);
                     c = parent;
                 }
-                ViewData["breadcrumbs"+ad.Id.ToString()] = breadcrumbs;
+                ViewData["breadcrumbs" + ad.Id.ToString()] = breadcrumbs;
                 catsDictionary["breadcrumbs" + ad.Id.ToString()] = breadcrumbs;
                 this.cats.Add(breadcrumbs);
 
-                ViewData["city" + ad.Id.ToString()] = _context.Cities.Where(cat => cat.Id == ad.CityId).FirstOrDefault().Name;
+                var city = await _context.Cities.FirstOrDefaultAsync(cat => cat.Id == ad.CityId);
+                ViewData["city" + ad.Id.ToString()] = city.Name;
             }
 
 
 
-            return View(Viesws);
+            return View("Index", Viesws);
 
 
         }
@@ -122,17 +125,138 @@ namespace Divar.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        //public IActionResult HomeSearch()
+        //{
+        //    return View("Index");
+        //}
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> HomeSearch(string SearchString)
+        //{
+
+        //ViewData["SucceededSearch"] = _localizer["SucceededSearch"];
+        //ViewData["TitleHomeViewData"] = _localizer["TitleHome"];
+        //ViewData["ColorHomeViewData"] = _localizer["ColorHome"];
+        //ViewData["BasePriceHomeViewData"] = _localizer["BasePriceHome"];
+        //ViewData["FunctionKilometersHomeViewData"] = _localizer["FunctionKilometersHome"];
+        //ViewData["CityHomeViewData"] = _localizer["CityHome"];
+        ////ViewData["currentDate"] = DateTime.Now.ToString("D", new CultureInfo("fa-IR"));
+        ////ViewData["currentDate"] = DateTime.Now.ToString(CultureInfo.CurrentCulture);
+        //ViewData["currentDate"] = DateTime.Now.ToString("D", CultureInfo.CurrentCulture);
+        //ViewData["SearchHomeViewData"] = _localizer["SearchHome"];
+
+
+        //    //switch (CultureInfo.CurrentCulture.ToString())
+        //    //{
+        //    //    case "en-US":
+        //    //        ViewData["dir"] = "ltr";
+        //    //        break;
+        //    //    case "fa-IR":
+        //    //        ViewData["dir"] = "rtl";
+        //    //        break;
+        //    //}
+        //    //if (CultureInfo.CurrentCulture.ToString() == "fa-IR")
+        //    //{
+        //    //    ViewData["dir"] = "rtl";
+        //    //}
+        //    //else
+        //    //{
+        //    //    ViewData["dir"] = "ltr";
+        //    //}
+
+        //    var memberList = await _context.Advertisements.ToListAsync();
+        //    foreach (var ad in memberList)
+        //    {
+        //        Category c = await _context.Categories.FirstOrDefaultAsync(c => c.Id == ad.CategoryId);
+        //        List<Category> breadcrumbs = new List<Category>();
+        //        breadcrumbs.Add(c);
+        //        while (c.ParentId != null)
+        //        {
+        //            Category parent = await _context.Categories.FirstOrDefaultAsync(cat => cat.Id == c.ParentId);
+        //            breadcrumbs.Add(parent);
+        //            c = parent;
+        //        }
+        //        ViewData["breadcrumbs" + ad.Id.ToString()] = breadcrumbs;
+        //        catsDictionary["breadcrumbs" + ad.Id.ToString()] = breadcrumbs;
+        //        this.cats.Add(breadcrumbs);
+
+        //        var city = await _context.Cities.FirstOrDefaultAsync(cat => cat.Id == ad.CityId);
+        //        ViewData["city" + ad.Id.ToString()] = city.Name;
+        //    }
+
+
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return View("Index", memberList);
+        //    }
+        //    if (!SearchString.IsNullOrEmpty())
+        //    {
+        //        SearchString = SearchString.Trim();
+
+        //        var ads = _context.Advertisements.Where(m => m.Title.Contains(SearchString) || m.Color.Contains(SearchString) || m.BasePrice.ToString().Contains(SearchString) || m.FunctionKilometers.ToString().Contains(SearchString) || _context.Categories.Where(a => a.Id == m.CategoryId).FirstOrDefault().Title.Contains(SearchString) || _context.Cities.Where(city => city.Id == m.CityId).FirstOrDefault().Name.Contains(SearchString)).ToList();
+        //        //var ads = _context.Advertisements.Where(m => cats.Where(a => a == catsDictionary["breadcrumbs" + m.Id.ToString()]).FirstOrDefault().AsQueryable().Where(a => a.Title.ToString().Contains(SearchString)).FirstOrDefault().Title.ToString().Contains(SearchString)).ToList();
+        //        //var avs = _context.Advertisements
+        //        //    .Where(m =>
+        //        //    {
+        //        //        // ???? ???? ????????? ??????
+        //        //         var categoriesList = cats.FirstOrDefault(a => a == catsDictionary["breadcrumbs" + m.Id.ToString()]);
+        //        //        // ??? ????????? ???? ?? ? ????? ?? ???? SearchString ???? ????? ????
+        //        //        var c = categoriesList.FirstOrDefault(a => a.Title.ToString().Contains(SearchString));
+        //        //        return c.Title.Contains(SearchString);
+        //        //    })
+        //        //    .ToList();
+        //        //var adv = _context.Advertisements.Where(m => cats.Where(a => a == catsDictionary["breadcrumbs" + m.Id.ToString()]).FirstOrDefault().Where(a => a.Title.ToString().Contains(SearchString)).FirstOrDefault().Title.ToString().Contains(SearchString)).ToList();
+        //        //var ads = _context.Advertisements.Where(m => m.Title.Contains(SearchString) || m.Color.Contains(SearchString) || m.BasePrice.ToString().Contains(SearchString) || m.FunctionKilometers.ToString().Contains(SearchString) || _context.Categories.Where(a => a.Id == m.CategoryId).FirstOrDefault().Title.Contains(SearchString) || _context.Cities.Where(city => city.Id == m.CityId).FirstOrDefault().Name.Contains(SearchString) || cats.Where(a => a == catsDictionary["breadcrumbs" + m.Id.ToString()]).FirstOrDefault().AsQueryable().Where(a => a.Title.ToString().Contains(SearchString)).FirstOrDefault().Title.ToString().Contains(SearchString)).ToList();
+
+        //        decimal price;
+        //        bool isDigit = decimal.TryParse(SearchString, out price);
+
+        //        foreach (var ad in ads)
+        //        {
+        //            Category c = await _context.Categories.FirstOrDefaultAsync(c => c.Id == ad.CategoryId);
+        //            List<Category> breadcrumbs = new List<Category>();
+        //            breadcrumbs.Add(c);
+        //            while (c.ParentId != null)
+        //            {
+        //                Category parent = await _context.Categories.FirstOrDefaultAsync(cat => cat.Id == c.ParentId);
+        //                breadcrumbs.Add(parent);
+        //                c = parent;
+        //            }
+        //            ViewData["breadcrumbs" + ad.Id.ToString()] = breadcrumbs;
+        //            catsDictionary["breadcrumbs" + ad.Id.ToString()] = breadcrumbs;
+        //            this.cats.Add(breadcrumbs);
+
+        //            var city = await _context.Cities.FirstOrDefaultAsync(cat => cat.Id == ad.CityId);
+        //            ViewData["city" + ad.Id.ToString()] = city.Name;
+        //        }
+
+        //        return View("Index", ads);
+        //    }
+
+
+        //    return View("Index", memberList);
+
+        //}
+
         [HttpPost]
-        public IActionResult HomeSearch(string SearchString)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> HomeSearch(string SearchString)
         {
 
             ViewData["SucceededSearch"] = _localizer["SucceededSearch"];
-            ViewData["TitleHomeViewData"] = _localizer["AdvertisementTitle"];
-            ViewData["ColorHomeViewData"] = _localizer["AdvertisementColor"];
-            ViewData["BasePriceHomeViewData"] = _localizer["AdvertisementBasePrice"];
-            ViewData["FunctionKilometersHomeViewData"] = _localizer["AdvertisementFunctionKilometers"];
-            ViewData["CityHomeViewData"] = _localizer["AdvertisementCity"];
+            ViewData["TitleHomeViewData"] = _localizer["TitleHome"];
+            ViewData["ColorHomeViewData"] = _localizer["ColorHome"];
+            ViewData["BasePriceHomeViewData"] = _localizer["BasePriceHome"];
+            ViewData["FunctionKilometersHomeViewData"] = _localizer["FunctionKilometersHome"];
+            ViewData["CityHomeViewData"] = _localizer["CityHome"];
+            //ViewData["currentDate"] = DateTime.Now.ToString("D", new CultureInfo("fa-IR"));
+            //ViewData["currentDate"] = DateTime.Now.ToString(CultureInfo.CurrentCulture);
+            ViewData["currentDate"] = DateTime.Now.ToString("D", CultureInfo.CurrentCulture);
             ViewData["SearchHomeViewData"] = _localizer["SearchHome"];
+
+
 
             //switch (CultureInfo.CurrentCulture.ToString())
             //{
@@ -152,23 +276,24 @@ namespace Divar.Controllers
             //    ViewData["dir"] = "ltr";
             //}
 
-            var memberList = _context.Advertisements.ToList();
+            var memberList = await _context.Advertisements.ToListAsync();
             foreach (var ad in memberList)
             {
-                Category c = _context.Categories.Where(c => c.Id == ad.CategoryId).FirstOrDefault();
+                Category c = await _context.Categories.FirstOrDefaultAsync(c => c.Id == ad.CategoryId);
                 List<Category> breadcrumbs = new List<Category>();
                 breadcrumbs.Add(c);
                 while (c.ParentId != null)
                 {
-                    Category parent = _context.Categories.Where(cat => cat.Id == c.ParentId).FirstOrDefault();
+                    Category parent = await _context.Categories.FirstOrDefaultAsync(cat => cat.Id == c.ParentId);
                     breadcrumbs.Add(parent);
                     c = parent;
                 }
                 ViewData["breadcrumbs" + ad.Id.ToString()] = breadcrumbs;
                 catsDictionary["breadcrumbs" + ad.Id.ToString()] = breadcrumbs;
-
                 this.cats.Add(breadcrumbs);
-                ViewData["city" + ad.Id.ToString()] = _context.Cities.Where(cat => cat.Id == ad.CityId).FirstOrDefault().Name;
+
+                var city = await _context.Cities.FirstOrDefaultAsync(cat => cat.Id == ad.CityId);
+                ViewData["city" + ad.Id.ToString()] = city.Name;
             }
 
 
@@ -178,9 +303,84 @@ namespace Divar.Controllers
             }
             if (!SearchString.IsNullOrEmpty())
             {
+
                 SearchString = SearchString.Trim();
 
-                var ads = _context.Advertisements.Where(m => m.Title.Contains(SearchString) || m.Color.Contains(SearchString) || m.BasePrice.ToString().Contains(SearchString) || m.FunctionKilometers.ToString().Contains(SearchString) || _context.Categories.Where(a => a.Id==m.CategoryId).FirstOrDefault().Title.Contains(SearchString) || _context.Cities.Where(city => city.Id == m.CityId).FirstOrDefault().Name.Contains(SearchString)).ToList();
+
+                //var ads = await _context.Advertisements
+                //    .Where(m => m.Title.Contains(SearchString) ||
+                //    m.Color.Contains(SearchString) ||
+                //    m.BasePrice.ToString().Contains(SearchString) ||
+                //    m.FunctionKilometers.ToString().Contains(SearchString) ||
+                //    _context.Categories.Where(a => a.Id == m.CategoryId).FirstOrDefault().Title.Contains(SearchString) ||
+                //    _context.Cities.Where(city => city.Id == m.CityId).FirstOrDefault().Name.Contains(SearchString))
+                //    .ToListAsync();
+
+                //var ads = await _context.Advertisements
+                //    .Where(async m => m.Title.Contains(SearchString) || 
+                //    m.Color.Contains(SearchString) || 
+                //    m.BasePrice.ToString().Contains(SearchString) || 
+                //    m.FunctionKilometers.ToString().Contains(SearchString) || 
+                //    await _context.Categories.Where(a => a.Id == m.CategoryId).FirstOrDefaultAsync().Title.Contains(SearchString) || 
+                //    await _context.Cities.Where(city => city.Id == m.CityId).FirstOrDefaultAsync().Name.Contains(SearchString))
+                //    .ToListAsync();
+
+                //var categories = await _context.Categories.ToListAsync();
+                //var cities = await _context.Cities.ToListAsync();
+                //var ads = await _context.Advertisements.Where(m =>
+                //    m.Title.Contains(SearchString) ||
+                //    m.Color.Contains(SearchString) ||
+                //    m.BasePrice.ToString().Contains(SearchString) ||
+                //    m.FunctionKilometers.ToString().Contains(SearchString) ||
+                //    categories.Where(a => a.Id == m.CategoryId).FirstOrDefault().Title.Contains(SearchString) ||
+                //    cities.Where(city => city.Id == m.CityId).FirstOrDefault().Name.Contains(SearchString))
+                //    .ToListAsync();
+
+                //var categories = await _context.Categories.ToListAsync();
+                //var cities = await _context.Cities.ToListAsync();
+                //var ads = await _context.Advertisements.Where(m =>
+                //    m.Title.Contains(SearchString) ||
+                //    m.Color.Contains(SearchString) ||
+                //    m.BasePrice.ToString().Contains(SearchString) ||
+                //    m.FunctionKilometers.ToString().Contains(SearchString) ||
+                //    categories.Any(a => a.Id == m.CategoryId && a.Title.Contains(SearchString)) ||
+                //    cities.Any(city => city.Id == m.CityId && city.Name.Contains(SearchString))
+                //).ToListAsync();
+
+                //var allAds = await _context.Advertisements.ToListAsync();
+                //var categories = await _context.Categories.ToListAsync();
+                //var cities = await _context.Cities.ToListAsync();
+                //var ads = allAds.Where(m =>
+                //    m.Title.Contains(SearchString) ||
+                //    m.Color.Contains(SearchString) ||
+                //    m.BasePrice.ToString().Contains(SearchString) ||
+                //    m.FunctionKilometers.ToString().Contains(SearchString) ||
+                //    categories.Where(a => a.Id == m.CategoryId).FirstOrDefault().Title.Contains(SearchString) ||
+                //    cities.Where(city => city.Id == m.CityId).FirstOrDefault().Name.Contains(SearchString))
+                //    .ToList();
+
+                //var allAds = await _context.Advertisements.ToListAsync();
+                //var categories = await _context.Categories.ToListAsync();
+                //var cities = await _context.Cities.ToListAsync();
+                //var ads = allAds.Where(m =>
+                //    m.Title.Contains(SearchString) ||
+                //    m.Color.Contains(SearchString) ||
+                //    m.BasePrice.ToString().Contains(SearchString) ||
+                //    m.FunctionKilometers.ToString().Contains(SearchString) ||
+                //    categories.Any(a => a.Id == m.CategoryId && a.Title.Contains(SearchString)) ||
+                //    cities.Any(city => city.Id == m.CityId && city.Name.Contains(SearchString))
+                //).ToList();
+
+                var ads = await _context.Advertisements
+                    .Where(m => m.Title.Contains(SearchString) ||
+                    m.Color.Contains(SearchString) ||
+                    m.BasePrice.ToString().Contains(SearchString) ||
+                    m.FunctionKilometers.ToString().Contains(SearchString) ||
+                    m.Category.Title.Contains(SearchString) ||
+                    m.City.Name.Contains(SearchString))
+                    .ToListAsync();
+
+
                 //var ads = _context.Advertisements.Where(m => cats.Where(a => a == catsDictionary["breadcrumbs" + m.Id.ToString()]).FirstOrDefault().AsQueryable().Where(a => a.Title.ToString().Contains(SearchString)).FirstOrDefault().Title.ToString().Contains(SearchString)).ToList();
                 //var avs = _context.Advertisements
                 //    .Where(m =>
@@ -200,42 +400,26 @@ namespace Divar.Controllers
 
                 foreach (var ad in ads)
                 {
-                    Category c = _context.Categories.Where(c => c.Id == ad.CategoryId).FirstOrDefault();
+                    Category c = await _context.Categories.FirstOrDefaultAsync(c => c.Id == ad.CategoryId);
                     List<Category> breadcrumbs = new List<Category>();
                     breadcrumbs.Add(c);
                     while (c.ParentId != null)
                     {
-                        Category parent = _context.Categories.Where(cat => cat.Id == c.ParentId).FirstOrDefault();
+                        Category parent = await _context.Categories.FirstOrDefaultAsync(cat => cat.Id == c.ParentId);
                         breadcrumbs.Add(parent);
                         c = parent;
                     }
                     ViewData["breadcrumbs" + ad.Id.ToString()] = breadcrumbs;
                     catsDictionary["breadcrumbs" + ad.Id.ToString()] = breadcrumbs;
-
                     this.cats.Add(breadcrumbs);
-                    ViewData["city" + ad.Id.ToString()] = _context.Cities.Where(cat => cat.Id == ad.CityId).FirstOrDefault().Name;
+
+                    var city = await _context.Cities.FirstOrDefaultAsync(cat => cat.Id == ad.CityId);
+                    ViewData["city" + ad.Id.ToString()] = city.Name;
                 }
 
                 return View("Index", ads);
             }
 
-            foreach (var ad in memberList)
-            {
-                Category c = _context.Categories.Where(c => c.Id == ad.CategoryId).FirstOrDefault();
-                List<Category> breadcrumbs = new List<Category>();
-                breadcrumbs.Add(c);
-                while (c.ParentId != null)
-                {
-                    Category parent = _context.Categories.Where(cat => cat.Id == c.ParentId).FirstOrDefault();
-                    breadcrumbs.Add(parent);
-                    c = parent;
-                }
-                ViewData["breadcrumbs" + ad.Id.ToString()] = breadcrumbs;
-                catsDictionary["breadcrumbs" + ad.Id.ToString()] = breadcrumbs;
-
-                this.cats.Add(breadcrumbs);
-                ViewData["city" + ad.Id.ToString()] = _context.Cities.Where(cat => cat.Id == ad.CityId).FirstOrDefault().Name;
-            }
 
             return View("Index", memberList);
 

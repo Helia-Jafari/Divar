@@ -12,12 +12,12 @@ namespace Divar.Services
             if (CultureInfo.CurrentCulture.ToString() == "fa-IR")
             {
                 this.localizedDir = "rtl";
-                this.localizedBootstrapLink = "./lib/bootstrap/dist/css/bootstrap.rtl.min.css";
+                this.localizedBootstrapLink = "/lib/bootstrap/dist/css/bootstrap.rtl.min.css";
             }
             else
             {
                 this.localizedDir = "ltr";
-                this.localizedBootstrapLink = "./lib/bootstrap/dist/css/bootstrap.min.css";
+                this.localizedBootstrapLink = "/lib/bootstrap/dist/css/bootstrap.min.css";
             }
         }
         public string ReadLocalizedDir()

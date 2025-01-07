@@ -1,5 +1,6 @@
 ﻿using Divar.Db;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Localization;
 using System;
@@ -19,9 +20,8 @@ namespace Divar.Controllers
             _context = db;
             _localizer = localizer;
             //cities = _context.Cities.ToList();
-            categories=_context.Categories.ToList<Category>();
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
 
             //var tuple = new Tuple<Advertisement, DivarContext>(new Advertisement(),new DivarContext());
@@ -44,6 +44,7 @@ namespace Divar.Controllers
 
             //ViewData["categories"] = cs;
 
+            categories= await _context.Categories.ToListAsync<Category>();
             List<Category> cs = new List<Category>();
             foreach (var item in categories)
             {
@@ -95,14 +96,15 @@ namespace Divar.Controllers
             //    ViewData["dir"] = "ltr";
             //}
 
-            return View();
+            return View("Index");
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-public IActionResult Index(Advertisement model)
+public async Task<IActionResult> Index(Advertisement model)
         {
+            categories = await _context.Categories.ToListAsync<Category>();
             List<Category> cs = new List<Category>();
             foreach (var item in categories)
             {
@@ -163,7 +165,7 @@ public IActionResult Index(Advertisement model)
             if (!ModelState.IsValid)
             {
                 //Tuple<Advertisement, List<Category>> tuplee = new Tuple<Advertisement, List<Category>>(new Advertisement(), categories);
-                return View();
+                return View("Index");
             };
             var myModel = new Advertisement()
             {
@@ -204,10 +206,10 @@ public IActionResult Index(Advertisement model)
                 //Latitude = model.Latitude,
                 //Longitude = model.Longitude,
             };
-    _context.Advertisements.Add(myModel);
-    _context.SaveChanges();
+    await _context.Advertisements.AddAsync(myModel);
+    await _context.SaveChangesAsync();
             //Tuple<Advertisement, List<Category>> tuple = new Tuple<Advertisement, List<Category>>(new Advertisement(), categories);
-            return View();
+            return View("Index");
         }
     }
 }

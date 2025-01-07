@@ -7,10 +7,10 @@
 
   @model Advertisement
   <form asp-controller="Add" asp-action="Index" method="post">
-      <table style="border:none">
-          <tr>
+      <table class="border-0 w-100">
+        <tr
               <td>
-                <label for="CategoryId">@ViewData["CategoryIdAddViewData"]</label>
+                <label asp-for="@Model.CategoryId" for="CategoryId">@ViewData["CategoryIdAddViewData"]</label>
                 <select class="form-select" asp-for="@Model.CategoryId">
                     <!--foreach (var category in ViewData["categories"])-->
                     @foreach (var category in (List<Category>)ViewData["categories"])
@@ -219,7 +219,7 @@
                 </div>
             </td>
         </tr>
-          <tr>
+        <tr class="d-flex justify-content-center">
 
               <td>
                 <button type="submit" class="btn btn-primary" style="float:right;">@ViewData["SubmitAddViewData"]</button>
