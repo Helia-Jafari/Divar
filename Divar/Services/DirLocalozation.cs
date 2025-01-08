@@ -5,28 +5,27 @@ namespace Divar.Services
 {
     public class DirLocalozation : IDirLocalozation
     {
-        private string localizedDir;
-        private string localizedBootstrapLink;
-        public DirLocalozation()
+        public string ReadLocalizedDir()
         {
             if (CultureInfo.CurrentCulture.ToString() == "fa-IR")
             {
-                this.localizedDir = "rtl";
-                this.localizedBootstrapLink = "/lib/bootstrap/dist/css/bootstrap.rtl.min.css";
+                return "rtl";
             }
             else
             {
-                this.localizedDir = "ltr";
-                this.localizedBootstrapLink = "/lib/bootstrap/dist/css/bootstrap.min.css";
+                return "ltr";
             }
-        }
-        public string ReadLocalizedDir()
-        {
-            return this.localizedDir;
         }
         public string ReadlocalizedBootstrapLink()
         {
-            return this.localizedBootstrapLink;
+            if (CultureInfo.CurrentCulture.ToString() == "fa-IR")
+            {
+                return "/lib/bootstrap/dist/css/bootstrap.rtl.min.css";
+            }
+            else
+            {
+                return "/lib/bootstrap/dist/css/bootstrap.min.css";
+            }
         }
     }
 }

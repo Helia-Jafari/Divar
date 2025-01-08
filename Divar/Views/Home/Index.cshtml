@@ -7,7 +7,7 @@
 <span>@ViewData["currentDate"]</span>
 
 @* <form asp-controller="Home" asp-action="HomeSearch" method="post">  *@
-<form asp-controller="Home" asp-action="HomeSearch" method="post">
+<form asp-controller="Home" asp-action="Index" method="post">
     <div class="d-flex">
         <input value="@ViewData["serach"]" class="form-control me-2" type="search" placeholder="@ViewData["SearchHomeViewData"]" aria-label="Search" name="SearchString">
         <button class="btn btn-outline-success" type="submit">@ViewData["SearchHomeViewData"]</button>

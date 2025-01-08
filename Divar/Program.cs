@@ -13,7 +13,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DivarContext>();
 
-builder.Services.AddScoped<IDirLocalozation, DirLocalozation>();
+builder.Services.AddSingleton<IDirLocalozation, DirLocalozation>();
+builder.Services.AddScoped<IAdvertisementService, AdvertisementService>();
+builder.Services.AddScoped<ICityService, CityService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 //builder.Services.AddRazorPages().AddViewLocalization();
 
