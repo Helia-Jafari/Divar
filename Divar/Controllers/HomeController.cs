@@ -207,5 +207,45 @@ namespace Divar.Controllers
 
         }
 
+        public async Task<IActionResult> ChangeCulture(string culture)
+        {
+
+            ViewData["TitleHomeViewData"] = _localizer["TitleHome"];
+            ViewData["ColorHomeViewData"] = _localizer["ColorHome"];
+            ViewData["BasePriceHomeViewData"] = _localizer["BasePriceHome"];
+            ViewData["FunctionKilometersHomeViewData"] = _localizer["FunctionKilometersHome"];
+            ViewData["CityHomeViewData"] = _localizer["CityIdHome"];
+            //ViewData["currentDate"] = DateTime.Now.ToString("D", new CultureInfo("fa-IR"));
+            //ViewData["currentDate"] = DateTime.Now.ToString(CultureInfo.CurrentCulture);
+            ViewData["currentDate"] = DateTime.Now.ToString("D", CultureInfo.CurrentCulture);
+            ViewData["SearchHomeViewData"] = _localizer["SearchHome"];
+            //ViewData["HomeMenueLayouteViewData"] = _localizer["HomeMenueLayoute"];
+            //ViewData["AddAdMenueLayouteViewData"] = _localizer["AddAdMenueLayoute"];
+
+
+            var Viesws = await _advertisementService.GetAllAdvertisementsAsync();
+            foreach (var ad in Viesws)
+            {
+                var breadcrumbs = await _categoryService.GetBreadcrumbsAsync((int)ad.CategoryId);
+
+                ViewData["breadcrumbs" + ad.Id.ToString()] = breadcrumbs;
+                catsDictionary["breadcrumbs" + ad.Id.ToString()] = breadcrumbs;
+                this.cats.Add(breadcrumbs);
+
+                var city = await _cityService.GetCityByIdAsync((int)ad.CityId);
+                ViewData["city" + ad.Id.ToString()] = city.Name;
+            }
+
+            //// تغییر فرهنگ به فارسی
+            CultureInfo.CurrentCulture = new CultureInfo(culture);
+            CultureInfo.CurrentUICulture = new CultureInfo(culture);
+
+            // تغییر فرهنگ به فارسی
+            //CultureInfo.CurrentCulture = new CultureInfo("fa-IR");
+            //CultureInfo.CurrentUICulture = new CultureInfo("fa-IR");
+
+            // هدایت به صفحه اصلی پس از تغییر فرهنگ
+            return View("Index", Viesws);
+        }
     }
 }

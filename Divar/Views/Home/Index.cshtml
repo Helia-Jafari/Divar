@@ -2,7 +2,13 @@
     ViewData["Title"] = "Home Page";
 }
 @using Divar.Db;
+
+@using System.Globalization;
+
 @inject DivarContext _context;
+
+<button class="btn btn-primary d-block" id="btnChangeCulture" onclick="changeCulture()">تغییر زبان</button>
+
 
 <span>@ViewData["currentDate"]</span>
 
@@ -59,3 +65,31 @@
         </td>
     </tr>
 -->
+
+<script>
+    function changeCulture() {
+        // ارسال مقدار فرهنگ به جاوااسکریپت
+        // var currentCulture = '@CultureInfo.CurrentCulture.Name';
+
+        // مقایسه فرهنگ و تغییر آدرس در صورت نیاز
+        // if (currentCulture == "en-US") {
+        //     window.location.href = '@Url.Action("ChangeCulture", "Home", new { culture = "fa-IR" })';
+        // } else {
+
+        //     window.location.href = '@Url.Action("ChangeCulture", "Home", new { culture = "en-US" })';
+        // }
+
+
+
+        // ارسال مقدار فرهنگ به جاوااسکریپت
+        var currentCulture = '@CultureInfo.CurrentCulture.Name';
+
+        // مقایسه فرهنگ و تغییر آدرس در صورت نیاز
+        if (currentCulture == "en-US") {
+            window.location.href = '@Url.Action("ChangeCulture", "Home", new { culture = "fa-IR" })';
+        } else {
+
+            window.location.href = '@Url.Action("ChangeCulture", "Home", new { culture = "en-US" })';
+        }
+    }
+</script>

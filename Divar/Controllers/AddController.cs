@@ -156,5 +156,55 @@ public async Task<IActionResult> Index(Advertisement model)
 
             return View("Index");
         }
+        public async Task<IActionResult> ChangeCulture(string culture)
+        {
+
+            categories = await _context.Categories.ToListAsync<Category>();
+            List<Category> cs = new List<Category>();
+            foreach (var item in categories)
+            {
+                cs.Add(item);
+            }
+
+            ViewData["categories"] = cs;
+
+            ViewData["BasePriceAddViewData"] = _localizer["BasePriceAdd"];
+            ViewData["BrandAddViewData"] = _localizer["BrandAdd"];
+            ViewData["CategoryIdAddViewData"] = _localizer["CategoryIdAdd"];
+            ViewData["ChassisAndBodyConditionAddViewData"] = _localizer["ChassisAndBodyConditionAdd"];
+            ViewData["CityIdAddViewData"] = _localizer["CityIdAdd"];
+            ViewData["ColorAddViewData"] = _localizer["ColorAdd"];
+            ViewData["DescriptionAddViewData"] = _localizer["DescriptionAdd"];
+            ViewData["DoYouWantToReplaceAddViewData"] = _localizer["DoYouWantToReplaceAdd"];
+            ViewData["EngineConditionAddViewData"] = _localizer["EngineConditionAdd"];
+            ViewData["FrontChassisConditionAddViewData"] = _localizer["FrontChassisConditionAdd"];
+            ViewData["FunctionKilometersAddViewData"] = _localizer["FunctionKilometersAdd"];
+            ViewData["GearboxAddViewData"] = _localizer["GearboxAdd"];
+            ViewData["IsTheChatActivatedAddViewData"] = _localizer["IsTheChatActivatedAdd"];
+            ViewData["IsThePhoneCallActiveAddViewData"] = _localizer["IsThePhoneCallActiveAdd"];
+            ViewData["ItsModelAddViewData"] = _localizer["ItsModelAdd"];
+            ViewData["NationalCodeAddViewData"] = _localizer["NationalCodeAdd"];
+            ViewData["NationalityAddViewData"] = _localizer["NationalityAdd"];
+            ViewData["RearChassisConditionAddViewData"] = _localizer["RearChassisConditionAdd"];
+            ViewData["ThirdPartyInsuranceTermAddViewData"] = _localizer["ThirdPartyInsuranceTermAdd"];
+            ViewData["TitleAddViewData"] = _localizer["TitleAdd"];
+            ViewData["SubmitAddViewData"] = _localizer["SubmitAdd"];
+            ViewData["RequiredInputErrorAddViewData"] = _localizer["RequiredInputError"];
+            ViewData["HomeMenueLayouteViewData"] = _localizer["HomeMenueLayoute"];
+            ViewData["AddAdMenueLayouteViewData"] = _localizer["AddAdMenueLayoute"];
+
+
+            //// تغییر فرهنگ به فارسی
+            CultureInfo.CurrentCulture = new CultureInfo(culture);
+            CultureInfo.CurrentUICulture = new CultureInfo(culture);
+
+            // تغییر فرهنگ به فارسی
+            //CultureInfo.CurrentCulture = new CultureInfo("fa-IR");
+            //CultureInfo.CurrentUICulture = new CultureInfo("fa-IR");
+
+            // هدایت به صفحه اصلی پس از تغییر فرهنگ
+
+            return View("Index");
+        }
     }
 }

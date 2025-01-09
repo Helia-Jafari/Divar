@@ -1,11 +1,19 @@
-﻿using Divar.Interfaces;
+﻿using Divar.Controllers;
+using Divar.Interfaces;
+using Microsoft.Extensions.Localization;
 using System.Globalization;
 
 namespace Divar.Services
 {
-    public class DirLocalozation : IDirLocalozation
+    public class LocalizationService : ILocalizationService
     {
-        public string ReadLocalizedDir()
+        private readonly IStringLocalizer<HomeController> _localizer;
+       public LocalizationService(IStringLocalizer<HomeController> localizer)
+        {
+
+            _localizer = localizer;
+        }
+        public string GetLocalizedDir()
         {
             if (CultureInfo.CurrentCulture.ToString() == "fa-IR")
             {
@@ -16,7 +24,7 @@ namespace Divar.Services
                 return "ltr";
             }
         }
-        public string ReadlocalizedBootstrapLink()
+        public string GetlocalizedBootstrapLink()
         {
             if (CultureInfo.CurrentCulture.ToString() == "fa-IR")
             {
@@ -26,6 +34,11 @@ namespace Divar.Services
             {
                 return "/lib/bootstrap/dist/css/bootstrap.min.css";
             }
+        }
+
+        public string GetLocalizedString(string key)
+        {
+            return _localizer[key];
         }
     }
 }
