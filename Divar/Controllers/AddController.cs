@@ -152,10 +152,12 @@ public async Task<IActionResult> Index(Advertisement model)
             };
             //Tuple<Advertisement, List<Category>> tuple = new Tuple<Advertisement, List<Category>>(new Advertisement(), categories);
 
-            await _advertisementService.CreateAdvertisementAsync(model);
+            await _advertisementService.AddAdvertisementAsync(model);
 
             return View("Index");
         }
+
+
         public async Task<IActionResult> ChangeCulture(string culture)
         {
 
@@ -203,6 +205,9 @@ public async Task<IActionResult> Index(Advertisement model)
             //CultureInfo.CurrentUICulture = new CultureInfo("fa-IR");
 
             // هدایت به صفحه اصلی پس از تغییر فرهنگ
+
+
+
 
             return View("Index");
         }

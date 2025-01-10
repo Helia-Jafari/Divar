@@ -22,6 +22,7 @@ namespace Divar.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly DivarContext _context;
         private readonly IStringLocalizer<HomeController> _localizer;
+        private readonly IViewDataService _viewDataService;
 
         private readonly IAdvertisementService _advertisementService;
         private readonly ICityService _cityService;
@@ -34,11 +35,12 @@ namespace Divar.Controllers
 
         //public List<Category> categories;
 
-        public HomeController(ILogger<HomeController> logger, DivarContext db, IStringLocalizer<HomeController> localizer, ICityService cityService, ICategoryService categoryService, IAdvertisementService advertisementService)
+        public HomeController(ILogger<HomeController> logger, DivarContext db, IStringLocalizer<HomeController> localizer, ICityService cityService, ICategoryService categoryService, IAdvertisementService advertisementService, IViewDataService viewDataService)
         {
             _context = db;
             _logger = logger;
             _localizer = localizer;
+            _viewDataService = viewDataService;
 
             _cityService = cityService;
             _categoryService = categoryService;
@@ -61,15 +63,21 @@ namespace Divar.Controllers
             //    };
             //    _context.ViwShowAdvertisements.Add(view);
             //}
-            ViewData["TitleHomeViewData"] = _localizer["TitleHome"];
-            ViewData["ColorHomeViewData"] = _localizer["ColorHome"];
-            ViewData["BasePriceHomeViewData"] = _localizer["BasePriceHome"];
-            ViewData["FunctionKilometersHomeViewData"] = _localizer["FunctionKilometersHome"];
-            ViewData["CityHomeViewData"] = _localizer["CityIdHome"];
+
+            // دریافت داده‌ها از سرویس
+            var homeViewModel = await _viewDataService.GetHomeViewDataAsync();
+
+            // ارسال داده‌ها به ViewData
+            ViewData["TitleHomeViewData"] = homeViewModel.TitleHome;
+            ViewData["ColorHomeViewData"] = homeViewModel.ColorHome;
+            ViewData["BasePriceHomeViewData"] = homeViewModel.BasePriceHome;
+            ViewData["FunctionKilometersHomeViewData"] = homeViewModel.FunctionKilometersHome;
+            ViewData["CityHomeViewData"] = homeViewModel.CityHome;
+            ViewData["currentDate"] = homeViewModel.CurrentDate;
             //ViewData["currentDate"] = DateTime.Now.ToString("D", new CultureInfo("fa-IR"));
             //ViewData["currentDate"] = DateTime.Now.ToString(CultureInfo.CurrentCulture);
-            ViewData["currentDate"] = DateTime.Now.ToString("D",CultureInfo.CurrentCulture);
-            ViewData["SearchHomeViewData"] = _localizer["SearchHome"];
+            ViewData["SearchHomeViewData"] = homeViewModel.SearchHome;
+            ViewData["SearchHomeViewData"] = homeViewModel.SucceededSearch;
             //ViewData["HomeMenueLayouteViewData"] = _localizer["HomeMenueLayoute"];
             //ViewData["AddAdMenueLayouteViewData"] = _localizer["AddAdMenueLayoute"];
 
@@ -132,16 +140,23 @@ namespace Divar.Controllers
         public async Task<IActionResult> Index(string SearchString)
         {
 
-            ViewData["SucceededSearch"] = _localizer["SucceededSearch"];
-            ViewData["TitleHomeViewData"] = _localizer["TitleHome"];
-            ViewData["ColorHomeViewData"] = _localizer["ColorHome"];
-            ViewData["BasePriceHomeViewData"] = _localizer["BasePriceHome"];
-            ViewData["FunctionKilometersHomeViewData"] = _localizer["FunctionKilometersHome"];
-            ViewData["CityHomeViewData"] = _localizer["CityIdHome"];
+            // دریافت داده‌ها از سرویس
+            var homeViewModel = await _viewDataService.GetHomeViewDataAsync();
+
+            // ارسال داده‌ها به ViewData
+            ViewData["TitleHomeViewData"] = homeViewModel.TitleHome;
+            ViewData["ColorHomeViewData"] = homeViewModel.ColorHome;
+            ViewData["BasePriceHomeViewData"] = homeViewModel.BasePriceHome;
+            ViewData["FunctionKilometersHomeViewData"] = homeViewModel.FunctionKilometersHome;
+            ViewData["CityHomeViewData"] = homeViewModel.CityHome;
+            ViewData["currentDate"] = homeViewModel.CurrentDate;
             //ViewData["currentDate"] = DateTime.Now.ToString("D", new CultureInfo("fa-IR"));
             //ViewData["currentDate"] = DateTime.Now.ToString(CultureInfo.CurrentCulture);
-            ViewData["currentDate"] = DateTime.Now.ToString("D", CultureInfo.CurrentCulture);
-            ViewData["SearchHomeViewData"] = _localizer["SearchHome"];
+            ViewData["SearchHomeViewData"] = homeViewModel.SearchHome;
+            ViewData["SearchHomeViewData"] = homeViewModel.SucceededSearch;
+            //ViewData["HomeMenueLayouteViewData"] = _localizer["HomeMenueLayoute"];
+            //ViewData["AddAdMenueLayouteViewData"] = _localizer["AddAdMenueLayoute"];
+
 
 
 
@@ -210,15 +225,20 @@ namespace Divar.Controllers
         public async Task<IActionResult> ChangeCulture(string culture)
         {
 
-            ViewData["TitleHomeViewData"] = _localizer["TitleHome"];
-            ViewData["ColorHomeViewData"] = _localizer["ColorHome"];
-            ViewData["BasePriceHomeViewData"] = _localizer["BasePriceHome"];
-            ViewData["FunctionKilometersHomeViewData"] = _localizer["FunctionKilometersHome"];
-            ViewData["CityHomeViewData"] = _localizer["CityIdHome"];
+            // دریافت داده‌ها از سرویس
+            var homeViewModel = await _viewDataService.GetHomeViewDataAsync();
+
+            // ارسال داده‌ها به ViewData
+            ViewData["TitleHomeViewData"] = homeViewModel.TitleHome;
+            ViewData["ColorHomeViewData"] = homeViewModel.ColorHome;
+            ViewData["BasePriceHomeViewData"] = homeViewModel.BasePriceHome;
+            ViewData["FunctionKilometersHomeViewData"] = homeViewModel.FunctionKilometersHome;
+            ViewData["CityHomeViewData"] = homeViewModel.CityHome;
+            ViewData["currentDate"] = homeViewModel.CurrentDate;
             //ViewData["currentDate"] = DateTime.Now.ToString("D", new CultureInfo("fa-IR"));
             //ViewData["currentDate"] = DateTime.Now.ToString(CultureInfo.CurrentCulture);
-            ViewData["currentDate"] = DateTime.Now.ToString("D", CultureInfo.CurrentCulture);
-            ViewData["SearchHomeViewData"] = _localizer["SearchHome"];
+            ViewData["SearchHomeViewData"] = homeViewModel.SearchHome;
+            ViewData["SearchHomeViewData"] = homeViewModel.SucceededSearch;
             //ViewData["HomeMenueLayouteViewData"] = _localizer["HomeMenueLayoute"];
             //ViewData["AddAdMenueLayouteViewData"] = _localizer["AddAdMenueLayoute"];
 

@@ -3,6 +3,7 @@
 
 using Divar.Db;
 using Divar.Interfaces;
+using Divar.Repositories;
 using Divar.Services;
 using Microsoft.AspNetCore.Localization;
 using System.Globalization;
@@ -13,6 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DivarContext>();
 
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<ILocalizationService, LocalizationService>();
 builder.Services.AddScoped<IAdvertisementService, AdvertisementService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
