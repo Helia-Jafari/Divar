@@ -77,7 +77,7 @@ namespace Divar.Controllers
             //ViewData["currentDate"] = DateTime.Now.ToString("D", new CultureInfo("fa-IR"));
             //ViewData["currentDate"] = DateTime.Now.ToString(CultureInfo.CurrentCulture);
             ViewData["SearchHomeViewData"] = homeViewModel.SearchHome;
-            ViewData["SearchHomeViewData"] = homeViewModel.SucceededSearch;
+            ViewData["SucceededSearch"] = homeViewModel.SucceededSearch;
             //ViewData["HomeMenueLayouteViewData"] = _localizer["HomeMenueLayoute"];
             //ViewData["AddAdMenueLayouteViewData"] = _localizer["AddAdMenueLayoute"];
 
@@ -153,7 +153,7 @@ namespace Divar.Controllers
             //ViewData["currentDate"] = DateTime.Now.ToString("D", new CultureInfo("fa-IR"));
             //ViewData["currentDate"] = DateTime.Now.ToString(CultureInfo.CurrentCulture);
             ViewData["SearchHomeViewData"] = homeViewModel.SearchHome;
-            ViewData["SearchHomeViewData"] = homeViewModel.SucceededSearch;
+            ViewData["SucceededSearch"] = homeViewModel.SucceededSearch;
             //ViewData["HomeMenueLayouteViewData"] = _localizer["HomeMenueLayoute"];
             //ViewData["AddAdMenueLayouteViewData"] = _localizer["AddAdMenueLayoute"];
 
@@ -238,7 +238,7 @@ namespace Divar.Controllers
             //ViewData["currentDate"] = DateTime.Now.ToString("D", new CultureInfo("fa-IR"));
             //ViewData["currentDate"] = DateTime.Now.ToString(CultureInfo.CurrentCulture);
             ViewData["SearchHomeViewData"] = homeViewModel.SearchHome;
-            ViewData["SearchHomeViewData"] = homeViewModel.SucceededSearch;
+            ViewData["SucceededSearch"] = homeViewModel.SucceededSearch;
             //ViewData["HomeMenueLayouteViewData"] = _localizer["HomeMenueLayoute"];
             //ViewData["AddAdMenueLayouteViewData"] = _localizer["AddAdMenueLayoute"];
 
