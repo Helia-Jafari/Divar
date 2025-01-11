@@ -1,11 +1,11 @@
 
 
-
 using Divar.Db;
 using Divar.Interfaces;
 using Divar.Repositories;
 using Divar.Services;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 using System.Text.RegularExpressions;
 
@@ -13,7 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DivarContext>();
-
+//builder.Services.AddDbContext<DivarContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString(""));
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<ILocalizationService, LocalizationService>();
 builder.Services.AddScoped<IViewDataService, ViewDataService>();
