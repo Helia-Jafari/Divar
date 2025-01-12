@@ -1,13 +1,17 @@
 
 
+using Azure.Core;
 using Divar.Db;
 using Divar.Interfaces;
 using Divar.Repositories;
 using Divar.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 using System.Text.RegularExpressions;
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -21,7 +25,10 @@ builder.Services.AddScoped<IAdvertisementService, AdvertisementService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICityService, CityService>();
 
+builder.Services.AddHttpContextAccessor();
+
 //builder.Services.AddRazorPages().AddViewLocalization();
+
 
 builder.Services.AddLocalization(options => options.ResourcesPath = "Localization");
 var supportedCultures = new[]
@@ -44,6 +51,28 @@ var requestLocalizationOptions = new RequestLocalizationOptions
 
 
 var app = builder.Build();
+
+
+
+
+// ?????? ????? ?? ??????? ??? ?? ????? ??????? RequestLocalization
+app.Use(async (context, next) =>
+{
+    var httpContextAccessor = context.RequestServices.GetRequiredService<IHttpContextAccessor>();
+    var cultureCookie = httpContextAccessor.HttpContext.Request.Cookies["culture"];
+    if (!string.IsNullOrEmpty(cultureCookie))
+    {
+        var culture = new CultureInfo(cultureCookie);
+        CultureInfo.CurrentCulture = culture;
+        CultureInfo.CurrentUICulture = culture;
+    }
+
+    // ????? ?????? ???????
+    await next.Invoke();
+});
+
+
+
 
 app.UseRequestLocalization(requestLocalizationOptions);
 

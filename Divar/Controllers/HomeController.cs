@@ -193,6 +193,7 @@ namespace Divar.Controllers
             }
 
 
+
             if (!ModelState.IsValid)
             {
                 return View("Index", memberList);
@@ -218,11 +219,14 @@ namespace Divar.Controllers
             }
 
 
+            
+
+
             return View("Index", memberList);
 
         }
 
-        public async Task<IActionResult> ChangeCulture(string culture)
+        public async Task<IActionResult> ChangeCulture()
         {
 
             // دریافت داده‌ها از سرویس
@@ -257,12 +261,23 @@ namespace Divar.Controllers
             }
 
             //// تغییر فرهنگ به فارسی
-            CultureInfo.CurrentCulture = new CultureInfo(culture);
-            CultureInfo.CurrentUICulture = new CultureInfo(culture);
+            //CultureInfo.CurrentCulture = new CultureInfo(culture);
+            //CultureInfo.CurrentUICulture = new CultureInfo(culture);
 
             // تغییر فرهنگ به فارسی
-            //CultureInfo.CurrentCulture = new CultureInfo("fa-IR");
-            //CultureInfo.CurrentUICulture = new CultureInfo("fa-IR");
+            var culture = new CultureInfo("fa-IR");
+
+            // ذخیره فرهنگ در کوکی
+            Response.Cookies.Append("culture", culture.Name, new CookieOptions
+            {
+                Expires = DateTimeOffset.UtcNow.AddYears(1),
+                HttpOnly = true,
+                SameSite = SameSiteMode.Strict
+            });
+
+            // تغییر فرهنگ برای درخواست جاری
+            CultureInfo.CurrentCulture = culture;
+            CultureInfo.CurrentUICulture = culture;
 
             // هدایت به صفحه اصلی پس از تغییر فرهنگ
             return View("Index", Viesws);

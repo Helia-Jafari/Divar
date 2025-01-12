@@ -15,7 +15,7 @@
 <span>@ViewData["currentDate"]</span>
 
 @* <form asp-controller="Home" asp-action="HomeSearch" method="post">  *@
-<form asp-controller="Home" asp-action="Index" method="post">
+<form asp-controller="Home" asp-action="Index" method="post" onsubmit="keepCultureSearch()">
     <div class="d-flex">
         <input value="@ViewData["serach"]" class="form-control me-2" type="search" placeholder="@ViewData["SearchHomeViewData"]" aria-label="Search" name="SearchString">
         <button class="btn btn-outline-success" type="submit">@ViewData["SearchHomeViewData"]</button>
@@ -71,27 +71,33 @@
 <script>
     function changeCulture() {
         // ارسال مقدار فرهنگ به جاوااسکریپت
-        // var currentCulture = '@CultureInfo.CurrentCulture.Name';
+        // var currentCulture = 'CultureInfo.CurrentCulture.Name';
 
         // مقایسه فرهنگ و تغییر آدرس در صورت نیاز
         // if (currentCulture == "en-US") {
-        //     window.location.href = '@Url.Action("ChangeCulture", "Home", new { culture = "fa-IR" })';
+        //     window.location.href = 'Url.Action("ChangeCulture", "Home", new { culture = "fa-IR" })';
         // } else {
 
-        //     window.location.href = '@Url.Action("ChangeCulture", "Home", new { culture = "en-US" })';
+        //     window.location.href = 'Url.Action("ChangeCulture", "Home", new { culture = "en-US" })';
         // }
 
 
+            window.location.href = '@Url.Action("ChangeCulture", "Home")';
+
+            window.location.href = '@Url.Action("ChangeCulture", "Home")';
+       
+ 
+    }
+
+    function keepCultureSearch() {
 
         // ارسال مقدار فرهنگ به جاوااسکریپت
         var currentCulture = '@CultureInfo.CurrentCulture.Name';
 
         // مقایسه فرهنگ و تغییر آدرس در صورت نیاز
-        if (currentCulture == "en-US") {
-            window.location.href = '@Url.Action("ChangeCulture", "Home", new { culture = "fa-IR" })';
-        } else {
-
-            window.location.href = '@Url.Action("ChangeCulture", "Home", new { culture = "en-US" })';
-        }
+        if (currentCulture == "fa-IR") {
+            CultureInfo.CurrentCulture = new CultureInfo("fa-IR");
+            CultureInfo.CurrentUICulture = new CultureInfo("fa-IR");
+        } 
     }
 </script>
