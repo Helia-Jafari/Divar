@@ -1,6 +1,8 @@
 ﻿using Divar.Db;
 using Divar.Interfaces;
+using Divar.Mapper;
 using Divar.Services;
+using Divar.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -18,12 +20,16 @@ namespace Divar.Controllers
         public List<Category> categories;
         //public List<City> cities;
 
-        public AddController(DivarContext db, IStringLocalizer<AddController> localizer, IAdvertisementService advertisementService)
+        private readonly AdvertisementMapper _advertisementMapper;
+
+        public AddController(DivarContext db, IStringLocalizer<AddController> localizer, IAdvertisementService advertisementService, AdvertisementMapper advertisementMapper)
         {
             _context = db;
             _localizer = localizer;
             _advertisementService = advertisementService;
             //cities = _context.Cities.ToList();
+
+            _advertisementMapper = advertisementMapper;
         }
         public async Task<IActionResult> Index()
         {
@@ -106,7 +112,7 @@ namespace Divar.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-public async Task<IActionResult> Index(Advertisement model)
+public async Task<IActionResult> Index(AddViewModel model)
         {
             categories = await _context.Categories.ToListAsync<Category>();
             List<Category> cs = new List<Category>();
@@ -151,6 +157,8 @@ public async Task<IActionResult> Index(Advertisement model)
                 return View("Index");
             };
             //Tuple<Advertisement, List<Category>> tuple = new Tuple<Advertisement, List<Category>>(new Advertisement(), categories);
+
+
 
             await _advertisementService.AddAdvertisementAsync(model);
 

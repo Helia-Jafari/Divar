@@ -1,12 +1,13 @@
 ﻿using Divar.Db;
+using Divar.ViewModels;
 
 namespace Divar.Interfaces
 {
     public interface IAdvertisementService
     {
         Task<Advertisement> GetAdvertisementByIdAsync(int id);
-        Task<IEnumerable<Advertisement>> GetAllAdvertisementsAsync();
-        Task AddAdvertisementAsync(Advertisement advertisement);
+        Task<IEnumerable<HomeViewModel>> GetAllAdvertisementsAsyncHomeVM();
+        Task AddAdvertisementAsync(AddViewModel advertisement);
         Task UpdateAdvertisementAsync(Advertisement advertisement);
         Task DeleteAdvertisementAsync(int id);
 

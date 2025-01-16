@@ -18,6 +18,7 @@
 <form asp-controller="Home" asp-action="Index" method="post" onsubmit="keepCultureSearch()">
     <div class="d-flex">
         <input value="@ViewData["serach"]" class="form-control me-2" type="search" placeholder="@ViewData["SearchHomeViewData"]" aria-label="Search" name="SearchString">
+        <input type="hidden" name="culture" value="@CultureInfo.CurrentCulture.Name" />
         <button class="btn btn-outline-success" type="submit">@ViewData["SearchHomeViewData"]</button>
     </div>
 </form>
@@ -82,9 +83,7 @@
         }
 
 
-            // window.location.href = 'Url.Action("ChangeCulture", "Home")';
-
-            // window.location.href = 'Url.Action("ChangeCulture", "Home")';
+        // window.location.href = 'Url.Action("ChangeCulture", "Home")?culture=' + culture;
        
  
     }
@@ -98,6 +97,7 @@
         if (currentCulture == "fa-IR") {
             CultureInfo.CurrentCulture = new CultureInfo("fa-IR");
             CultureInfo.CurrentUICulture = new CultureInfo("fa-IR");
+            // Console.WriteLine("hi");
         } 
     }
 </script>

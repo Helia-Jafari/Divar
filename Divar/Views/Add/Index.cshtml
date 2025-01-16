@@ -1,12 +1,13 @@
 ﻿@using Divar.Db
 @using System.Globalization;
+@using Divar.ViewModels;
 @inject DivarContext _context;
 @{
     var categories = _context.Categories.ToList();
     var cities = _context.Cities.ToList();
 }
 
-  @model Advertisement
+@model AddViewModel;
 
 <button class="btn btn-primary d-block" id="btnChangeCulture" onclick="changeCulture()">
     <i class="bi bi-translate"></i>
@@ -214,7 +215,7 @@
         <tr>
 
             <td>
-                <input value="Status" type="hidden" class="form-control" id="Status" asp-for="@Model.Status" placeholder="">
+                @* <input value="Status" type="hidden" class="form-control" id="Status" asp-for="@Model.Status" placeholder=""> *@
             </td>
         </tr>
         <tr>
