@@ -56,20 +56,20 @@ var app = builder.Build();
 
 
 // ?????? ????? ?? ??????? ??? ?? ????? ??????? RequestLocalization
-app.Use(async (context, next) =>
-{
-    var httpContextAccessor = context.RequestServices.GetRequiredService<IHttpContextAccessor>();
-    var cultureCookie = httpContextAccessor.HttpContext.Request.Cookies["culture"];
-    if (!string.IsNullOrEmpty(cultureCookie))
-    {
-        var culture = new CultureInfo(cultureCookie);
-        CultureInfo.CurrentCulture = culture;
-        CultureInfo.CurrentUICulture = culture;
-    }
+//app.Use(async (context, next) =>
+//{
+//    var httpContextAccessor = context.RequestServices.GetRequiredService<IHttpContextAccessor>();
+//    var cultureCookie = httpContextAccessor.HttpContext.Request.Cookies["culture"];
+//    if (!string.IsNullOrEmpty(cultureCookie))
+//    {
+//        var culture = new CultureInfo(cultureCookie);
+//        CultureInfo.CurrentCulture = culture;
+//        CultureInfo.CurrentUICulture = culture;
+//    }
 
-    // ????? ?????? ???????
-    await next.Invoke();
-});
+//    // ????? ?????? ???????
+//    await next.Invoke();
+//});
 
 
 

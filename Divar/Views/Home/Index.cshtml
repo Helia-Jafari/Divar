@@ -71,20 +71,20 @@
 <script>
     function changeCulture() {
         // ارسال مقدار فرهنگ به جاوااسکریپت
-        // var currentCulture = 'CultureInfo.CurrentCulture.Name';
+        var currentCulture = '@CultureInfo.CurrentCulture.Name';
 
         // مقایسه فرهنگ و تغییر آدرس در صورت نیاز
-        // if (currentCulture == "en-US") {
-        //     window.location.href = 'Url.Action("ChangeCulture", "Home", new { culture = "fa-IR" })';
-        // } else {
+        if (currentCulture == "en-US") {
+            window.location.href = '@Url.Action("ChangeCulture", "Home", new { culture = "fa-IR" })';
+        } else {
 
-        //     window.location.href = 'Url.Action("ChangeCulture", "Home", new { culture = "en-US" })';
-        // }
+            window.location.href = '@Url.Action("ChangeCulture", "Home", new { culture = "en-US" })';
+        }
 
 
-            window.location.href = '@Url.Action("ChangeCulture", "Home")';
+            // window.location.href = 'Url.Action("ChangeCulture", "Home")';
 
-            window.location.href = '@Url.Action("ChangeCulture", "Home")';
+            // window.location.href = 'Url.Action("ChangeCulture", "Home")';
        
  
     }
