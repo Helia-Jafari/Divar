@@ -14,6 +14,8 @@ using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using Divar.Interfaces;
 using Divar.Services;
+using System.Text.RegularExpressions;
+using Divar.Mapper;
 
 namespace Divar.Controllers
 {
@@ -22,7 +24,7 @@ namespace Divar.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly DivarContext _context;
         private readonly IStringLocalizer<HomeController> _localizer;
-        private readonly IViewDataService _viewDataService;
+        //private readonly IViewDataService _viewDataService;
 
         private readonly IAdvertisementService _advertisementService;
         private readonly ICityService _cityService;
@@ -35,17 +37,21 @@ namespace Divar.Controllers
 
         //public List<Category> categories;
 
-        public HomeController(ILogger<HomeController> logger, DivarContext db, IStringLocalizer<HomeController> localizer, ICityService cityService, ICategoryService categoryService, IAdvertisementService advertisementService, IViewDataService viewDataService)
+        private readonly AdvertisementMapper _advertisementMapper;
+
+        public HomeController(ILogger<HomeController> logger, DivarContext db, IStringLocalizer<HomeController> localizer, ICityService cityService, ICategoryService categoryService, IAdvertisementService advertisementService, IViewDataService viewDataService, AdvertisementMapper advertisementMapper)
         {
             _context = db;
             _logger = logger;
             _localizer = localizer;
-            _viewDataService = viewDataService;
+            //_viewDataService = viewDataService;
 
             _cityService = cityService;
             _categoryService = categoryService;
             _advertisementService = advertisementService;
             //categories = _context.Categories.ToList<Category>();
+
+            _advertisementMapper = advertisementMapper;
         }
 
         public async Task<IActionResult> Index()
@@ -64,22 +70,38 @@ namespace Divar.Controllers
             //    _context.ViwShowAdvertisements.Add(view);
             //}
 
-            // دریافت داده‌ها از سرویس
-            var homeViewModel = await _viewDataService.GetHomeViewDataAsync();
+            //// دریافت داده‌ها از سرویس
+            //var homeViewModel = await _viewDataService.GetHomeViewDataAsync();
+
+            //// ارسال داده‌ها به ViewData
+            //ViewData["TitleHomeViewData"] = homeViewModel.TitleHome;
+            //ViewData["ColorHomeViewData"] = homeViewModel.ColorHome;
+            //ViewData["BasePriceHomeViewData"] = homeViewModel.BasePriceHome;
+            //ViewData["FunctionKilometersHomeViewData"] = homeViewModel.FunctionKilometersHome;
+            //ViewData["CityHomeViewData"] = homeViewModel.CityHome;
+            //ViewData["currentDate"] = homeViewModel.CurrentDate;
+            ////ViewData["currentDate"] = DateTime.Now.ToString("D", new CultureInfo("fa-IR"));
+            ////ViewData["currentDate"] = DateTime.Now.ToString(CultureInfo.CurrentCulture);
+            //ViewData["SearchHomeViewData"] = homeViewModel.SearchHome;
+            //ViewData["SucceededSearch"] = homeViewModel.SucceededSearch;
+            ////ViewData["HomeMenueLayouteViewData"] = _localizer["HomeMenueLayoute"];
+            ////ViewData["AddAdMenueLayouteViewData"] = _localizer["AddAdMenueLayoute"];
+
 
             // ارسال داده‌ها به ViewData
-            ViewData["TitleHomeViewData"] = homeViewModel.TitleHome;
-            ViewData["ColorHomeViewData"] = homeViewModel.ColorHome;
-            ViewData["BasePriceHomeViewData"] = homeViewModel.BasePriceHome;
-            ViewData["FunctionKilometersHomeViewData"] = homeViewModel.FunctionKilometersHome;
-            ViewData["CityHomeViewData"] = homeViewModel.CityHome;
-            ViewData["currentDate"] = homeViewModel.CurrentDate;
+            ViewData["TitleHomeViewData"] = _localizer["TitleHome"];
+            ViewData["ColorHomeViewData"] = _localizer["ColorHome"];
+            ViewData["BasePriceHomeViewData"] = _localizer["BasePriceHome"];
+            ViewData["FunctionKilometersHomeViewData"] = _localizer["FunctionKilometersHome"];
+            ViewData["CityHomeViewData"] = _localizer["CityIdHome"];
+            ViewData["currentDate"] = DateTime.Now.ToString("D", CultureInfo.CurrentCulture);
             //ViewData["currentDate"] = DateTime.Now.ToString("D", new CultureInfo("fa-IR"));
             //ViewData["currentDate"] = DateTime.Now.ToString(CultureInfo.CurrentCulture);
-            ViewData["SearchHomeViewData"] = homeViewModel.SearchHome;
-            ViewData["SucceededSearch"] = homeViewModel.SucceededSearch;
+            ViewData["SearchHomeViewData"] = _localizer["SearchHome"];
+            ViewData["SucceededSearch"] = _localizer["SucceededSearch"];
             //ViewData["HomeMenueLayouteViewData"] = _localizer["HomeMenueLayoute"];
             //ViewData["AddAdMenueLayouteViewData"] = _localizer["AddAdMenueLayoute"];
+
 
             //switch (CultureInfo.CurrentCulture.ToString())
             //{
@@ -98,7 +120,7 @@ namespace Divar.Controllers
             //    ViewData["dir"] = "ltr";
             //}
 
-            var Viesws = await _advertisementService.GetAllAdvertisementsAsync();
+            var Viesws = await _advertisementService.GetAllAdvertisementsAsyncHomeVM();
             foreach (var ad in Viesws)
             {
                 var breadcrumbs = await _categoryService.GetBreadcrumbsAsync((int)ad.CategoryId);
@@ -137,23 +159,40 @@ namespace Divar.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Index(string SearchString)
+        public async Task<IActionResult> Index(string SearchString, string culture)
         {
 
-            // دریافت داده‌ها از سرویس
-            var homeViewModel = await _viewDataService.GetHomeViewDataAsync();
+            //// دریافت داده‌ها از سرویس
+            //var homeViewModel = await _viewDataService.GetHomeViewDataAsync();
+
+            //// ارسال داده‌ها به ViewData
+            //ViewData["TitleHomeViewData"] = homeViewModel.TitleHome;
+            //ViewData["ColorHomeViewData"] = homeViewModel.ColorHome;
+            //ViewData["BasePriceHomeViewData"] = homeViewModel.BasePriceHome;
+            //ViewData["FunctionKilometersHomeViewData"] = homeViewModel.FunctionKilometersHome;
+            //ViewData["CityHomeViewData"] = homeViewModel.CityHome;
+            //ViewData["currentDate"] = homeViewModel.CurrentDate;
+            ////ViewData["currentDate"] = DateTime.Now.ToString("D", new CultureInfo("fa-IR"));
+            ////ViewData["currentDate"] = DateTime.Now.ToString(CultureInfo.CurrentCulture);
+            //ViewData["SearchHomeViewData"] = homeViewModel.SearchHome;
+            //ViewData["SucceededSearch"] = homeViewModel.SucceededSearch;
+            ////ViewData["HomeMenueLayouteViewData"] = _localizer["HomeMenueLayoute"];
+            ////ViewData["AddAdMenueLayouteViewData"] = _localizer["AddAdMenueLayoute
+            ///
+
+
 
             // ارسال داده‌ها به ViewData
-            ViewData["TitleHomeViewData"] = homeViewModel.TitleHome;
-            ViewData["ColorHomeViewData"] = homeViewModel.ColorHome;
-            ViewData["BasePriceHomeViewData"] = homeViewModel.BasePriceHome;
-            ViewData["FunctionKilometersHomeViewData"] = homeViewModel.FunctionKilometersHome;
-            ViewData["CityHomeViewData"] = homeViewModel.CityHome;
-            ViewData["currentDate"] = homeViewModel.CurrentDate;
+            ViewData["TitleHomeViewData"] = _localizer["TitleHome"];
+            ViewData["ColorHomeViewData"] = _localizer["ColorHome"];
+            ViewData["BasePriceHomeViewData"] = _localizer["BasePriceHome"];
+            ViewData["FunctionKilometersHomeViewData"] = _localizer["FunctionKilometersHome"];
+            ViewData["CityHomeViewData"] = _localizer["CityIdHome"];
+            ViewData["currentDate"] = DateTime.Now.ToString("D", CultureInfo.CurrentCulture);
             //ViewData["currentDate"] = DateTime.Now.ToString("D", new CultureInfo("fa-IR"));
             //ViewData["currentDate"] = DateTime.Now.ToString(CultureInfo.CurrentCulture);
-            ViewData["SearchHomeViewData"] = homeViewModel.SearchHome;
-            ViewData["SucceededSearch"] = homeViewModel.SucceededSearch;
+            ViewData["SearchHomeViewData"] = _localizer["SearchHome"];
+            ViewData["SucceededSearch"] = _localizer["SucceededSearch"];
             //ViewData["HomeMenueLayouteViewData"] = _localizer["HomeMenueLayoute"];
             //ViewData["AddAdMenueLayouteViewData"] = _localizer["AddAdMenueLayoute"];
 
@@ -178,7 +217,7 @@ namespace Divar.Controllers
             //    ViewData["dir"] = "ltr";
             //}
 
-            var memberList = await _advertisementService.GetAllAdvertisementsAsync();
+            var memberList = await _advertisementService.GetAllAdvertisementsAsyncHomeVM();
             foreach (var ad in memberList)
             {
                 var breadcrumbs = await _categoryService.GetBreadcrumbsAsync((int)ad.CategoryId);
@@ -196,6 +235,27 @@ namespace Divar.Controllers
 
             if (!ModelState.IsValid)
             {
+
+
+
+                // تغییر فرهنگ به مقداری که از URL گرفته شده است
+                if (!string.IsNullOrEmpty(culture))
+                {
+                    var cultureInfo = new CultureInfo(culture);
+                    CultureInfo.CurrentCulture = cultureInfo;
+                    CultureInfo.CurrentUICulture = cultureInfo;
+
+                    // ذخیره فرهنگ در کوکی
+                    Response.Cookies.Append("culture", cultureInfo.Name, new CookieOptions
+                    {
+                        Expires = DateTimeOffset.UtcNow.AddYears(1), // تاریخ انقضا
+                        HttpOnly = true, // فقط از طریق HTTP قابل دسترسی
+                        SameSite = SameSiteMode.Lax // یا Strict یا None
+                    });
+                }
+
+
+
                 return View("Index", memberList);
             }
             if (!SearchString.IsNullOrEmpty())
@@ -215,39 +275,92 @@ namespace Divar.Controllers
                     ViewData["city" + ad.Id.ToString()] = city.Name;
                 }
 
+
+
+                // تغییر فرهنگ به مقداری که از URL گرفته شده است
+                if (!string.IsNullOrEmpty(culture))
+                {
+                    var cultureInfo = new CultureInfo(culture);
+                    CultureInfo.CurrentCulture = cultureInfo;
+                    CultureInfo.CurrentUICulture = cultureInfo;
+
+                    // ذخیره فرهنگ در کوکی
+                    Response.Cookies.Append("culture", cultureInfo.Name, new CookieOptions
+                    {
+                        Expires = DateTimeOffset.UtcNow.AddYears(1), // تاریخ انقضا
+                        HttpOnly = true, // فقط از طریق HTTP قابل دسترسی
+                        SameSite = SameSiteMode.Lax // یا Strict یا None
+                    });
+                }
+
+
+
                 return View("Index", ads);
             }
 
 
-            
+
+            // تغییر فرهنگ به مقداری که از URL گرفته شده است
+            if (!string.IsNullOrEmpty(culture))
+            {
+                var cultureInfo = new CultureInfo(culture);
+                CultureInfo.CurrentCulture = cultureInfo;
+                CultureInfo.CurrentUICulture = cultureInfo;
+
+                // ذخیره فرهنگ در کوکی
+                Response.Cookies.Append("culture", cultureInfo.Name, new CookieOptions
+                {
+                    Expires = DateTimeOffset.UtcNow.AddYears(1), // تاریخ انقضا
+                    HttpOnly = true, // فقط از طریق HTTP قابل دسترسی
+                    SameSite = SameSiteMode.Lax // یا Strict یا None
+                });
+            }
+
 
 
             return View("Index", memberList);
 
         }
 
-        public async Task<IActionResult> ChangeCulture()
+        public async Task<IActionResult> ChangeCulture(string culture)
         {
 
-            // دریافت داده‌ها از سرویس
-            var homeViewModel = await _viewDataService.GetHomeViewDataAsync();
+            //// دریافت داده‌ها از سرویس
+            //var homeViewModel = await _viewDataService.GetHomeViewDataAsync();
+
+            //// ارسال داده‌ها به ViewData
+            //ViewData["TitleHomeViewData"] = homeViewModel.TitleHome;
+            //ViewData["ColorHomeViewData"] = homeViewModel.ColorHome;
+            //ViewData["BasePriceHomeViewData"] = homeViewModel.BasePriceHome;
+            //ViewData["FunctionKilometersHomeViewData"] = homeViewModel.FunctionKilometersHome;
+            //ViewData["CityHomeViewData"] = homeViewModel.CityHome;
+            //ViewData["currentDate"] = homeViewModel.CurrentDate;
+            ////ViewData["currentDate"] = DateTime.Now.ToString("D", new CultureInfo("fa-IR"));
+            ////ViewData["currentDate"] = DateTime.Now.ToString(CultureInfo.CurrentCulture);
+            //ViewData["SearchHomeViewData"] = homeViewModel.SearchHome;
+            //ViewData["SucceededSearch"] = homeViewModel.SucceededSearch;
+            ////ViewData["HomeMenueLayouteViewData"] = _localizer["HomeMenueLayoute"];
+            ////ViewData["AddAdMenueLayouteViewData"] = _localizer["AddAdMenueLayoute"];
+            ///
+
+
 
             // ارسال داده‌ها به ViewData
-            ViewData["TitleHomeViewData"] = homeViewModel.TitleHome;
-            ViewData["ColorHomeViewData"] = homeViewModel.ColorHome;
-            ViewData["BasePriceHomeViewData"] = homeViewModel.BasePriceHome;
-            ViewData["FunctionKilometersHomeViewData"] = homeViewModel.FunctionKilometersHome;
-            ViewData["CityHomeViewData"] = homeViewModel.CityHome;
-            ViewData["currentDate"] = homeViewModel.CurrentDate;
+            ViewData["TitleHomeViewData"] = _localizer["TitleHome"];
+            ViewData["ColorHomeViewData"] = _localizer["ColorHome"];
+            ViewData["BasePriceHomeViewData"] = _localizer["BasePriceHome"];
+            ViewData["FunctionKilometersHomeViewData"] = _localizer["FunctionKilometersHome"];
+            ViewData["CityHomeViewData"] = _localizer["CityIdHome"];
+            ViewData["currentDate"] = DateTime.Now.ToString("D", CultureInfo.CurrentCulture);
             //ViewData["currentDate"] = DateTime.Now.ToString("D", new CultureInfo("fa-IR"));
             //ViewData["currentDate"] = DateTime.Now.ToString(CultureInfo.CurrentCulture);
-            ViewData["SearchHomeViewData"] = homeViewModel.SearchHome;
-            ViewData["SucceededSearch"] = homeViewModel.SucceededSearch;
+            ViewData["SearchHomeViewData"] = _localizer["SearchHome"];
+            ViewData["SucceededSearch"] = _localizer["SucceededSearch"];
             //ViewData["HomeMenueLayouteViewData"] = _localizer["HomeMenueLayoute"];
             //ViewData["AddAdMenueLayouteViewData"] = _localizer["AddAdMenueLayoute"];
 
 
-            var Viesws = await _advertisementService.GetAllAdvertisementsAsync();
+            var Viesws = await _advertisementService.GetAllAdvertisementsAsyncHomeVM();
             foreach (var ad in Viesws)
             {
                 var breadcrumbs = await _categoryService.GetBreadcrumbsAsync((int)ad.CategoryId);
@@ -260,24 +373,31 @@ namespace Divar.Controllers
                 ViewData["city" + ad.Id.ToString()] = city.Name;
             }
 
-            //// تغییر فرهنگ به فارسی
-            //CultureInfo.CurrentCulture = new CultureInfo(culture);
-            //CultureInfo.CurrentUICulture = new CultureInfo(culture);
+
 
             // تغییر فرهنگ به فارسی
-            var culture = new CultureInfo("fa-IR");
+            var culture2 = new CultureInfo(culture);
+            Console.WriteLine("Setting culture to: " + culture2.Name);
+
+            //// تغییر فرهنگ به فارسی
+            //var culture2 = new CultureInfo(culture);
+            //Console.WriteLine("Setting culture to: " + culture2.Name);
 
             // ذخیره فرهنگ در کوکی
-            Response.Cookies.Append("culture", culture.Name, new CookieOptions
+            Response.Cookies.Append("culture", culture2.Name, new CookieOptions
             {
-                Expires = DateTimeOffset.UtcNow.AddYears(1),
-                HttpOnly = true,
-                SameSite = SameSiteMode.Strict
+                Expires = DateTimeOffset.UtcNow.AddYears(1), // تاریخ انقضا
+                HttpOnly = true, // فقط در دسترس از طریق HTTP
+                SameSite = SameSiteMode.Lax, // یا Strict یا None، بستگی به نیاز شما دارد
+                Secure = false // اگر در محیط امن (https) هستید، true بگذارید
             });
+            //// تغییر فرهنگ برای درخواست جاری
+            //CultureInfo.CurrentCulture = culture2;
+            //CultureInfo.CurrentUICulture = culture2;
 
-            // تغییر فرهنگ برای درخواست جاری
-            CultureInfo.CurrentCulture = culture;
-            CultureInfo.CurrentUICulture = culture;
+            // تغییر فرهنگ به فارسی
+            CultureInfo.CurrentCulture = culture2;
+            CultureInfo.CurrentUICulture = culture2;
 
             // هدایت به صفحه اصلی پس از تغییر فرهنگ
             return View("Index", Viesws);

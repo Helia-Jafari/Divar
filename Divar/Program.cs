@@ -3,6 +3,7 @@
 using Azure.Core;
 using Divar.Db;
 using Divar.Interfaces;
+using Divar.Mapper;
 using Divar.Repositories;
 using Divar.Services;
 using Microsoft.AspNetCore.Http;
@@ -24,6 +25,9 @@ builder.Services.AddScoped<IViewDataService, ViewDataService>();
 builder.Services.AddScoped<IAdvertisementService, AdvertisementService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICityService, CityService>();
+
+
+builder.Services.AddSingleton<AdvertisementMapper>();
 
 builder.Services.AddHttpContextAccessor();
 
@@ -55,11 +59,10 @@ var app = builder.Build();
 
 
 
-// ?????? ????? ?? ??????? ??? ?? ????? ??????? RequestLocalization
+//?????? ????? ?? ??????? ??? ?? ????? ??????? RequestLocalization
 app.Use(async (context, next) =>
 {
-    var httpContextAccessor = context.RequestServices.GetRequiredService<IHttpContextAccessor>();
-    var cultureCookie = httpContextAccessor.HttpContext.Request.Cookies["culture"];
+    var cultureCookie = context.Request.Cookies["culture"];
     if (!string.IsNullOrEmpty(cultureCookie))
     {
         var culture = new CultureInfo(cultureCookie);
@@ -67,7 +70,6 @@ app.Use(async (context, next) =>
         CultureInfo.CurrentUICulture = culture;
     }
 
-    // ????? ?????? ???????
     await next.Invoke();
 });
 

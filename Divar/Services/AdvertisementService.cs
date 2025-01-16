@@ -1,6 +1,8 @@
 ﻿using Divar.Db;
 using Divar.Interfaces;
+using Divar.Mapper;
 using Divar.Repositories;
+using Divar.ViewModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace Divar.Services
@@ -10,10 +12,14 @@ namespace Divar.Services
         private readonly DivarContext _context;
         private readonly IGenericRepository<Advertisement> _advertisementRepository;
 
-        public AdvertisementService(DivarContext context, IGenericRepository<Advertisement> advertisementRepository)
+        private readonly AdvertisementMapper _advertisementMapper;
+
+        public AdvertisementService(DivarContext context, IGenericRepository<Advertisement> advertisementRepository, AdvertisementMapper advertisementMapper)
         {
             _context = context;
             _advertisementRepository = advertisementRepository;
+
+            _advertisementMapper = advertisementMapper;
         }
 
 
@@ -22,57 +28,62 @@ namespace Divar.Services
             return await _advertisementRepository.GetByIdAsync(id);
         }
 
-        public async Task<IEnumerable<Advertisement>> GetAllAdvertisementsAsync()
+        public async Task<IEnumerable<HomeViewModel>> GetAllAdvertisementsAsyncHomeVM()
         {
-            return await _advertisementRepository.GetAllAsync();
+            var VMs = new List<HomeViewModel>();
+            var ads = await _advertisementRepository.GetAllAsync();
+            ads.ToList().ForEach(c => VMs.Add(_advertisementMapper.MapAdvertisementToHomeVM(c)));
+            return VMs;
         }
 
-        public async Task AddAdvertisementAsync(Advertisement model)
+        public async Task AddAdvertisementAsync(AddViewModel model)
         {
-            model.Status = "Active";
-            model.InsertDate = DateTime.Now;
-            model.UpdateDate = DateTime.Now;
 
-            var myModel = new Advertisement()
-            {
-                CategoryId = model.CategoryId,
-                CityId = model.CityId,
-                Brand = model.Brand,
-                ItsModel = model.ItsModel,
-                Color = model.Color,
-                FunctionKilometers = Convert.ToInt32(model.FunctionKilometers),
-                ChassisAndBodyCondition = model.ChassisAndBodyCondition,
-                BasePrice = Convert.ToInt32(model.BasePrice),
-                EngineCondition = model.EngineCondition,
-                RearChassisCondition = model.RearChassisCondition,
-                FrontChassisCondition = model.FrontChassisCondition,
-                ThirdPartyInsuranceTerm = model.ThirdPartyInsuranceTerm,
-                Gearbox = model.Gearbox,
-                DoYouWantToReplace = model.DoYouWantToReplace,
-                IsTheChatActivated = model.IsTheChatActivated,
-                IsThePhoneCallActive = model.IsThePhoneCallActive,
-                Title = model.Title,
-                Description = model.Description,
-                Nationality = model.Nationality,
-                NationalCode = model.NationalCode,
-                Status = model.Status,
-                InsertDate = model.InsertDate,
-                UpdateDate = model.UpdateDate,
-                //Category =
-                //{
-                //    Title =model.Category.Title,
-                //    Description=model.Category.Description,
-                //    Status=model.Category.Status,
-                //    Icon=model.Category.Icon,
-                //    ParentId=model.Category.ParentId,
-                //    Advertisements = model.Category.Advertisements
-                //},
-                //AdvertisementImages = model.AdvertisementImages,
-                //City = model.City,
-                //Latitude = model.Latitude,
-                //Longitude = model.Longitude,
-            };
-            await _advertisementRepository.AddAsync(myModel);
+            Advertisement advertisement = _advertisementMapper.MapAddVMToAdvertisement(model);
+            //model.Status = "Active";
+            //model.InsertDate = DateTime.Now;
+            //model.UpdateDate = DateTime.Now;
+
+            //var myModel = new Advertisement()
+            //{
+            //    CategoryId = model.CategoryId,
+            //    CityId = model.CityId,
+            //    Brand = model.Brand,
+            //    ItsModel = model.ItsModel,
+            //    Color = model.Color,
+            //    FunctionKilometers = Convert.ToInt32(model.FunctionKilometers),
+            //    ChassisAndBodyCondition = model.ChassisAndBodyCondition,
+            //    BasePrice = Convert.ToInt32(model.BasePrice),
+            //    EngineCondition = model.EngineCondition,
+            //    RearChassisCondition = model.RearChassisCondition,
+            //    FrontChassisCondition = model.FrontChassisCondition,
+            //    ThirdPartyInsuranceTerm = model.ThirdPartyInsuranceTerm,
+            //    Gearbox = model.Gearbox,
+            //    DoYouWantToReplace = model.DoYouWantToReplace,
+            //    IsTheChatActivated = model.IsTheChatActivated,
+            //    IsThePhoneCallActive = model.IsThePhoneCallActive,
+            //    Title = model.Title,
+            //    Description = model.Description,
+            //    Nationality = model.Nationality,
+            //    NationalCode = model.NationalCode,
+            //    Status = model.Status,
+            //    InsertDate = model.InsertDate,
+            //    UpdateDate = model.UpdateDate,
+            //    //Category =
+            //    //{
+            //    //    Title =model.Category.Title,
+            //    //    Description=model.Category.Description,
+            //    //    Status=model.Category.Status,
+            //    //    Icon=model.Category.Icon,
+            //    //    ParentId=model.Category.ParentId,
+            //    //    Advertisements = model.Category.Advertisements
+            //    //},
+            //    //AdvertisementImages = model.AdvertisementImages,
+            //    //City = model.City,
+            //    //Latitude = model.Latitude,
+            //    //Longitude = model.Longitude,
+            //};
+            await _advertisementRepository.AddAsync(advertisement);
         }
 
         public async Task UpdateAdvertisementAsync(Advertisement advertisement)

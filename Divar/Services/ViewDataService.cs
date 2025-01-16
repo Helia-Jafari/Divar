@@ -19,14 +19,14 @@ namespace Divar.Services
         {
             var homeViewModel = new HomeViewModel
             {
-                TitleHome = _HomeControllerLocalizer["TitleHome"],
-                ColorHome = _HomeControllerLocalizer["ColorHome"],
-                BasePriceHome = _HomeControllerLocalizer["BasePriceHome"],
-                FunctionKilometersHome = _HomeControllerLocalizer["FunctionKilometersHome"],
-                CityHome = _HomeControllerLocalizer["CityIdHome"],
-                CurrentDate = DateTime.Now.ToString("D", CultureInfo.CurrentCulture),
-                SearchHome = _HomeControllerLocalizer["SearchHome"],
-                SucceededSearch = _HomeControllerLocalizer["SucceededSearch"]
+                //TitleHome = _HomeControllerLocalizer["TitleHome"],
+                //ColorHome = _HomeControllerLocalizer["ColorHome"],
+                //BasePriceHome = _HomeControllerLocalizer["BasePriceHome"],
+                //FunctionKilometersHome = _HomeControllerLocalizer["FunctionKilometersHome"],
+                //CityHome = _HomeControllerLocalizer["CityIdHome"],
+                //CurrentDate = DateTime.Now.ToString("D", CultureInfo.CurrentCulture),
+                //SearchHome = _HomeControllerLocalizer["SearchHome"],
+                //SucceededSearch = _HomeControllerLocalizer["SucceededSearch"]
             };
 
             return await Task.FromResult(homeViewModel);
