@@ -3,9 +3,9 @@ using Divar.ViewModels;
 
 namespace Divar.Mapper
 {
-    public class AdvertisementMapper
+    public static class AdvertisementMapper
     {
-        public HomeViewModel MapAdvertisementToHomeVM(Advertisement ad) {
+        public static HomeViewModel MapAdvertisementToHomeVM(Advertisement ad) {
             return new HomeViewModel()
             {
                 Title=ad.Title,
@@ -19,7 +19,7 @@ namespace Divar.Mapper
                 Id = ad.Id
             };
         }
-        public Advertisement MapAddVMToAdvertisement(AddViewModel VM)
+        public static Advertisement MapAddVMToAdvertisement(AddViewModel VM)
         {
             return new Advertisement()
             {

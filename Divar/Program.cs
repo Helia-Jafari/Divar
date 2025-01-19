@@ -26,8 +26,10 @@ builder.Services.AddScoped<IAdvertisementService, AdvertisementService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICityService, CityService>();
 
+builder.Services.AddScoped<ISearchSpecification<Advertisement>, AdvertisementSearchSpecificationService>();
 
-builder.Services.AddSingleton<AdvertisementMapper>();
+
+//builder.Services.AddSingleton<AdvertisementMapper>();
 
 builder.Services.AddHttpContextAccessor();
 

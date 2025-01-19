@@ -37,9 +37,9 @@ namespace Divar.Controllers
 
         //public List<Category> categories;
 
-        private readonly AdvertisementMapper _advertisementMapper;
+        //private readonly AdvertisementMapper _advertisementMapper;
 
-        public HomeController(ILogger<HomeController> logger, DivarContext db, IStringLocalizer<HomeController> localizer, ICityService cityService, ICategoryService categoryService, IAdvertisementService advertisementService, IViewDataService viewDataService, AdvertisementMapper advertisementMapper)
+        public HomeController(ILogger<HomeController> logger, DivarContext db, IStringLocalizer<HomeController> localizer, ICityService cityService, ICategoryService categoryService, IAdvertisementService advertisementService, IViewDataService viewDataService)
         {
             _context = db;
             _logger = logger;
@@ -51,7 +51,7 @@ namespace Divar.Controllers
             _advertisementService = advertisementService;
             //categories = _context.Categories.ToList<Category>();
 
-            _advertisementMapper = advertisementMapper;
+            //_advertisementMapper = advertisementMapper;
         }
 
         public async Task<IActionResult> Index()
