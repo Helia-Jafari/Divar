@@ -20,16 +20,16 @@ namespace Divar.Controllers
         public List<Category> categories;
         //public List<City> cities;
 
-        private readonly AdvertisementMapper _advertisementMapper;
+        //private readonly AdvertisementMapper _advertisementMapper;
 
-        public AddController(DivarContext db, IStringLocalizer<AddController> localizer, IAdvertisementService advertisementService, AdvertisementMapper advertisementMapper)
+        public AddController(DivarContext db, IStringLocalizer<AddController> localizer, IAdvertisementService advertisementService)
         {
             _context = db;
             _localizer = localizer;
             _advertisementService = advertisementService;
             //cities = _context.Cities.ToList();
 
-            _advertisementMapper = advertisementMapper;
+            //_advertisementMapper = advertisementMapper;
         }
         public async Task<IActionResult> Index()
         {

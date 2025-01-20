@@ -12,14 +12,18 @@ namespace Divar.Services
         private readonly DivarContext _context;
         private readonly IGenericRepository<Advertisement> _advertisementRepository;
 
-        private readonly AdvertisementMapper _advertisementMapper;
+        private readonly ISearchSpecification<Advertisement> _AdvertisementSearchSpecificationService;
 
-        public AdvertisementService(DivarContext context, IGenericRepository<Advertisement> advertisementRepository, AdvertisementMapper advertisementMapper)
+        //private readonly AdvertisementMapper _advertisementMapper;
+
+        public AdvertisementService(DivarContext context, IGenericRepository<Advertisement> advertisementRepository, ISearchSpecification<Advertisement> AdvertisementSearchSpecificationService)
         {
             _context = context;
             _advertisementRepository = advertisementRepository;
 
-            _advertisementMapper = advertisementMapper;
+            //_advertisementMapper = advertisementMapper;
+
+            _AdvertisementSearchSpecificationService = AdvertisementSearchSpecificationService;
         }
 
 
@@ -32,14 +36,14 @@ namespace Divar.Services
         {
             var VMs = new List<HomeViewModel>();
             var ads = await _advertisementRepository.GetAllAsync();
-            ads.ToList().ForEach(c => VMs.Add(_advertisementMapper.MapAdvertisementToHomeVM(c)));
+            ads.ToList().ForEach(c => VMs.Add(AdvertisementMapper.MapAdvertisementToHomeVM(c)));
             return VMs;
         }
 
         public async Task AddAdvertisementAsync(AddViewModel model)
         {
 
-            Advertisement advertisement = _advertisementMapper.MapAddVMToAdvertisement(model);
+            Advertisement advertisement = AdvertisementMapper.MapAddVMToAdvertisement(model);
             //model.Status = "Active";
             //model.InsertDate = DateTime.Now;
             //model.UpdateDate = DateTime.Now;
@@ -102,10 +106,12 @@ namespace Divar.Services
         //}
         public async Task<List<Advertisement>> SearchAdvertisementsAsync(string SearchString)
         {
+            var ads = _context.Advertisements.AsQueryable();
+            return await _AdvertisementSearchSpecificationService.ApplyFilter(ads,SearchString).ToListAsync();
 
 
 
-            SearchString = SearchString.Trim();
+            //SearchString = SearchString.Trim();
 
 
             //return await _context.Advertisements
@@ -172,14 +178,15 @@ namespace Divar.Services
             //    cities.Any(city => city.Id == m.CityId && city.Name.Contains(SearchString))
             //).ToList();
 
-            return await _context.Advertisements
-                .Where(m => m.Title.Contains(SearchString) ||
-                m.Color.Contains(SearchString) ||
-                m.BasePrice.ToString().Contains(SearchString) ||
-                m.FunctionKilometers.ToString().Contains(SearchString) ||
-                m.Category.Title.Contains(SearchString) ||
-                m.City.Name.Contains(SearchString))
-                .ToListAsync();
+            //اینه اصلیه
+            //return await _context.Advertisements
+            //.Where(m => m.Title.Contains(SearchString) ||
+            //m.Color.Contains(SearchString) ||
+            //m.BasePrice.ToString().Contains(SearchString) ||
+            //m.FunctionKilometers.ToString().Contains(SearchString) ||
+            //m.Category.Title.Contains(SearchString) ||
+            //m.City.Name.Contains(SearchString))
+            //.ToListAsync();
 
 
             //var ads = _context.Advertisements.Where(m => cats.Where(a => a == catsDictionary["breadcrumbs" + m.Id.ToString()]).FirstOrDefault().AsQueryable().Where(a => a.Title.ToString().Contains(SearchString)).FirstOrDefault().Title.ToString().Contains(SearchString)).ToList();
