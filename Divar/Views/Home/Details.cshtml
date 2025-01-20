@@ -1,0 +1,22 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<h1>مشخصات محصول</h1>
+<p><strong>نام محصول:</strong> @Model.Title</p>
+<p><strong>قیمت:</strong> @Model.BasePrice تومان</p>
+<p><strong>توضیحات:</strong> @Model.Description</p>
+<a class="btn btn-outline-info" asp-action="Index" asp-controller="Home">
+    <p>بازگشت به لیست محصولات</p>
+</a>
+
+<a asp-action="Delete" asp-controller="Home" asp-route-id="@Model.Id" class="btn btn-outline-danger">
+    <i class="bi bi-delete"></i>
+    <p>حذف</p>
+</a>
+
+<a asp-action="Edit" asp-controller="Home" asp-route-id="@Model.Id" class="btn btn-outline-warning" asp-route-id="@Model.Id">
+    <i class="bi bi-delete"></i>
+    <p>ادیت</p>
+</a>

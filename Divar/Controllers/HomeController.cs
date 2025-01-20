@@ -16,6 +16,7 @@ using Divar.Interfaces;
 using Divar.Services;
 using System.Text.RegularExpressions;
 using Divar.Mapper;
+using Divar.ViewModels;
 
 namespace Divar.Controllers
 {
@@ -137,6 +138,101 @@ namespace Divar.Controllers
 
             return View("Index", Viesws);
 
+
+        }
+
+        public async Task<IActionResult> Details(int id)
+        {
+            var ads = await _context.Advertisements.ToListAsync();
+            var ad = ads.FirstOrDefault(a => a.Id == id);
+            if (ad == null)
+            {
+                return NotFound("محصولی با این شناسه یافت نشد.");
+            }
+
+            return View(ad);
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _advertisementService.DeleteAdvertisementAsync(id);
+
+            var Viesws = await _advertisementService.GetAllAdvertisementsAsyncHomeVM();
+            foreach (var ad in Viesws)
+            {
+                var breadcrumbs = await _categoryService.GetBreadcrumbsAsync((int)ad.CategoryId);
+
+                ViewData["breadcrumbs" + ad.Id.ToString()] = breadcrumbs;
+                catsDictionary["breadcrumbs" + ad.Id.ToString()] = breadcrumbs;
+                this.cats.Add(breadcrumbs);
+
+                var city = await _cityService.GetCityByIdAsync((int)ad.CityId);
+                ViewData["city" + ad.Id.ToString()] = city.Name;
+            }
+            return View("Index", Viesws);
+        }
+
+        public async Task<IActionResult> Edit(int id)
+        {
+
+
+
+        List<Category> categories;
+        categories = await _context.Categories.ToListAsync<Category>();
+            List<Category> cs = new List<Category>();
+            foreach (var item in categories)
+            {
+                cs.Add(item);
+            }
+
+            ViewData["categories"] = cs;
+
+            var advertisement = await _advertisementService.GetAdvertisementByIdAsync(id);
+            if (advertisement == null) return NotFound();
+            return View(advertisement);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(Advertisement model)
+        {
+
+
+        List<Category> categories;
+        categories = await _context.Categories.ToListAsync<Category>();
+            List<Category> cs = new List<Category>();
+            foreach (var item in categories)
+            {
+                cs.Add(item);
+            }
+
+            ViewData["categories"] = cs;
+
+
+
+
+
+
+
+            if (!ModelState.IsValid)
+            {
+                //Tuple<Advertisement, List<Category>> tuplee = new Tuple<Advertisement, List<Category>>(new Advertisement(), categories);
+                return View("Details");
+            };
+            //Tuple<Advertisement, List<Category>> tuple = new Tuple<Advertisement, List<Category>>(new Advertisement(), categories);
+
+
+
+            model.UpdateDate = DateTime.Now;
+            model.FunctionKilometers = Convert.ToInt32(model.FunctionKilometers);
+            model.BasePrice = Convert.ToInt32(model.BasePrice);
+
+            await _advertisementService.UpdateAdvertisementAsync(model);
+
+            //var ads = await _context.Advertisements.ToListAsync();
+            //var ad = ads.FirstOrDefault(a => a.Id == model.Id);
+
+            return View("Details", model);
 
         }
 

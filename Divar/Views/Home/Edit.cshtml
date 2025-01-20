@@ -1,4 +1,9 @@
-﻿@using Divar.Db
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@using Divar.Db
 @using System.Globalization;
 @using Divar.ViewModels;
 @inject DivarContext _context;
@@ -7,13 +12,13 @@
     var cities = _context.Cities.ToList();
 }
 
-@model AddViewModel;
+@model Advertisement;
 
-<button class="btn btn-primary d-block" id="btnChangeCulture" onclick="changeCulture()">
+<!--<button class="btn btn-primary d-block" id="btnChangeCulture" onclick="changeCulture()">
     <i class="bi bi-translate"></i>
-</button>
-  <form asp-controller="Add" asp-action="Index" method="post">
-      <table class="border-0 w-100">
+</button>-->
+<form asp-controller="Home" asp-action="Edit" method="post">
+    <table class="border-0 w-100">
         <tr
               <td>
                 <label asp-for="@Model.CategoryId" for="CategoryId">@ViewData["CategoryIdAddViewData"]</label>
@@ -21,15 +26,15 @@
                     <!--foreach (var category in ViewData["categories"])-->
                     @foreach (var category in (List<Category>)ViewData["categories"])
                     {
-                        <!--
-                        if (_context.Categories.Where(cat => cat.ParentId == category.Id).FirstOrDefault() == null)
-                        {
-                                <option value="category.Id">category.Title</option>
-                        }
-                        -->
+                            <!--
+                            if (_context.Categories.Where(cat => cat.ParentId == category.Id).FirstOrDefault() == null)
+                            {
+                                    <option value="category.Id">category.Title</option>
+                            }
+                            -->
                         @if (_context.Categories.Where(cat => cat.ParentId == category.Id).FirstOrDefault() == null)
                         {
-                            <option value="@category.Id">@category.Title</option>
+                                    <option value="@category.Id">@category.Title</option>
                         }
                     }
                 </select>
@@ -94,99 +99,99 @@
                 <span asp-validation-for="@Model.Description" class="text-danger"></span>
             </td>
         </tr>
-          <tr>
+        <tr>
 
-              <td>
+            <td>
                 <label asp-for="@Model.Brand" for="Brand">@ViewData["BrandAddViewData"]</label>
                 <input asp-for="@Model.Brand" type="text" class="form-control" id="Brand" required placeholder="">
                 <span asp-validation-for="@Model.Brand" class="text-danger"></span>
-              </td>
-          </tr>
-          <tr>
+            </td>
+        </tr>
+        <tr>
 
-              <td>
+            <td>
                 <label asp-for="@Model.ItsModel" for="ItsModel">@ViewData["ItsModelAddViewData"]</label>
                 <input asp-for="@Model.ItsModel" type="text" class="form-control" id="ItsModel" required placeholder=" ">
                 <span asp-validation-for="@Model.ItsModel" class="text-danger"></span>
-              </td>
-          </tr>
-          <tr>
+            </td>
+        </tr>
+        <tr>
 
-              <td>
+            <td>
                 <label asp-for="@Model.Color" for="Color">@ViewData["ColorAddViewData"]</label>
                 <input asp-for="@Model.Color" type="text" class="form-control" id="Color" required placeholder=" ">
                 <span asp-validation-for="@Model.Color" class="text-danger"></span>
-              </td>
-          </tr>
-          <tr>
+            </td>
+        </tr>
+        <tr>
 
-              <td>
+            <td>
                 <label asp-for="@Model.FunctionKilometers" for="FunctionKilometers">@ViewData["FunctionKilometersAddViewData"]</label>
                 <input asp-for="@Model.FunctionKilometers" type="text" class="form-control" id="FunctionKilometers" required placeholder=" ">
                 <span asp-validation-for="@Model.FunctionKilometers" class="text-danger"></span>
-              </td>
-          </tr>
-          <tr>
+            </td>
+        </tr>
+        <tr>
 
-              <td>
+            <td>
                 <label asp-for="@Model.ChassisAndBodyCondition" for="ChassisAndBodyCondition">@ViewData["ChassisAndBodyConditionAddViewData"]</label>
                 <input asp-for="@Model.ChassisAndBodyCondition" type="text" class="form-control" id="ChassisAndBodyCondition" required placeholder=" ">
                 <span asp-validation-for="@Model.ChassisAndBodyCondition" class="text-danger"></span>
-              </td>
-          </tr>
-          <tr>
+            </td>
+        </tr>
+        <tr>
 
-              <td>
+            <td>
                 <label asp-for="@Model.BasePrice" for="BasePrice">@ViewData["BasePriceAddViewData"]</label>
                 <input asp-for="@Model.BasePrice" type="number" class="form-control" id="BasePrice" required placeholder="">
                 <span asp-validation-for="@Model.BasePrice" class="text-danger"></span>
-          </tr>
-          <tr>
+        </tr>
+        <tr>
 
-              <td>
+            <td>
                 <label asp-for="@Model.EngineCondition" for="EngineCondition">@ViewData["EngineConditionAddViewData"]</label>
                 <input asp-for="@Model.EngineCondition" type="text" class="form-control" id="EngineCondition" placeholder="">
-              </td>
-          </tr>
-          <tr>
+            </td>
+        </tr>
+        <tr>
 
-              <td>
+            <td>
                 <label asp-for="@Model.RearChassisCondition" for="RearChassisCondition">@ViewData["RearChassisConditionAddViewData"]</label>
                 <input asp-for="@Model.RearChassisCondition" type="text" class="form-control" id="RearChassisCondition" placeholder="">
-              </td>
-          </tr>
-          <tr>
+            </td>
+        </tr>
+        <tr>
 
-              <td>
+            <td>
                 <label asp-for="@Model.FrontChassisCondition" for="FrontChassisCondition">@ViewData["FrontChassisConditionAddViewData"]</label>
                 <input asp-for="@Model.FrontChassisCondition" type="text" class="form-control" id="FrontChassisCondition" placeholder="">
-              </td>
-          </tr>
-          <tr>
+            </td>
+        </tr>
+        <tr>
 
-              <td>
+            <td>
                 <label asp-for="@Model.ThirdPartyInsuranceTerm" for="ThirdPartyInsuranceTerm">@ViewData["ThirdPartyInsuranceTermAddViewData"]</label>
                 <input asp-for="@Model.ThirdPartyInsuranceTerm" type="text" class="form-control" id="ThirdPartyInsuranceTerm" placeholder="">
-              </td>
-          </tr>
-          <tr>
+            </td>
+        </tr>
+        <tr>
 
-              <td>
+            <td>
                 <label asp-for="@Model.Gearbox" for="Gearbox">@ViewData["GearboxAddViewData"]</label>
                 <input asp-for="@Model.Gearbox" type="text" class="form-control" id="Gearbox" placeholder="">
-              </td>
-          </tr>
-          <tr>
+            </td>
+        </tr>
+        <tr>
 
-              <td>
+            <td>
                 <label asp-for="@Model.Nationality" for="Nationality">@ViewData["NationalityAddViewData"]</label>
                 <select class="form-select" asp-for="@Model.Nationality" id="Nationality">
-                      <option value="ایرانی">ایرانی</option>
-                      <option value="اتباع خارجی">اتباع خارجی</option>
-                  </select>
-              </td>
-          </tr>
-          <tr>
+                    <option value="ایرانی">ایرانی</option>
+                    <option value="اتباع خارجی">اتباع خارجی</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
 
             <td>
                 <label asp-for="@Model.NationalCode" for="NationalCode">@ViewData["NationalCodeAddViewData"]</label>
@@ -201,35 +206,35 @@
             </td>
         </tr>
         <tr>
-              <td>
+            <td>
                 <input asp-for="@Model.IsTheChatActivated" class="form-check-input" type="checkbox" id="IsTheChatActivated">
                 <label asp-for="@Model.IsTheChatActivated" for="IsTheChatActivated" class="form-check-label">@ViewData["IsTheChatActivatedAddViewData"]</label>
-              </td>
-          </tr>
-          <tr>
+            </td>
+        </tr>
+        <tr>
             <td>
                 <input asp-for="@Model.IsThePhoneCallActive" class="form-check-input" type="checkbox" id="IsThePhoneCallActive">
                 <label asp-for="@Model.IsThePhoneCallActive" for="IsThePhoneCallActive" class="form-check-label">@ViewData["IsThePhoneCallActiveAddViewData"]</label>
             </td>
         </tr>
-         @*<tr>
+        <tr>
 
-             <td>
-                 <input type="hidden" class="form-control" id="Status" asp-for="@Model.Status" placeholder="">
-             </td>
-         </tr>
-         <tr>
+            <td>
+                 <input value="Active" type="hidden" class="form-control" id="Status" asp-for="@Model.Status" placeholder="">
+            </td>
+        </tr>
+        <tr>
 
-             <td>
+            <td>
                  <input type="hidden" class="form-control" id="Status" asp-for="@Model.InsertDate" placeholder="">
-             </td>
-         </tr>
-         <tr>
+            </td>
+        </tr>
+        <tr>
 
-             <td>
-                 <input type="hidden" class="form-control" id="Status" asp-for="@Model.UpdateDate" placeholder="">
-             </td>
-        </tr>*@
+            <td>
+                <input type="hidden" class="form-control" id="Status" asp-for="@Model.UpdateDate" placeholder="">
+            </td>
+        </tr>
         <tr>
             <td>
                 <div class="validation-summary-errors">
@@ -239,14 +244,14 @@
         </tr>
         <tr class="d-flex justify-content-center">
 
-              <td>
+            <td>
                 <button type="submit" class="btn btn-primary" style="float:right;">@ViewData["SubmitAddViewData"]</button>
-              </td>
-          </tr>
+            </td>
+        </tr>
 
-      </table>
-  </form>
-<script>
+    </table>
+</form>
+<!--<script>
     function changeCulture() {
         // ارسال مقدار فرهنگ به جاوااسکریپت
         // var currentCulture = '@CultureInfo.CurrentCulture.Name';
@@ -272,4 +277,4 @@
             window.location.href = '@Url.Action("ChangeCulture", "Add", new { culture = "en-US" })';
         }
     }
-</script>
+</script>-->

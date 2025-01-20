@@ -24,29 +24,37 @@
 </form>
 
 <div class="row mt-4">
+
     @foreach (var ad in Model)
     {
-        <div class="col-6 border border-primary bg-info">
-            <p>@ViewData["TitleHomeViewData"] @ad.Title</p>
-            <p>@ViewData["ColorHomeViewData"] @ad.Color</p>
-            <p>@ViewData["BasePriceHomeViewData"] @ad.BasePrice</p>
-            <p>@ViewData["FunctionKilometersHomeViewData"] @ad.FunctionKilometers</p>
+        @if (ad != null)
+        {
+            <div class="col-6 border border-primary bg-info">
 
-            <p>
-                @ViewData["CityHomeViewData"]
-                @ViewData["city" + ad.Id.ToString()]
-            </p>
+                <a class="text-decoration-none" style="color:black;" asp-action="Details" asp-controller="Home" asp-route-id="@ad.Id">
+                    <p>@ViewData["TitleHomeViewData"] @ad.Title</p>
+                    <p>@ViewData["ColorHomeViewData"] @ad.Color</p>
+                    <p>@ViewData["BasePriceHomeViewData"] @ad.BasePrice</p>
+                    <p>@ViewData["FunctionKilometersHomeViewData"] @ad.FunctionKilometers</p>
 
-            <nav style="--bs-breadcrumb-divider: '<';" aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    @foreach (var b in ViewData["breadcrumbs" + ad.Id.ToString()])
-                    {
-                        <li class="breadcrumb-item">@b.Title</li>
-                    }
-                    
-                </ol>
-            </nav>
-        </div>
+                    <p>
+                        @ViewData["CityHomeViewData"]
+                        @ViewData["city" + ad.Id.ToString()]
+                    </p>
+
+                    <nav style="--bs-breadcrumb-divider: '<';" aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            @foreach (var b in ViewData["breadcrumbs" + ad.Id.ToString()])
+                            {
+                                <li class="breadcrumb-item">@b.Title</li>
+                            }
+
+                        </ol>
+                    </nav>
+                </a>
+            </div>
+        }
+
     }
 </div>
 <!--<table style="border:none">
