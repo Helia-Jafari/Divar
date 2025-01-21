@@ -7,21 +7,46 @@
 
 @inject DivarContext _context;
 
-<button class="btn btn-primary d-block" id="btnChangeCulture" onclick="changeCulture()">
+@* <button class="btn btn-primary d-block" id="btnChangeCulture" onclick="changeCulture()"> *@
+@*     <i class="bi bi-translate"></i> *@
+@* </button> *@
+
+    @* @if (CultureInfo.CurrentCulture.Name == "en-US") { *@
+    @* <a class="btn btn-primary" asp-action="ChangeCulture" asp-controller="Home" asp-route-culture="fa-IR"> *@
+    @*     <i class="bi bi-translate"></i> *@
+    @* </a> *@
+    @* } else { *@
+    @* <a class="btn btn-primary" asp-action="ChangeCulture" asp-controller="Home" asp-route-culture="en-US"> *@
+    @*     <i class="bi bi-translate"></i> *@
+    @* </a> *@
+    @* } *@
+@{
+    var newCulture = CultureInfo.CurrentCulture.Name == "en-US" ? "fa-IR" : "en-US";
+}
+<a class="btn btn-primary" asp-action="ChangeCulture" asp-controller="Home" asp-route-culture="@newCulture">
     <i class="bi bi-translate"></i>
-</button>
+</a>
+
 
 
 <span>@ViewData["currentDate"]</span>
 
-@* <form asp-controller="Home" asp-action="HomeSearch" method="post">  *@
-<form asp-controller="Home" asp-action="Index" method="post" onsubmit="keepCultureSearch()">
+@* <form asp-controller="Home" asp-action="Index" asp-route-culture="@(CultureInfo.CurrentCulture.Name == "fa-IR" ? "fa-IR" : null)" method="post" onsubmit="keepCultureSearch()"> *@
+@*     <div class="d-flex"> *@
+@*         <input value="@ViewData["serach"]" class="form-control me-2" type="search" placeholder="@ViewData["SearchHomeViewData"]" aria-label="Search" name="SearchString"> *@
+@*         <input type="hidden" name="culture" value="@CultureInfo.CurrentCulture.Name" /> *@
+@*         <button class="btn btn-outline-success" type="submit">@ViewData["SearchHomeViewData"]</button> *@
+@*     </div> *@
+@* </form> *@
+<form asp-controller="Home" asp-action="Index" asp-route-culture="@CultureInfo.CurrentCulture.Name" method="post" onsubmit="keepCultureSearch()">
     <div class="d-flex">
         <input value="@ViewData["serach"]" class="form-control me-2" type="search" placeholder="@ViewData["SearchHomeViewData"]" aria-label="Search" name="SearchString">
         <input type="hidden" name="culture" value="@CultureInfo.CurrentCulture.Name" />
         <button class="btn btn-outline-success" type="submit">@ViewData["SearchHomeViewData"]</button>
     </div>
 </form>
+
+
 
 <div class="row mt-4">
 
@@ -78,23 +103,23 @@
 -->
 
 <script>
-    function changeCulture() {
-        // ارسال مقدار فرهنگ به جاوااسکریپت
-        var currentCulture = '@CultureInfo.CurrentCulture.Name';
+    // function changeCulture() {
+    //     ارسال مقدار فرهنگ به جاوااسکریپت
+    //     var currentCulture = '@CultureInfo.CurrentCulture.Name';
 
-        // مقایسه فرهنگ و تغییر آدرس در صورت نیاز
-        if (currentCulture == "en-US") {
-            window.location.href = '@Url.Action("ChangeCulture", "Home", new { culture = "fa-IR" })';
-        } else {
+    //     مقایسه فرهنگ و تغییر آدرس در صورت نیاز
+    //     if (currentCulture == "en-US") {
+    //         window.location.href = '@Url.Action("ChangeCulture", "Home", new { culture = "fa-IR" })';
+    //     } else {
 
-            window.location.href = '@Url.Action("ChangeCulture", "Home", new { culture = "en-US" })';
-        }
+    //         window.location.href = '@Url.Action("ChangeCulture", "Home", new { culture = "en-US" })';
+    //     }
 
 
-        // window.location.href = 'Url.Action("ChangeCulture", "Home")?culture=' + culture;
+    //     window.location.href = 'Url.Action("ChangeCulture", "Home")?culture=' + culture;
        
  
-    }
+    // }
 
     function keepCultureSearch() {
 

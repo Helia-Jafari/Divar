@@ -441,52 +441,51 @@ namespace Divar.Controllers
 
 
 
-            // ارسال داده‌ها به ViewData
-            ViewData["TitleHomeViewData"] = _localizer["TitleHome"];
-            ViewData["ColorHomeViewData"] = _localizer["ColorHome"];
-            ViewData["BasePriceHomeViewData"] = _localizer["BasePriceHome"];
-            ViewData["FunctionKilometersHomeViewData"] = _localizer["FunctionKilometersHome"];
-            ViewData["CityHomeViewData"] = _localizer["CityIdHome"];
-            ViewData["currentDate"] = DateTime.Now.ToString("D", CultureInfo.CurrentCulture);
-            //ViewData["currentDate"] = DateTime.Now.ToString("D", new CultureInfo("fa-IR"));
-            //ViewData["currentDate"] = DateTime.Now.ToString(CultureInfo.CurrentCulture);
-            ViewData["SearchHomeViewData"] = _localizer["SearchHome"];
-            ViewData["SucceededSearch"] = _localizer["SucceededSearch"];
-            //ViewData["HomeMenueLayouteViewData"] = _localizer["HomeMenueLayoute"];
-            //ViewData["AddAdMenueLayouteViewData"] = _localizer["AddAdMenueLayoute"];
+            //// ارسال داده‌ها به ViewData
+            //ViewData["TitleHomeViewData"] = _localizer["TitleHome"];
+            //ViewData["ColorHomeViewData"] = _localizer["ColorHome"];
+            //ViewData["BasePriceHomeViewData"] = _localizer["BasePriceHome"];
+            //ViewData["FunctionKilometersHomeViewData"] = _localizer["FunctionKilometersHome"];
+            //ViewData["CityHomeViewData"] = _localizer["CityIdHome"];
+            //ViewData["currentDate"] = DateTime.Now.ToString("D", CultureInfo.CurrentCulture);
+            ////ViewData["currentDate"] = DateTime.Now.ToString("D", new CultureInfo("fa-IR"));
+            ////ViewData["currentDate"] = DateTime.Now.ToString(CultureInfo.CurrentCulture);
+            //ViewData["SearchHomeViewData"] = _localizer["SearchHome"];
+            //ViewData["SucceededSearch"] = _localizer["SucceededSearch"];
+            ////ViewData["HomeMenueLayouteViewData"] = _localizer["HomeMenueLayoute"];
+            ////ViewData["AddAdMenueLayouteViewData"] = _localizer["AddAdMenueLayoute"];
 
 
-            var Viesws = await _advertisementService.GetAllAdvertisementsAsyncHomeVM();
-            foreach (var ad in Viesws)
-            {
-                var breadcrumbs = await _categoryService.GetBreadcrumbsAsync((int)ad.CategoryId);
+            //var Viesws = await _advertisementService.GetAllAdvertisementsAsyncHomeVM();
+            //foreach (var ad in Viesws)
+            //{
+            //    var breadcrumbs = await _categoryService.GetBreadcrumbsAsync((int)ad.CategoryId);
 
-                ViewData["breadcrumbs" + ad.Id.ToString()] = breadcrumbs;
-                catsDictionary["breadcrumbs" + ad.Id.ToString()] = breadcrumbs;
-                this.cats.Add(breadcrumbs);
+            //    ViewData["breadcrumbs" + ad.Id.ToString()] = breadcrumbs;
+            //    catsDictionary["breadcrumbs" + ad.Id.ToString()] = breadcrumbs;
+            //    this.cats.Add(breadcrumbs);
 
-                var city = await _cityService.GetCityByIdAsync((int)ad.CityId);
-                ViewData["city" + ad.Id.ToString()] = city.Name;
-            }
+            //    var city = await _cityService.GetCityByIdAsync((int)ad.CityId);
+            //    ViewData["city" + ad.Id.ToString()] = city.Name;
+            //}
 
 
 
             // تغییر فرهنگ به فارسی
             var culture2 = new CultureInfo(culture);
-            Console.WriteLine("Setting culture to: " + culture2.Name);
 
             //// تغییر فرهنگ به فارسی
             //var culture2 = new CultureInfo(culture);
             //Console.WriteLine("Setting culture to: " + culture2.Name);
 
             // ذخیره فرهنگ در کوکی
-            Response.Cookies.Append("culture", culture2.Name, new CookieOptions
-            {
-                Expires = DateTimeOffset.UtcNow.AddYears(1), // تاریخ انقضا
-                HttpOnly = true, // فقط در دسترس از طریق HTTP
-                SameSite = SameSiteMode.Lax, // یا Strict یا None، بستگی به نیاز شما دارد
-                Secure = false // اگر در محیط امن (https) هستید، true بگذارید
-            });
+            //Response.Cookies.Append("culture", culture2.Name, new CookieOptions
+            //{
+            //    Expires = DateTimeOffset.UtcNow.AddYears(1), // تاریخ انقضا
+            //    HttpOnly = true, // فقط در دسترس از طریق HTTP
+            //    SameSite = SameSiteMode.Lax, // یا Strict یا None، بستگی به نیاز شما دارد
+            //    Secure = false // اگر در محیط امن (https) هستید، true بگذارید
+            //});
             //// تغییر فرهنگ برای درخواست جاری
             //CultureInfo.CurrentCulture = culture2;
             //CultureInfo.CurrentUICulture = culture2;
@@ -496,7 +495,7 @@ namespace Divar.Controllers
             CultureInfo.CurrentUICulture = culture2;
 
             // هدایت به صفحه اصلی پس از تغییر فرهنگ
-            return View("Index", Viesws);
+            return RedirectToAction("Index", "Home", new { culture = culture });
         }
     }
 }

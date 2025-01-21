@@ -12,7 +12,7 @@
 <button class="btn btn-primary d-block" id="btnChangeCulture" onclick="changeCulture()">
     <i class="bi bi-translate"></i>
 </button>
-  <form asp-controller="Add" asp-action="Index" method="post">
+<form asp-controller="Add" asp-action="Index" asp-route-culture="@CultureInfo.CurrentCulture.Name" method="post">
       <table class="border-0 w-100">
         <tr
               <td>
