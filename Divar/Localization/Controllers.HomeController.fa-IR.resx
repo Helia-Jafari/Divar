@@ -141,4 +141,52 @@
   <data name="SearchHome" xml:space="preserve">
     <value>جستجو</value>
   </data>
+  <data name="BrandHome" xml:space="preserve">
+    <value>نام برند و نام مدل و تیپ:</value>
+  </data>
+  <data name="CategoryIdHome" xml:space="preserve">
+    <value>دسته بندی:</value>
+  </data>
+  <data name="ChassisAndBodyConditionHome" xml:space="preserve">
+    <value>وضعیت بدنه:</value>
+  </data>
+  <data name="DescriptionHome" xml:space="preserve">
+    <value>توضیحات آگهی:</value>
+  </data>
+  <data name="DoYouWantToReplaceHome" xml:space="preserve">
+    <value>آیا مایل به معاوضه هستید؟</value>
+  </data>
+  <data name="EngineConditionHome" xml:space="preserve">
+    <value>وضعیت موتور:</value>
+  </data>
+  <data name="FrontChassisConditionHome" xml:space="preserve">
+    <value>وضعیت شاسی جلو:</value>
+  </data>
+  <data name="GearboxHome" xml:space="preserve">
+    <value>گیربکس:</value>
+  </data>
+  <data name="IsTheChatActivatedHome" xml:space="preserve">
+    <value>آیا چت دیوار فعال شود؟</value>
+  </data>
+  <data name="IsThePhoneCallActiveHome" xml:space="preserve">
+    <value>آیا قابلیت تماس فعال شود؟</value>
+  </data>
+  <data name="ItsModelHome" xml:space="preserve">
+    <value>مدل:</value>
+  </data>
+  <data name="RearChassisConditionHome" xml:space="preserve">
+    <value>وضعیت شاسی عقب:</value>
+  </data>
+  <data name="ThirdPartyInsuranceTermHome" xml:space="preserve">
+    <value>مهلت بیمٔه شخص ثالث:</value>
+  </data>
+  <data name="SubmitHome" xml:space="preserve">
+    <value>ثبت آگهی:</value>
+  </data>
+  <data name="NationalCodeHome" xml:space="preserve">
+    <value>کد ملی:</value>
+  </data>
+  <data name="NationalityHome" xml:space="preserve">
+    <value>ملیت:</value>
+  </data>
 </root>

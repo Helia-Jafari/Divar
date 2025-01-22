@@ -143,8 +143,36 @@ namespace Divar.Controllers
 
         public async Task<IActionResult> Details(int id)
         {
-            var ads = await _context.Advertisements.ToListAsync();
-            var ad = ads.FirstOrDefault(a => a.Id == id);
+            // ارسال داده‌ها به ViewData
+            ViewData["TitleHomeViewData"] = _localizer["TitleHome"];
+            ViewData["ColorHomeViewData"] = _localizer["ColorHome"];
+            ViewData["BasePriceHomeViewData"] = _localizer["BasePriceHome"];
+            ViewData["FunctionKilometersHomeViewData"] = _localizer["FunctionKilometersHome"];
+            ViewData["CityHomeViewData"] = _localizer["CityIdHome"];
+            ViewData["CaegoryHomeViewData"] = _localizer["CategoryIdHome"];
+            ViewData["ChassisAndBodyConditionHomeViewData"] = _localizer["ChassisAndBodyConditionHome"];
+            ViewData["DoYouWantToReplaceHomeViewData"] = _localizer["DoYouWantToReplaceHome"];
+            ViewData["EngineConditionHomeViewData"] = _localizer["EngineConditionHome"];
+            ViewData["FrontChassisConditionHomeViewData"] = _localizer["FrontChassisConditionHome"];
+            ViewData["FunctionKilometersHomeViewData"] = _localizer["FunctionKilometersHome"];
+            ViewData["GearboxHomeViewData"] = _localizer["GearboxHome"];
+            ViewData["IsTheChatActivatedHomeViewData"] = _localizer["IsTheChatActivatedHome"];
+            ViewData["IsThePhoneCallActiveHomeViewData"] = _localizer["IsThePhoneCallActiveHome"];
+            ViewData["ItsModelHomeViewData"] = _localizer["ItsModelHome"];
+            ViewData["RearChassisConditionHomeViewData"] = _localizer["RearChassisConditionHome"];
+            ViewData["ThirdPartyInsuranceTermHomeViewData"] = _localizer["ThirdPartyInsuranceTermHome"]; 
+            ViewData["SearchHomeViewData"] = _localizer["SearchHome"]; 
+            ViewData["currentDate"] = DateTime.Now.ToString("D", CultureInfo.CurrentCulture);
+            //ViewData["currentDate"] = DateTime.Now.ToString("D", new CultureInfo("fa-IR"));
+            //ViewData["currentDate"] = DateTime.Now.ToString(CultureInfo.CurrentCulture);
+            ViewData["SearchHomeViewData"] = _localizer["SearchHome"];
+            ViewData["SucceededSearch"] = _localizer["SucceededSearch"];
+            //ViewData["HomeMenueLayouteViewData"] = _localizer["HomeMenueLayoute"];
+            //ViewData["AddAdMenueLayouteViewData"] = _localizer["AddAdMenueLayoute"];
+
+            var Views = await _advertisementService.GetAllAdvertisementsAsyncHomeDetailsVM();
+            //var ads = await _context.Advertisements.ToListAsync();
+            var ad = Views.FirstOrDefault(a => a.Id == id);
             if (ad == null)
             {
                 return NotFound("محصولی با این شناسه یافت نشد.");
@@ -174,10 +202,40 @@ namespace Divar.Controllers
 
         public async Task<IActionResult> Edit(int id)
         {
+            // ارسال داده‌ها به ViewData
+            ViewData["TitleHomeViewData"] = _localizer["TitleHome"];
+            ViewData["BrandHomeViewData"] = _localizer["BrandHome"];
+            ViewData["DescriptionHomeViewData"] = _localizer["DescriptionHome"];
+            ViewData["ColorHomeViewData"] = _localizer["ColorHome"];
+            ViewData["BasePriceHomeViewData"] = _localizer["BasePriceHome"];
+            ViewData["FunctionKilometersHomeViewData"] = _localizer["FunctionKilometersHome"];
+            ViewData["CityHomeViewData"] = _localizer["CityIdHome"];
+            ViewData["CaegoryHomeViewData"] = _localizer["CategoryIdHome"];
+            ViewData["ChassisAndBodyConditionHomeViewData"] = _localizer["ChassisAndBodyConditionHome"];
+            ViewData["DoYouWantToReplaceHomeViewData"] = _localizer["DoYouWantToReplaceHome"];
+            ViewData["EngineConditionHomeViewData"] = _localizer["EngineConditionHome"];
+            ViewData["FrontChassisConditionHomeViewData"] = _localizer["FrontChassisConditionHome"];
+            ViewData["FunctionKilometersHomeViewData"] = _localizer["FunctionKilometersHome"];
+            ViewData["GearboxHomeViewData"] = _localizer["GearboxHome"];
+            ViewData["IsTheChatActivatedHomeViewData"] = _localizer["IsTheChatActivatedHome"];
+            ViewData["IsThePhoneCallActiveHomeViewData"] = _localizer["IsThePhoneCallActiveHome"];
+            ViewData["ItsModelHomeViewData"] = _localizer["ItsModelHome"];
+            ViewData["RearChassisConditionHomeViewData"] = _localizer["RearChassisConditionHome"];
+            ViewData["ThirdPartyInsuranceTermHomeViewData"] = _localizer["ThirdPartyInsuranceTermHome"];
+            ViewData["NationalityHomeViewData"] = _localizer["NationalityHome"];
+            ViewData["NationalCodeHomeViewData"] = _localizer["NationalCodeHome"];
+            ViewData["SubmitHomeViewData"] = _localizer["SubmitHome"];
+            ViewData["currentDate"] = DateTime.Now.ToString("D", CultureInfo.CurrentCulture);
+            //ViewData["currentDate"] = DateTime.Now.ToString("D", new CultureInfo("fa-IR"));
+            //ViewData["currentDate"] = DateTime.Now.ToString(CultureInfo.CurrentCulture);
+            ViewData["SearchHomeViewData"] = _localizer["SearchHome"];
+            ViewData["SucceededSearch"] = _localizer["SucceededSearch"];
+            //ViewData["HomeMenueLayouteViewData"] = _localizer["HomeMenueLayoute"];
+            //ViewData["AddAdMenueLayouteViewData"] = _localizer["AddAdMenueLayoute"];
 
 
 
-        List<Category> categories;
+            List<Category> categories;
         categories = await _context.Categories.ToListAsync<Category>();
             List<Category> cs = new List<Category>();
             foreach (var item in categories)
@@ -187,18 +245,42 @@ namespace Divar.Controllers
 
             ViewData["categories"] = cs;
 
-            var advertisement = await _advertisementService.GetAdvertisementByIdAsync(id);
-            if (advertisement == null) return NotFound();
-            return View(advertisement);
+            var view = await _advertisementService.GetAdvertisementByIdAsyncHomeEditVM(id);
+            if (view == null) return NotFound();
+            return View(view);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Advertisement model)
+        public async Task<IActionResult> Edit(HomeEditViewModel model)
         {
+            // ارسال داده‌ها به ViewData
+            ViewData["TitleHomeViewData"] = _localizer["TitleHome"];
+            ViewData["ColorHomeViewData"] = _localizer["ColorHome"];
+            ViewData["BasePriceHomeViewData"] = _localizer["BasePriceHome"];
+            ViewData["FunctionKilometersHomeViewData"] = _localizer["FunctionKilometersHome"];
+            ViewData["CityHomeViewData"] = _localizer["CityIdHome"];
+            ViewData["CaegoryHomeViewData"] = _localizer["CategoryIdHome"];
+            ViewData["ChassisAndBodyConditionHomeViewData"] = _localizer["ChassisAndBodyConditionHome"];
+            ViewData["DoYouWantToReplaceHomeViewData"] = _localizer["DoYouWantToReplaceHome"];
+            ViewData["EngineConditionHomeViewData"] = _localizer["EngineConditionHome"];
+            ViewData["FrontChassisConditionHomeViewData"] = _localizer["FrontChassisConditionHome"];
+            ViewData["FunctionKilometersHomeViewData"] = _localizer["FunctionKilometersHome"];
+            ViewData["GearboxHomeViewData"] = _localizer["GearboxHome"];
+            ViewData["IsTheChatActivatedHomeViewData"] = _localizer["IsTheChatActivatedHome"];
+            ViewData["IsThePhoneCallActiveHomeViewData"] = _localizer["IsThePhoneCallActiveHome"];
+            ViewData["ItsModelHomeViewData"] = _localizer["ItsModelHome"];
+            ViewData["RearChassisConditionHomeViewData"] = _localizer["RearChassisConditionHome"];
+            ViewData["ThirdPartyInsuranceTermHomeViewData"] = _localizer["ThirdPartyInsuranceTermHome"];
+            ViewData["currentDate"] = DateTime.Now.ToString("D", CultureInfo.CurrentCulture);
+            //ViewData["currentDate"] = DateTime.Now.ToString("D", new CultureInfo("fa-IR"));
+            //ViewData["currentDate"] = DateTime.Now.ToString(CultureInfo.CurrentCulture);
+            ViewData["SearchHomeViewData"] = _localizer["SearchHome"];
+            ViewData["SucceededSearch"] = _localizer["SucceededSearch"];
+            //ViewData["HomeMenueLayouteViewData"] = _localizer["HomeMenueLayoute"];
+            //ViewData["AddAdMenueLayouteViewData"] = _localizer["AddAdMenueLayoute"];
 
-
-        List<Category> categories;
+            List<Category> categories;
         categories = await _context.Categories.ToListAsync<Category>();
             List<Category> cs = new List<Category>();
             foreach (var item in categories)
@@ -223,16 +305,12 @@ namespace Divar.Controllers
 
 
 
-            model.UpdateDate = DateTime.Now;
-            model.FunctionKilometers = Convert.ToInt32(model.FunctionKilometers);
-            model.BasePrice = Convert.ToInt32(model.BasePrice);
-
-            await _advertisementService.UpdateAdvertisementAsync(model);
+            var ad=await _advertisementService.UpdateAdvertisementAsync(model);
 
             //var ads = await _context.Advertisements.ToListAsync();
             //var ad = ads.FirstOrDefault(a => a.Id == model.Id);
 
-            return View("Details", model);
+            return View("Details", ad);
 
         }
 

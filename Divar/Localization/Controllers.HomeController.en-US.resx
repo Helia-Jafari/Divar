@@ -141,4 +141,52 @@
   <data name="SearchHome" xml:space="preserve">
     <value>Search</value>
   </data>
+  <data name="BrandHome" xml:space="preserve">
+    <value>Brand:</value>
+  </data>
+  <data name="CategoryIdHome" xml:space="preserve">
+    <value>Category: </value>
+  </data>
+  <data name="ChassisAndBodyConditionHome" xml:space="preserve">
+    <value>Chassis And Body Condition: </value>
+  </data>
+  <data name="DescriptionHome" xml:space="preserve">
+    <value>Description:</value>
+  </data>
+  <data name="DoYouWantToReplaceHome" xml:space="preserve">
+    <value>Do You Want To Replace: </value>
+  </data>
+  <data name="EngineConditionHome" xml:space="preserve">
+    <value>Engine Condition: </value>
+  </data>
+  <data name="FrontChassisConditionHome" xml:space="preserve">
+    <value>Front Chassis Condition: </value>
+  </data>
+  <data name="GearboxHome" xml:space="preserve">
+    <value>Gearbox: </value>
+  </data>
+  <data name="IsTheChatActivatedHome" xml:space="preserve">
+    <value>Is The Chat Activated: </value>
+  </data>
+  <data name="IsThePhoneCallActiveHome" xml:space="preserve">
+    <value>Is The Phone Call Active: </value>
+  </data>
+  <data name="ItsModelHome" xml:space="preserve">
+    <value>Model: </value>
+  </data>
+  <data name="RearChassisConditionHome" xml:space="preserve">
+    <value>Rear Chassis Condition: </value>
+  </data>
+  <data name="ThirdPartyInsuranceTermHome" xml:space="preserve">
+    <value>Third Party Insurance Term: </value>
+  </data>
+  <data name="SubmitHome" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="NationalCodeHome" xml:space="preserve">
+    <value>National Code: </value>
+  </data>
+  <data name="NationalityHome" xml:space="preserve">
+    <value>Nationality: </value>
+  </data>
 </root>

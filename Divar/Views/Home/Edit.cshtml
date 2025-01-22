@@ -12,7 +12,7 @@
     var cities = _context.Cities.ToList();
 }
 
-@model Advertisement;
+@model HomeEditViewModel;
 
 <!--<button class="btn btn-primary d-block" id="btnChangeCulture" onclick="changeCulture()">
     <i class="bi bi-translate"></i>
@@ -21,7 +21,7 @@
     <table class="border-0 w-100">
         <tr
               <td>
-                <label asp-for="@Model.CategoryId" for="CategoryId">@ViewData["CategoryIdAddViewData"]</label>
+                <label asp-for="@Model.CategoryId" for="CategoryId">@ViewData["CaegoryHomeViewData"]</label>
                 <select class="form-select" asp-for="@Model.CategoryId">
                     <!--foreach (var category in ViewData["categories"])-->
                     @foreach (var category in (List<Category>)ViewData["categories"])
@@ -70,7 +70,7 @@
         </tr>
         <tr>
             <td>
-                <label asp-for="@Model.CityId" for="CityId">@ViewData["CityIdAddViewData"]</label>
+                <label asp-for="@Model.CityId" for="CityId">@ViewData["CityHomeViewData"]</label>
                 <select class="form-select" asp-for="@Model.CityId">
 
                     @foreach (var city in cities)
@@ -86,7 +86,7 @@
         <tr>
 
             <td>
-                <label asp-for="@Model.Title" for="Title">@ViewData["TitleAddViewData"]</label>
+                <label asp-for="@Model.Title" for="Title">@ViewData["TitleHomeViewData"]</label>
                 <input type="text" class="form-control" id="Title" asp-for="@Model.Title" placeholder="" required>
                 <span asp-validation-for="@Model.Title" class="text-danger"></span>
             </td>
@@ -94,7 +94,7 @@
         <tr>
 
             <td>
-                <label asp-for="@Model.Description" for="Description">@ViewData["DescriptionAddViewData"]</label>
+                <label asp-for="@Model.Description" for="Description">@ViewData["DescriptionHomeViewData"]</label>
                 <input type="text" class="form-control" id="Description" asp-for="@Model.Description" required placeholder="">
                 <span asp-validation-for="@Model.Description" class="text-danger"></span>
             </td>
@@ -102,7 +102,7 @@
         <tr>
 
             <td>
-                <label asp-for="@Model.Brand" for="Brand">@ViewData["BrandAddViewData"]</label>
+                <label asp-for="@Model.Brand" for="Brand">@ViewData["BrandHomeViewData"]</label>
                 <input asp-for="@Model.Brand" type="text" class="form-control" id="Brand" required placeholder="">
                 <span asp-validation-for="@Model.Brand" class="text-danger"></span>
             </td>
@@ -110,7 +110,7 @@
         <tr>
 
             <td>
-                <label asp-for="@Model.ItsModel" for="ItsModel">@ViewData["ItsModelAddViewData"]</label>
+                <label asp-for="@Model.ItsModel" for="ItsModel">@ViewData["ItsModelHomeViewData"]</label>
                 <input asp-for="@Model.ItsModel" type="text" class="form-control" id="ItsModel" required placeholder=" ">
                 <span asp-validation-for="@Model.ItsModel" class="text-danger"></span>
             </td>
@@ -118,7 +118,7 @@
         <tr>
 
             <td>
-                <label asp-for="@Model.Color" for="Color">@ViewData["ColorAddViewData"]</label>
+                <label asp-for="@Model.Color" for="Color">@ViewData["ColorHomeViewData"]</label>
                 <input asp-for="@Model.Color" type="text" class="form-control" id="Color" required placeholder=" ">
                 <span asp-validation-for="@Model.Color" class="text-danger"></span>
             </td>
@@ -126,7 +126,7 @@
         <tr>
 
             <td>
-                <label asp-for="@Model.FunctionKilometers" for="FunctionKilometers">@ViewData["FunctionKilometersAddViewData"]</label>
+                <label asp-for="@Model.FunctionKilometers" for="FunctionKilometers">@ViewData["FunctionKilometersHomeViewData"]</label>
                 <input asp-for="@Model.FunctionKilometers" type="text" class="form-control" id="FunctionKilometers" required placeholder=" ">
                 <span asp-validation-for="@Model.FunctionKilometers" class="text-danger"></span>
             </td>
@@ -134,7 +134,7 @@
         <tr>
 
             <td>
-                <label asp-for="@Model.ChassisAndBodyCondition" for="ChassisAndBodyCondition">@ViewData["ChassisAndBodyConditionAddViewData"]</label>
+                <label asp-for="@Model.ChassisAndBodyCondition" for="ChassisAndBodyCondition">@ViewData["ChassisAndBodyConditionHomeViewData"]</label>
                 <input asp-for="@Model.ChassisAndBodyCondition" type="text" class="form-control" id="ChassisAndBodyCondition" required placeholder=" ">
                 <span asp-validation-for="@Model.ChassisAndBodyCondition" class="text-danger"></span>
             </td>
@@ -142,49 +142,49 @@
         <tr>
 
             <td>
-                <label asp-for="@Model.BasePrice" for="BasePrice">@ViewData["BasePriceAddViewData"]</label>
+                <label asp-for="@Model.BasePrice" for="BasePrice">@ViewData["BasePriceHomeViewData"]</label>
                 <input asp-for="@Model.BasePrice" type="number" class="form-control" id="BasePrice" required placeholder="">
                 <span asp-validation-for="@Model.BasePrice" class="text-danger"></span>
         </tr>
         <tr>
 
             <td>
-                <label asp-for="@Model.EngineCondition" for="EngineCondition">@ViewData["EngineConditionAddViewData"]</label>
+                <label asp-for="@Model.EngineCondition" for="EngineCondition">@ViewData["EngineConditionHomeViewData"]</label>
                 <input asp-for="@Model.EngineCondition" type="text" class="form-control" id="EngineCondition" placeholder="">
             </td>
         </tr>
         <tr>
 
             <td>
-                <label asp-for="@Model.RearChassisCondition" for="RearChassisCondition">@ViewData["RearChassisConditionAddViewData"]</label>
+                <label asp-for="@Model.RearChassisCondition" for="RearChassisCondition">@ViewData["RearChassisConditionHomeViewData"]</label>
                 <input asp-for="@Model.RearChassisCondition" type="text" class="form-control" id="RearChassisCondition" placeholder="">
             </td>
         </tr>
         <tr>
 
             <td>
-                <label asp-for="@Model.FrontChassisCondition" for="FrontChassisCondition">@ViewData["FrontChassisConditionAddViewData"]</label>
+                <label asp-for="@Model.FrontChassisCondition" for="FrontChassisCondition">@ViewData["FrontChassisConditionHomeViewData"]</label>
                 <input asp-for="@Model.FrontChassisCondition" type="text" class="form-control" id="FrontChassisCondition" placeholder="">
             </td>
         </tr>
         <tr>
 
             <td>
-                <label asp-for="@Model.ThirdPartyInsuranceTerm" for="ThirdPartyInsuranceTerm">@ViewData["ThirdPartyInsuranceTermAddViewData"]</label>
+                <label asp-for="@Model.ThirdPartyInsuranceTerm" for="ThirdPartyInsuranceTerm">@ViewData["ThirdPartyInsuranceTermHomeViewData"]</label>
                 <input asp-for="@Model.ThirdPartyInsuranceTerm" type="text" class="form-control" id="ThirdPartyInsuranceTerm" placeholder="">
             </td>
         </tr>
         <tr>
 
             <td>
-                <label asp-for="@Model.Gearbox" for="Gearbox">@ViewData["GearboxAddViewData"]</label>
+                <label asp-for="@Model.Gearbox" for="Gearbox">@ViewData["GearboxHomeViewData"]</label>
                 <input asp-for="@Model.Gearbox" type="text" class="form-control" id="Gearbox" placeholder="">
             </td>
         </tr>
         <tr>
 
             <td>
-                <label asp-for="@Model.Nationality" for="Nationality">@ViewData["NationalityAddViewData"]</label>
+                <label asp-for="@Model.Nationality" for="Nationality">@ViewData["NationalityHomeViewData"]</label>
                 <select class="form-select" asp-for="@Model.Nationality" id="Nationality">
                     <option value="ایرانی">ایرانی</option>
                     <option value="اتباع خارجی">اتباع خارجی</option>
@@ -194,7 +194,7 @@
         <tr>
 
             <td>
-                <label asp-for="@Model.NationalCode" for="NationalCode">@ViewData["NationalCodeAddViewData"]</label>
+                <label asp-for="@Model.NationalCode" for="NationalCode">@ViewData["NationalCodeHomeViewData"]</label>
                 <input asp-for="@Model.NationalCode" type="text" class="form-control" id="NationalCode" placeholder="" required>
                 <span asp-validation-for="@Model.NationalCode" class="text-danger"></span>
             </td>
@@ -202,37 +202,19 @@
         <tr>
             <td>
                 <input asp-for="@Model.DoYouWantToReplace" class="form-check-input" type="checkbox" id="DoYouWantToReplace">
-                <label asp-for="@Model.DoYouWantToReplace" for="DoYouWantToReplace" class="form-check-label">@ViewData["DoYouWantToReplaceAddViewData"]</label>
+                <label asp-for="@Model.DoYouWantToReplace" for="DoYouWantToReplace" class="form-check-label">@ViewData["DoYouWantToReplaceHomeViewData"]</label>
             </td>
         </tr>
         <tr>
             <td>
                 <input asp-for="@Model.IsTheChatActivated" class="form-check-input" type="checkbox" id="IsTheChatActivated">
-                <label asp-for="@Model.IsTheChatActivated" for="IsTheChatActivated" class="form-check-label">@ViewData["IsTheChatActivatedAddViewData"]</label>
+                <label asp-for="@Model.IsTheChatActivated" for="IsTheChatActivated" class="form-check-label">@ViewData["IsTheChatActivatedHomeViewData"]</label>
             </td>
         </tr>
         <tr>
             <td>
                 <input asp-for="@Model.IsThePhoneCallActive" class="form-check-input" type="checkbox" id="IsThePhoneCallActive">
-                <label asp-for="@Model.IsThePhoneCallActive" for="IsThePhoneCallActive" class="form-check-label">@ViewData["IsThePhoneCallActiveAddViewData"]</label>
-            </td>
-        </tr>
-        <tr>
-
-            <td>
-                 <input value="Active" type="hidden" class="form-control" id="Status" asp-for="@Model.Status" placeholder="">
-            </td>
-        </tr>
-        <tr>
-
-            <td>
-                 <input type="hidden" class="form-control" id="Status" asp-for="@Model.InsertDate" placeholder="">
-            </td>
-        </tr>
-        <tr>
-
-            <td>
-                <input type="hidden" class="form-control" id="Status" asp-for="@Model.UpdateDate" placeholder="">
+                <label asp-for="@Model.IsThePhoneCallActive" for="IsThePhoneCallActive" class="form-check-label">@ViewData["IsThePhoneCallActiveHomeViewData"]</label>
             </td>
         </tr>
         <tr>
@@ -245,7 +227,7 @@
         <tr class="d-flex justify-content-center">
 
             <td>
-                <button type="submit" class="btn btn-primary" style="float:right;">@ViewData["SubmitAddViewData"]</button>
+                <button type="submit" class="btn btn-primary" style="float:right;">@ViewData["SubmitHomeViewData"]</button>
             </td>
         </tr>
 

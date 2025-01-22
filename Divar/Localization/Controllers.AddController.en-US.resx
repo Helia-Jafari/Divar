@@ -169,7 +169,7 @@
     <value>Nationality: </value>
   </data>
   <data name="NationalCodeAdd" xml:space="preserve">
-    <value>NationalCode: </value>
+    <value>National Code: </value>
   </data>
   <data name="CategoryIdAdd" xml:space="preserve">
     <value>Category: </value>

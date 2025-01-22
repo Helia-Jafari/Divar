@@ -31,12 +31,25 @@ namespace Divar.Services
         {
             return await _advertisementRepository.GetByIdAsync(id);
         }
+        public async Task<HomeEditViewModel> GetAdvertisementByIdAsyncHomeEditVM(int id)
+        {
+            var ad = await _advertisementRepository.GetByIdAsync(id);
+            var VM = AdvertisementMapper.MapAdvertisementToHomeEditVM(ad);
+            return VM;
+        }
 
         public async Task<IEnumerable<HomeViewModel>> GetAllAdvertisementsAsyncHomeVM()
         {
             var VMs = new List<HomeViewModel>();
             var ads = await _advertisementRepository.GetAllAsync();
             ads.ToList().ForEach(c => VMs.Add(AdvertisementMapper.MapAdvertisementToHomeVM(c)));
+            return VMs;
+        }
+        public async Task<IEnumerable<HomeDetailsViewModel>> GetAllAdvertisementsAsyncHomeDetailsVM()
+        {
+            var VMs = new List<HomeDetailsViewModel>();
+            var ads = await _advertisementRepository.GetAllAsync();
+            ads.ToList().ForEach(c => VMs.Add(AdvertisementMapper.MapAdvertisementToHomeDetailsVM(c)));
             return VMs;
         }
 
@@ -90,9 +103,11 @@ namespace Divar.Services
             await _advertisementRepository.AddAsync(advertisement);
         }
 
-        public async Task UpdateAdvertisementAsync(Advertisement advertisement)
+        public async Task<Advertisement> UpdateAdvertisementAsync(HomeEditViewModel model)
         {
+            Advertisement advertisement = AdvertisementMapper.MapHomeEditVMToAdvertisement(model);
             await _advertisementRepository.UpdateAsync(advertisement);
+            return advertisement;
         }
 
         public async Task DeleteAdvertisementAsync(int id)
