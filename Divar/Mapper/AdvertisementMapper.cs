@@ -22,7 +22,7 @@ namespace Divar.Mapper
         }
         public static HomeDetailsViewModel MapAdvertisementToHomeDetailsVM(Advertisement ad)
         {
-            return new HomeDetailsViewModel()
+            var v= new HomeDetailsViewModel()
             {
                 Title = ad.Title,
                 Color = ad.Color,
@@ -48,6 +48,7 @@ namespace Divar.Mapper
                 UpdateDate = ad.UpdateDate,
                 InsertDate = ad.InsertDate
             };
+            return v;
         }
         public static HomeDetailsViewModel MapAdvertisementToHomeDetailsVM(HomeEditViewModel VM)
         {
@@ -112,7 +113,7 @@ namespace Divar.Mapper
         }
         public static Advertisement MapHomeEditVMToAdvertisement(HomeEditViewModel VM)
         {
-            return new Advertisement()
+            var v= new Advertisement()
             {
                 Id=VM.Id,
                 BasePrice = Convert.ToInt32(VM.BasePrice),
@@ -143,10 +144,11 @@ namespace Divar.Mapper
                 UpdateDate = DateTime.Now,
                 InsertDate = VM.InsertDate
             };
+            return v;
         }
         public static HomeEditViewModel MapAdvertisementToHomeEditVM(Advertisement ad)
         {
-            return new HomeEditViewModel()
+            var v = new HomeEditViewModel()
             {
                 Id=ad.Id,
                 BasePrice = ad.BasePrice,
@@ -176,6 +178,7 @@ namespace Divar.Mapper
                 UpdateDate = ad.UpdateDate,
                 InsertDate = ad.InsertDate
             };
+            return v;
         }
     }
 }
