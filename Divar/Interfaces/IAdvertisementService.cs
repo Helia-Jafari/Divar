@@ -8,6 +8,7 @@ namespace Divar.Interfaces
     {
         Task<Advertisement> GetAdvertisementByIdAsync(int id);
         Task<HomeEditViewModel> GetAdvertisementByIdAsyncHomeEditVM(int id);
+        Task<HomeDetailsViewModel> GetAdvertisementByIdAsyncHomeDetailsVM(int id);
         Task<IEnumerable<HomeViewModel>> GetAllAdvertisementsAsyncHomeVM();
         Task<IEnumerable<HomeDetailsViewModel>> GetAllAdvertisementsAsyncHomeDetailsVM();
         Task AddAdvertisementAsync(AddViewModel advertisement);

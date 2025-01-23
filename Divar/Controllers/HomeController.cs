@@ -55,6 +55,8 @@ namespace Divar.Controllers
             //_advertisementMapper = advertisementMapper;
         }
 
+        [HttpGet("")]
+        [HttpGet("Home")]
         public async Task<IActionResult> Index()
         {
 
@@ -140,7 +142,13 @@ namespace Divar.Controllers
 
 
         }
+    
 
+        [HttpGet("details/{id}")]
+        [HttpGet("ads/details/{id}")]
+        [HttpGet("ads/{id:int:min(1)}")]
+        [HttpGet("advertisements/details/{id}")]
+        [HttpGet("advertisements/{id:int:min(1)}")]
         public async Task<IActionResult> Details(int id)
         {
             // ارسال داده‌ها به ViewData
@@ -199,7 +207,10 @@ namespace Divar.Controllers
             }
             return View("Index", Viesws);
         }
-
+        
+        [HttpGet("edit/{id}")]
+        [HttpGet("advertisements/edit/{id:int:min(1)}")]
+        [HttpGet("ads/edit/{id}")]
         public async Task<IActionResult> Edit(int id)
         {
             // ارسال داده‌ها به ViewData
@@ -305,12 +316,15 @@ namespace Divar.Controllers
 
 
 
-            var ad=await _advertisementService.UpdateAdvertisementAsync(model);
+            await _advertisementService.UpdateAdvertisementAsync(model);
+            //var ad = await _advertisementService.GetAdvertisementByIdAsync(model.Id);
+            var view = await _advertisementService.GetAdvertisementByIdAsyncHomeDetailsVM(model.Id);
+
 
             //var ads = await _context.Advertisements.ToListAsync();
             //var ad = ads.FirstOrDefault(a => a.Id == model.Id);
 
-            return View("Details", ad);
+            return View("Details", view);
 
         }
 
@@ -331,7 +345,8 @@ namespace Divar.Controllers
         //}
 
 
-        [HttpPost]
+        [HttpPost("")]
+        [HttpPost("Home")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Index(string SearchString, string culture)
         {

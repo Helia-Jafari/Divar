@@ -217,6 +217,24 @@
                 <label asp-for="@Model.IsThePhoneCallActive" for="IsThePhoneCallActive" class="form-check-label">@ViewData["IsThePhoneCallActiveHomeViewData"]</label>
             </td>
         </tr>
+        @*<tr>
+
+        <td>
+        <input type="hidden" class="form-control" id="Status" asp-for="@Model.Status" placeholder="">
+        </td>
+        </tr>*@
+        <tr>
+
+        <td>
+        <input type="hidden" class="form-control" id="Status" asp-for="@Model.InsertDate" placeholder="">
+        </td>
+        </tr>
+        <tr>
+
+        <td>
+        <input type="hidden" class="form-control" id="Status" asp-for="@Model.UpdateDate" placeholder="">
+        </td>
+        </tr>
         <tr>
             <td>
                 <div class="validation-summary-errors">

@@ -37,6 +37,12 @@ namespace Divar.Services
             var VM = AdvertisementMapper.MapAdvertisementToHomeEditVM(ad);
             return VM;
         }
+        public async Task<HomeDetailsViewModel> GetAdvertisementByIdAsyncHomeDetailsVM(int id)
+        {
+            var ad = await _advertisementRepository.GetByIdAsync(id);
+            var VM = AdvertisementMapper.MapAdvertisementToHomeDetailsVM(ad);
+            return VM;
+        }
 
         public async Task<IEnumerable<HomeViewModel>> GetAllAdvertisementsAsyncHomeVM()
         {

@@ -12,6 +12,7 @@ using System.Globalization;
 
 namespace Divar.Controllers
 {
+    
     public class AddController : Controller
     {
         private readonly DivarContext _context;
@@ -31,6 +32,10 @@ namespace Divar.Controllers
 
             //_advertisementMapper = advertisementMapper;
         }
+        [HttpGet("ads/add")]
+        [HttpGet("advertisements/add")]
+        [HttpGet("items/add")]
+        [HttpGet("add")]
         public async Task<IActionResult> Index()
         {
 
@@ -110,7 +115,10 @@ namespace Divar.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPost("ads/add")]
+        [HttpPost("advertisements/add")]
+        [HttpPost("items/add")]
+        [HttpPost("add")]
         [ValidateAntiForgeryToken]
 public async Task<IActionResult> Index(AddViewModel model)
         {
