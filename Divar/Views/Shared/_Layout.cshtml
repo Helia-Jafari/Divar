@@ -65,11 +65,22 @@
     </div>
   </div>
 </nav>
-        @{
+        @*@{
             var newCulture = CultureInfo.CurrentCulture.Name == "en-US" ? "fa-IR" : "en-US";
             var newAction = this.ViewContext.RouteData.Values["action"].ToString();
         }
         <a class="btn btn-primary" asp-action="ChangeCulture" asp-controller="@(ViewContext.RouteData.Values["controller"])" asp-route-culture="@newCulture" asp-route-action="@newAction">
+            <i class="bi bi-translate"></i>
+        </a>*@
+        @{
+            var currentCulture = CultureInfo.CurrentCulture.Name; // زبان فعلی کاربر
+            var newCulture = currentCulture == "fa-IR" ? "en-US" : "fa-IR"; // زبان جدید
+            var path = Context.Request.Path;
+        }
+        @*<a class="btn btn-primary" onclick="@LocalizationService.ChangeCultureInfo(newCulture)" asp-route-culture="@newCulture">
+        <i class="bi bi-translate"></i>
+        </a>*@
+        <a class="btn btn-primary" asp-action="ChangeCulture" asp-controller="Home" asp-route-culture="@newCulture" asp-route-returnUrl="@path">
             <i class="bi bi-translate"></i>
         </a>
     </header>

@@ -4,6 +4,7 @@ using Azure.Core;
 using Divar.Db;
 using Divar.Interfaces;
 using Divar.Mapper;
+using Divar.Middlewares;
 using Divar.Repositories;
 using Divar.Services;
 using Microsoft.AspNetCore.Http;
@@ -77,21 +78,22 @@ var app = builder.Build();
 //    await next.Invoke();
 //});
 //?????? ????? ?? ??????? ??? ?? ????? ??????? RequestLocalization
-app.Use(async (context, next) =>
-{
-    var cultureCookie = context.Request.Cookies["culture"];
-    if (!string.IsNullOrEmpty(cultureCookie))
-    {
-        var culture = new CultureInfo(cultureCookie);
-        CultureInfo.CurrentCulture = culture;
-        CultureInfo.CurrentUICulture = culture;
-    }
+//app.Use(async (context, next) =>
+//{
+//    var cultureCookie = context.Request.Cookies["culture"];
+//    if (!string.IsNullOrEmpty(cultureCookie))
+//    {
+//        var culture = new CultureInfo(cultureCookie);
+//        CultureInfo.CurrentCulture = culture;
+//        CultureInfo.CurrentUICulture = culture;
+//    }
 
-    await next.Invoke();
-});
+//    await next.Invoke();
+//});
 
 
 
+app.UseMiddleware<LocalizationMiddleware>();
 
 app.UseRequestLocalization(requestLocalizationOptions);
 

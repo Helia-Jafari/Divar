@@ -1,5 +1,6 @@
 ﻿using Divar.Controllers;
 using Divar.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Localization;
 using System.Globalization;
 
@@ -8,10 +9,12 @@ namespace Divar.Services
     public class LocalizationService : ILocalizationService
     {
         private readonly IStringLocalizer<HomeController> _localizer;
-       public LocalizationService(IStringLocalizer<HomeController> localizer)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public LocalizationService(IStringLocalizer<HomeController> localizer, IHttpContextAccessor httpContextAccessor)
         {
 
             _localizer = localizer;
+            _httpContextAccessor = httpContextAccessor;
         }
         public string GetLocalizedDir()
         {
@@ -41,10 +44,10 @@ namespace Divar.Services
             return _localizer[key];
         }
 
-        public void ChangeCultureInfo(string culture)
+        public string ChangeCultureInfo(string culture)
         {
             // تغییر فرهنگ به فارسی
-            var culture2 = new CultureInfo(culture);
+            //var culture2 = new CultureInfo(culture);
 
             //// تغییر فرهنگ به فارسی
             //var culture2 = new CultureInfo(culture);
@@ -63,8 +66,25 @@ namespace Divar.Services
             //CultureInfo.CurrentUICulture = culture2;
 
             // تغییر فرهنگ به فارسی
-            CultureInfo.CurrentCulture = culture2;
-            CultureInfo.CurrentUICulture = culture2;
+            //CultureInfo.CurrentCulture = culture2;
+            //CultureInfo.CurrentUICulture = culture2;
+
+            //return "h";
+                var cultureInfo = new CultureInfo(culture);
+
+                // تنظیم زبان جاری
+                CultureInfo.CurrentCulture = cultureInfo;
+                CultureInfo.CurrentUICulture = cultureInfo;
+
+                // ذخیره زبان در کوکی
+                _httpContextAccessor.HttpContext.Response.Cookies.Append("culture", culture, new CookieOptions
+                {
+                    Expires = DateTimeOffset.UtcNow.AddYears(1),
+                    HttpOnly = true,
+                    Secure = false // برای HTTPS مقدار true باشد
+                });
+
+                return culture;
         }
     }
 }
