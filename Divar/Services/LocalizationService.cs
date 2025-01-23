@@ -40,5 +40,31 @@ namespace Divar.Services
         {
             return _localizer[key];
         }
+
+        public void ChangeCultureInfo(string culture)
+        {
+            // تغییر فرهنگ به فارسی
+            var culture2 = new CultureInfo(culture);
+
+            //// تغییر فرهنگ به فارسی
+            //var culture2 = new CultureInfo(culture);
+            //Console.WriteLine("Setting culture to: " + culture2.Name);
+
+            // ذخیره فرهنگ در کوکی
+            //Response.Cookies.Append("culture", culture2.Name, new CookieOptions
+            //{
+            //    Expires = DateTimeOffset.UtcNow.AddYears(1), // تاریخ انقضا
+            //    HttpOnly = true, // فقط در دسترس از طریق HTTP
+            //    SameSite = SameSiteMode.Lax, // یا Strict یا None، بستگی به نیاز شما دارد
+            //    Secure = false // اگر در محیط امن (https) هستید، true بگذارید
+            //});
+            //// تغییر فرهنگ برای درخواست جاری
+            //CultureInfo.CurrentCulture = culture2;
+            //CultureInfo.CurrentUICulture = culture2;
+
+            // تغییر فرهنگ به فارسی
+            CultureInfo.CurrentCulture = culture2;
+            CultureInfo.CurrentUICulture = culture2;
+        }
     }
 }

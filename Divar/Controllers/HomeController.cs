@@ -25,6 +25,7 @@ namespace Divar.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly DivarContext _context;
         private readonly IStringLocalizer<HomeController> _localizer;
+        private readonly ILocalizationService _localizationService;
         //private readonly IViewDataService _viewDataService;
 
         private readonly IAdvertisementService _advertisementService;
@@ -40,7 +41,7 @@ namespace Divar.Controllers
 
         //private readonly AdvertisementMapper _advertisementMapper;
 
-        public HomeController(ILogger<HomeController> logger, DivarContext db, IStringLocalizer<HomeController> localizer, ICityService cityService, ICategoryService categoryService, IAdvertisementService advertisementService, IViewDataService viewDataService)
+        public HomeController(ILogger<HomeController> logger, DivarContext db, IStringLocalizer<HomeController> localizer, ICityService cityService, ICategoryService categoryService, IAdvertisementService advertisementService, IViewDataService viewDataService, ILocalizationService localizationService)
         {
             _context = db;
             _logger = logger;
@@ -50,6 +51,7 @@ namespace Divar.Controllers
             _cityService = cityService;
             _categoryService = categoryService;
             _advertisementService = advertisementService;
+            _localizationService = localizationService;
             //categories = _context.Categories.ToList<Category>();
 
             //_advertisementMapper = advertisementMapper;
@@ -511,7 +513,7 @@ namespace Divar.Controllers
 
         }
 
-        public async Task<IActionResult> ChangeCulture(string culture)
+        public async Task<IActionResult> ChangeCulture(string culture, string action)
         {
 
             //// دریافت داده‌ها از سرویس
@@ -563,32 +565,11 @@ namespace Divar.Controllers
             //}
 
 
-
-            // تغییر فرهنگ به فارسی
-            var culture2 = new CultureInfo(culture);
-
-            //// تغییر فرهنگ به فارسی
-            //var culture2 = new CultureInfo(culture);
-            //Console.WriteLine("Setting culture to: " + culture2.Name);
-
-            // ذخیره فرهنگ در کوکی
-            //Response.Cookies.Append("culture", culture2.Name, new CookieOptions
-            //{
-            //    Expires = DateTimeOffset.UtcNow.AddYears(1), // تاریخ انقضا
-            //    HttpOnly = true, // فقط در دسترس از طریق HTTP
-            //    SameSite = SameSiteMode.Lax, // یا Strict یا None، بستگی به نیاز شما دارد
-            //    Secure = false // اگر در محیط امن (https) هستید، true بگذارید
-            //});
-            //// تغییر فرهنگ برای درخواست جاری
-            //CultureInfo.CurrentCulture = culture2;
-            //CultureInfo.CurrentUICulture = culture2;
-
-            // تغییر فرهنگ به فارسی
-            CultureInfo.CurrentCulture = culture2;
-            CultureInfo.CurrentUICulture = culture2;
+            _localizationService.ChangeCultureInfo(culture);
+            
 
             // هدایت به صفحه اصلی پس از تغییر فرهنگ
-            return RedirectToAction("Index", "Home", new { culture = culture });
+            return RedirectToAction(action, "Home", new { culture = culture });
         }
     }
 }

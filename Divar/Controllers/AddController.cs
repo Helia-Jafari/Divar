@@ -17,17 +17,19 @@ namespace Divar.Controllers
     {
         private readonly DivarContext _context;
         private readonly IStringLocalizer<AddController> _localizer;
+        private readonly ILocalizationService _localizationService;
         private readonly IAdvertisementService _advertisementService;
         public List<Category> categories;
         //public List<City> cities;
 
         //private readonly AdvertisementMapper _advertisementMapper;
 
-        public AddController(DivarContext db, IStringLocalizer<AddController> localizer, IAdvertisementService advertisementService)
+        public AddController(DivarContext db, IStringLocalizer<AddController> localizer, IAdvertisementService advertisementService, ILocalizationService localizationService)
         {
             _context = db;
             _localizer = localizer;
             _advertisementService = advertisementService;
+            _localizationService = localizationService;
             //cities = _context.Cities.ToList();
 
             //_advertisementMapper = advertisementMapper;
@@ -212,16 +214,8 @@ public async Task<IActionResult> Index(AddViewModel model)
             //ViewData["AddAdMenueLayouteViewData"] = _localizer["AddAdMenueLayoute"];
 
 
-            //// تغییر فرهنگ به فارسی
-            CultureInfo.CurrentCulture = new CultureInfo(culture);
-            CultureInfo.CurrentUICulture = new CultureInfo(culture);
 
-            // تغییر فرهنگ به فارسی
-            //CultureInfo.CurrentCulture = new CultureInfo("fa-IR");
-            //CultureInfo.CurrentUICulture = new CultureInfo("fa-IR");
-
-            // هدایت به صفحه اصلی پس از تغییر فرهنگ
-
+            _localizationService.ChangeCultureInfo(culture);
 
 
 

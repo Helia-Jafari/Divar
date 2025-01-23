@@ -1,6 +1,7 @@
 ﻿@using Microsoft.Extensions.Localization
 @using Divar.Services
 @using Divar.Interfaces
+@using System.Globalization
 @inject IStringLocalizer<Divar.Controllers.HomeController>   _localizer;
 @inject ILocalizationService LocalizationService;
 <!DOCTYPE html>
@@ -64,6 +65,13 @@
     </div>
   </div>
 </nav>
+        @{
+            var newCulture = CultureInfo.CurrentCulture.Name == "en-US" ? "fa-IR" : "en-US";
+            var newAction = this.ViewContext.RouteData.Values["action"].ToString();
+        }
+        <a class="btn btn-primary" asp-action="ChangeCulture" asp-controller="@(ViewContext.RouteData.Values["controller"])" asp-route-culture="@newCulture" asp-route-action="@newAction">
+            <i class="bi bi-translate"></i>
+        </a>
     </header>
     <div class="container">
         <main role="main" class="pb-3">

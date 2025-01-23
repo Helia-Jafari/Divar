@@ -9,9 +9,15 @@
 
 @model HomeEditViewModel;
 
-<button class="btn btn-primary d-block" id="btnChangeCulture" onclick="changeCulture()">
+@*<button class="btn btn-primary d-block" id="btnChangeCulture" onclick="changeCulture()">
     <i class="bi bi-translate"></i>
-</button>
+</button>*@
+@*@{
+    var newCulture = CultureInfo.CurrentCulture.Name == "en-US" ? "fa-IR" : "en-US";
+}
+<a class="btn btn-primary" asp-action="ChangeCulture" asp-controller="Add" asp-route-culture="@newCulture">
+    <i class="bi bi-translate"></i>
+</a>*@
 <form asp-controller="Add" asp-action="Index" asp-route-culture="@CultureInfo.CurrentCulture.Name" method="post">
       <table class="border-0 w-100">
         <tr

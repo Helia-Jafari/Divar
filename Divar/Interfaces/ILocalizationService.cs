@@ -6,5 +6,6 @@ namespace Divar.Interfaces
     {
         string GetLocalizedDir();
         string GetlocalizedBootstrapLink();
+        void ChangeCultureInfo(string culture);
     }
 }
