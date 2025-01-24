@@ -75,7 +75,6 @@ namespace Divar.Services
                 // تنظیم زبان جاری
                 CultureInfo.CurrentCulture = cultureInfo;
                 CultureInfo.CurrentUICulture = cultureInfo;
-
                 // ذخیره زبان در کوکی
                 _httpContextAccessor.HttpContext.Response.Cookies.Append("culture", culture, new CookieOptions
                 {
