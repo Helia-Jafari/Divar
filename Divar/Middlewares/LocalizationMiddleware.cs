@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using System.Globalization;
-using System.Threading.Tasks;
+﻿using System.Globalization;
 
 namespace Divar.Middlewares
 {
@@ -15,18 +12,39 @@ namespace Divar.Middlewares
             _next = next;
         }
 
-        public async Task InvokeAsync(HttpContext httpContext)
+        public async Task InvokeAsync(HttpContext context)
         {
             // خواندن زبان از کوکی
-            var cultureCookie = httpContext.Request.Cookies["culture"];
+            var cultureCookie = context.Request.Cookies["culture"];
             if (!string.IsNullOrEmpty(cultureCookie))
             {
                 var culture = new CultureInfo(cultureCookie);
                 CultureInfo.CurrentCulture = culture;
                 CultureInfo.CurrentUICulture = culture;
+
+                // بررسی وجود culture در query string
+                if (!context.Request.Query.ContainsKey("culture"))
+                {
+                    var queryString = context.Request.QueryString.HasValue ? context.Request.QueryString.ToString() : string.Empty;
+                    var newQueryString = queryString.Contains("?") ? $"{queryString}&culture={culture.Name}" : $"?culture={culture.Name}";
+                    var redirectUrl = context.Request.Path + newQueryString;
+
+                    //context.Response.Cookies.Delete("culture");
+                    context.Response.Redirect(redirectUrl);
+                    return;
+                }
             }
 
-            await _next(httpContext);
+
+            //context.Response.Cookies.Delete("culture");
+            // جلوگیری از تغییر زبان برای لینک‌های منو
+            //if (context.Request.Path.HasValue && !context.Request.Path.Value.Contains("change-language"))
+            //{
+            //    await _next(context);
+            //    return;
+            //}
+
+            await _next(context);
         }
     }
 

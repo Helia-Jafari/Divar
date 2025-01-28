@@ -120,4 +120,13 @@
   <data name="RequiredInputErrorMassage" xml:space="preserve">
     <value>پر کردن این فیلد اجباری است</value>
   </data>
+  <data name="TitleMinLengthErrorMassage" xml:space="preserve">
+    <value>عنوان باید حداقل 6 کاراکتر داشته باشد</value>
+  </data>
+  <data name="BasePriseRangeErrorMassage" xml:space="preserve">
+    <value>قیمت پایه باید بین 10000000 و 999999999 باشد</value>
+  </data>
+  <data name="NationalCodeLengthErrorMassage" xml:space="preserve">
+    <value>کدملی باید 10 کاراکتر باشد</value>
+  </data>
 </root>

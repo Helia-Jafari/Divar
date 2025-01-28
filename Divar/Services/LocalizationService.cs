@@ -1,6 +1,8 @@
-﻿using Divar.Controllers;
+﻿using Azure;
+using Divar.Controllers;
 using Divar.Interfaces;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Localization;
 using System.Globalization;
 
@@ -70,20 +72,23 @@ namespace Divar.Services
             //CultureInfo.CurrentUICulture = culture2;
 
             //return "h";
-                var cultureInfo = new CultureInfo(culture);
+                //var cultureInfo = new CultureInfo(culture);
 
-                // تنظیم زبان جاری
-                CultureInfo.CurrentCulture = cultureInfo;
-                CultureInfo.CurrentUICulture = cultureInfo;
-                // ذخیره زبان در کوکی
-                _httpContextAccessor.HttpContext.Response.Cookies.Append("culture", culture, new CookieOptions
-                {
-                    Expires = DateTimeOffset.UtcNow.AddYears(1),
-                    HttpOnly = true,
-                    Secure = false // برای HTTPS مقدار true باشد
-                });
+                //// تنظیم زبان جاری
+                //CultureInfo.CurrentCulture = cultureInfo;
+                //CultureInfo.CurrentUICulture = cultureInfo;
+                //// ذخیره زبان در کوکی
+                //_httpContextAccessor.HttpContext.Response.Cookies.Append("culture", culture, new CookieOptions
+                //{
+                //    Expires = DateTimeOffset.UtcNow.AddYears(1),
+                //    HttpOnly = true,
+                //    Secure = false // برای HTTPS مقدار true باشد
+                //});
+            _httpContextAccessor.HttpContext.Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions() { Expires = DateTimeOffset.UtcNow.AddYears(1), });
 
-                return culture;
+                return "";
         }
     }
 }

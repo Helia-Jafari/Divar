@@ -17,6 +17,7 @@ using Divar.Services;
 using System.Text.RegularExpressions;
 using Divar.Mapper;
 using Divar.ViewModels;
+using Microsoft.AspNetCore.Localization;
 
 namespace Divar.Controllers
 {
@@ -58,7 +59,7 @@ namespace Divar.Controllers
         }
 
         [HttpGet("")]
-        [HttpGet("Home")]
+        //[HttpGet("Home")]
         public async Task<IActionResult> Index()
         {
 
@@ -144,13 +145,13 @@ namespace Divar.Controllers
 
 
         }
-    
 
-        [HttpGet("details/{id}")]
-        [HttpGet("ads/details/{id}")]
-        [HttpGet("ads/{id:int:min(1)}")]
-        [HttpGet("advertisements/details/{id}")]
-        [HttpGet("advertisements/{id:int:min(1)}")]
+
+        //[HttpGet("details/{id}")]
+        //[HttpGet("ads/details/{id}")]
+        //[HttpGet("ads/{id:int:min(1)}")]
+        //[HttpGet("advertisements/details/{id}")]
+        //[HttpGet("advertisements/{id:int:min(1)}")]
         public async Task<IActionResult> Details(int id)
         {
             // ارسال داده‌ها به ViewData
@@ -170,8 +171,8 @@ namespace Divar.Controllers
             ViewData["IsThePhoneCallActiveHomeViewData"] = _localizer["IsThePhoneCallActiveHome"];
             ViewData["ItsModelHomeViewData"] = _localizer["ItsModelHome"];
             ViewData["RearChassisConditionHomeViewData"] = _localizer["RearChassisConditionHome"];
-            ViewData["ThirdPartyInsuranceTermHomeViewData"] = _localizer["ThirdPartyInsuranceTermHome"]; 
-            ViewData["SearchHomeViewData"] = _localizer["SearchHome"]; 
+            ViewData["ThirdPartyInsuranceTermHomeViewData"] = _localizer["ThirdPartyInsuranceTermHome"];
+            ViewData["SearchHomeViewData"] = _localizer["SearchHome"];
             ViewData["currentDate"] = DateTime.Now.ToString("D", CultureInfo.CurrentCulture);
             //ViewData["currentDate"] = DateTime.Now.ToString("D", new CultureInfo("fa-IR"));
             //ViewData["currentDate"] = DateTime.Now.ToString(CultureInfo.CurrentCulture);
@@ -193,6 +194,20 @@ namespace Divar.Controllers
 
         public async Task<IActionResult> Delete(int id)
         {
+            // ارسال داده‌ها به ViewData
+            ViewData["TitleHomeViewData"] = _localizer["TitleHome"];
+            ViewData["ColorHomeViewData"] = _localizer["ColorHome"];
+            ViewData["BasePriceHomeViewData"] = _localizer["BasePriceHome"];
+            ViewData["FunctionKilometersHomeViewData"] = _localizer["FunctionKilometersHome"];
+            ViewData["CityHomeViewData"] = _localizer["CityIdHome"];
+            ViewData["currentDate"] = DateTime.Now.ToString("D", CultureInfo.CurrentCulture);
+            //ViewData["currentDate"] = DateTime.Now.ToString("D", new CultureInfo("fa-IR"));
+            //ViewData["currentDate"] = DateTime.Now.ToString(CultureInfo.CurrentCulture);
+            ViewData["SearchHomeViewData"] = _localizer["SearchHome"];
+            ViewData["SucceededSearch"] = _localizer["SucceededSearch"];
+            //ViewData["HomeMenueLayouteViewData"] = _localizer["HomeMenueLayoute"];
+            //ViewData["AddAdMenueLayouteViewData"] = _localizer["AddAdMenueLayoute"];
+
             await _advertisementService.DeleteAdvertisementAsync(id);
 
             var Viesws = await _advertisementService.GetAllAdvertisementsAsyncHomeVM();
@@ -209,10 +224,10 @@ namespace Divar.Controllers
             }
             return View("Index", Viesws);
         }
-        
-        [HttpGet("edit/{id}")]
-        [HttpGet("advertisements/edit/{id:int:min(1)}")]
-        [HttpGet("ads/edit/{id}")]
+
+        //[HttpGet("edit/{id}")]
+        //[HttpGet("advertisements/edit/{id:int:min(1)}")]
+        //[HttpGet("ads/edit/{id}")]
         public async Task<IActionResult> Edit(int id)
         {
             // ارسال داده‌ها به ViewData
@@ -249,7 +264,7 @@ namespace Divar.Controllers
 
 
             List<Category> categories;
-        categories = await _context.Categories.ToListAsync<Category>();
+            categories = await _context.Categories.ToListAsync<Category>();
             List<Category> cs = new List<Category>();
             foreach (var item in categories)
             {
@@ -294,7 +309,7 @@ namespace Divar.Controllers
             //ViewData["AddAdMenueLayouteViewData"] = _localizer["AddAdMenueLayoute"];
 
             List<Category> categories;
-        categories = await _context.Categories.ToListAsync<Category>();
+            categories = await _context.Categories.ToListAsync<Category>();
             List<Category> cs = new List<Category>();
             foreach (var item in categories)
             {
@@ -348,8 +363,8 @@ namespace Divar.Controllers
 
 
         [HttpPost("")]
-        [HttpPost("Home")]
-        [ValidateAntiForgeryToken]
+        //[HttpPost("Home")]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Index(string SearchString, string culture)
         {
 
@@ -513,73 +528,78 @@ namespace Divar.Controllers
 
         }
 
-        public IActionResult ChangeCulture(string culture, string returnUrl)
+        public ActionResult ChangeCulture(string culture)
         {
-            // تغییر زبان
+            //    // تغییر زبان
+            //    _localizationService.ChangeCultureInfo(culture);
+
+            //    // بازگشت به صفحه قبلی یا صفحه اصلی
+            //    //return !string.IsNullOrEmpty(returnUrl) ? RedirectToAction(returnUrl) : RedirectToAction("Index", "Home");
+            //    return  RedirectToAction("Index", "Home", new {culture=culture});
+            //}
+
+            //public async Task<IActionResult> ChangeCulture(string culture, string action)
+            //{
+
+            //// دریافت داده‌ها از سرویس
+            //var homeViewModel = await _viewDataService.GetHomeViewDataAsync();
+
+            //// ارسال داده‌ها به ViewData
+            //ViewData["TitleHomeViewData"] = homeViewModel.TitleHome;
+            //ViewData["ColorHomeViewData"] = homeViewModel.ColorHome;
+            //ViewData["BasePriceHomeViewData"] = homeViewModel.BasePriceHome;
+            //ViewData["FunctionKilometersHomeViewData"] = homeViewModel.FunctionKilometersHome;
+            //ViewData["CityHomeViewData"] = homeViewModel.CityHome;
+            //ViewData["currentDate"] = homeViewModel.CurrentDate;
+            ////ViewData["currentDate"] = DateTime.Now.ToString("D", new CultureInfo("fa-IR"));
+            ////ViewData["currentDate"] = DateTime.Now.ToString(CultureInfo.CurrentCulture);
+            //ViewData["SearchHomeViewData"] = homeViewModel.SearchHome;
+            //ViewData["SucceededSearch"] = homeViewModel.SucceededSearch;
+            ////ViewData["HomeMenueLayouteViewData"] = _localizer["HomeMenueLayoute"];
+            ////ViewData["AddAdMenueLayouteViewData"] = _localizer["AddAdMenueLayoute"];
+            ///
+
+
+
+            //// ارسال داده‌ها به ViewData
+            //ViewData["TitleHomeViewData"] = _localizer["TitleHome"];
+            //ViewData["ColorHomeViewData"] = _localizer["ColorHome"];
+            //ViewData["BasePriceHomeViewData"] = _localizer["BasePriceHome"];
+            //ViewData["FunctionKilometersHomeViewData"] = _localizer["FunctionKilometersHome"];
+            //ViewData["CityHomeViewData"] = _localizer["CityIdHome"];
+            //ViewData["currentDate"] = DateTime.Now.ToString("D", CultureInfo.CurrentCulture);
+            ////ViewData["currentDate"] = DateTime.Now.ToString("D", new CultureInfo("fa-IR"));
+            ////ViewData["currentDate"] = DateTime.Now.ToString(CultureInfo.CurrentCulture);
+            //ViewData["SearchHomeViewData"] = _localizer["SearchHome"];
+            //ViewData["SucceededSearch"] = _localizer["SucceededSearch"];
+            ////ViewData["HomeMenueLayouteViewData"] = _localizer["HomeMenueLayoute"];
+            ////ViewData["AddAdMenueLayouteViewData"] = _localizer["AddAdMenueLayoute"];
+
+
+            //var Viesws = await _advertisementService.GetAllAdvertisementsAsyncHomeVM();
+            //foreach (var ad in Viesws)
+            //{
+            //    var breadcrumbs = await _categoryService.GetBreadcrumbsAsync((int)ad.CategoryId);
+
+            //    ViewData["breadcrumbs" + ad.Id.ToString()] = breadcrumbs;
+            //    catsDictionary["breadcrumbs" + ad.Id.ToString()] = breadcrumbs;
+            //    this.cats.Add(breadcrumbs);
+
+            //    var city = await _cityService.GetCityByIdAsync((int)ad.CityId);
+            //    ViewData["city" + ad.Id.ToString()] = city.Name;
+            //}
+
             _localizationService.ChangeCultureInfo(culture);
+            //Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName,
+            //    CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+            //    new CookieOptions() { Expires = DateTimeOffset.UtcNow.AddYears(1), });
 
-            // بازگشت به صفحه قبلی یا صفحه اصلی
-            //return !string.IsNullOrEmpty(returnUrl) ? RedirectToAction(returnUrl) : RedirectToAction("Index", "Home");
-            return  RedirectToAction("Index", "Home", new {culture=culture});
+
+            // هدایت به صفحه اصلی پس از تغییر فرهنگ
+            return Redirect(Request.Headers["Referer"].ToString());
+            //Response.Redirect(Request.Headers["Referer"].ToString());
+            //Response.Redirect(Request.Path + Request.QueryString);
+            //}
         }
-
-        //public async Task<IActionResult> ChangeCulture(string culture, string action)
-        //{
-
-        //// دریافت داده‌ها از سرویس
-        //var homeViewModel = await _viewDataService.GetHomeViewDataAsync();
-
-        //// ارسال داده‌ها به ViewData
-        //ViewData["TitleHomeViewData"] = homeViewModel.TitleHome;
-        //ViewData["ColorHomeViewData"] = homeViewModel.ColorHome;
-        //ViewData["BasePriceHomeViewData"] = homeViewModel.BasePriceHome;
-        //ViewData["FunctionKilometersHomeViewData"] = homeViewModel.FunctionKilometersHome;
-        //ViewData["CityHomeViewData"] = homeViewModel.CityHome;
-        //ViewData["currentDate"] = homeViewModel.CurrentDate;
-        ////ViewData["currentDate"] = DateTime.Now.ToString("D", new CultureInfo("fa-IR"));
-        ////ViewData["currentDate"] = DateTime.Now.ToString(CultureInfo.CurrentCulture);
-        //ViewData["SearchHomeViewData"] = homeViewModel.SearchHome;
-        //ViewData["SucceededSearch"] = homeViewModel.SucceededSearch;
-        ////ViewData["HomeMenueLayouteViewData"] = _localizer["HomeMenueLayoute"];
-        ////ViewData["AddAdMenueLayouteViewData"] = _localizer["AddAdMenueLayoute"];
-        ///
-
-
-
-        //// ارسال داده‌ها به ViewData
-        //ViewData["TitleHomeViewData"] = _localizer["TitleHome"];
-        //ViewData["ColorHomeViewData"] = _localizer["ColorHome"];
-        //ViewData["BasePriceHomeViewData"] = _localizer["BasePriceHome"];
-        //ViewData["FunctionKilometersHomeViewData"] = _localizer["FunctionKilometersHome"];
-        //ViewData["CityHomeViewData"] = _localizer["CityIdHome"];
-        //ViewData["currentDate"] = DateTime.Now.ToString("D", CultureInfo.CurrentCulture);
-        ////ViewData["currentDate"] = DateTime.Now.ToString("D", new CultureInfo("fa-IR"));
-        ////ViewData["currentDate"] = DateTime.Now.ToString(CultureInfo.CurrentCulture);
-        //ViewData["SearchHomeViewData"] = _localizer["SearchHome"];
-        //ViewData["SucceededSearch"] = _localizer["SucceededSearch"];
-        ////ViewData["HomeMenueLayouteViewData"] = _localizer["HomeMenueLayoute"];
-        ////ViewData["AddAdMenueLayouteViewData"] = _localizer["AddAdMenueLayoute"];
-
-
-        //var Viesws = await _advertisementService.GetAllAdvertisementsAsyncHomeVM();
-        //foreach (var ad in Viesws)
-        //{
-        //    var breadcrumbs = await _categoryService.GetBreadcrumbsAsync((int)ad.CategoryId);
-
-        //    ViewData["breadcrumbs" + ad.Id.ToString()] = breadcrumbs;
-        //    catsDictionary["breadcrumbs" + ad.Id.ToString()] = breadcrumbs;
-        //    this.cats.Add(breadcrumbs);
-
-        //    var city = await _cityService.GetCityByIdAsync((int)ad.CityId);
-        //    ViewData["city" + ad.Id.ToString()] = city.Name;
-        //}
-
-
-        //_localizationService.ChangeCultureInfo(culture);
-
-
-        // هدایت به صفحه اصلی پس از تغییر فرهنگ
-        //return RedirectToAction(action, "Home", new { culture = culture });
-        //}
     }
 }

@@ -1,12 +1,21 @@
 ﻿using Divar.Db;
-
+using System.ComponentModel.DataAnnotations;
+using Divar.Localization;
 namespace Divar.ViewModels
+
 {
     public class AddViewModel
     {
-
+        [Required(ErrorMessageResourceName = "RequiredInputErrorMassage", ErrorMessageResourceType = typeof(Divar.Localization.ViewModels_AddViewModel))]
+        //[Required(ErrorMessage = "This fild is required")]
+        //[Required(ErrorMessage = (string)_localizer["RequiredInputError"])]
+        //[Required(ErrorMessage = _localizer["RequiredInputError"])
+        [MinLength(6, ErrorMessageResourceName = "TitleMinLengthErrorMassage", ErrorMessageResourceType = typeof(Divar.Localization.ViewModels_AddViewModel))]
+        //[MinLength(6)]
+        [Display(Name = "Title")]
         public string Title { get; set; } = null!;
 
+        [Required(ErrorMessageResourceName = "RequiredInputErrorMassage", ErrorMessageResourceType = typeof(Divar.Localization.ViewModels_AddViewModel))]
         public string Description { get; set; } = null!;
 
         public int? CategoryId { get; set; }
@@ -15,16 +24,23 @@ namespace Divar.ViewModels
 
         public string? Latitude { get; set; }
 
+        [Required(ErrorMessageResourceName = "RequiredInputErrorMassage", ErrorMessageResourceType = typeof(Divar.Localization.ViewModels_AddViewModel))]
         public string? Brand { get; set; }
 
+        [Required(ErrorMessageResourceName = "RequiredInputErrorMassage", ErrorMessageResourceType = typeof(Divar.Localization.ViewModels_AddViewModel))]
         public string? ItsModel { get; set; }
 
+        [Required(ErrorMessageResourceName = "RequiredInputErrorMassage", ErrorMessageResourceType = typeof(Divar.Localization.ViewModels_AddViewModel))]
         public string? Color { get; set; }
 
+        [Required(ErrorMessageResourceName = "RequiredInputErrorMassage", ErrorMessageResourceType = typeof(Divar.Localization.ViewModels_AddViewModel))]
         public int? FunctionKilometers { get; set; }
 
+        [Required(ErrorMessageResourceName = "RequiredInputErrorMassage", ErrorMessageResourceType = typeof(Divar.Localization.ViewModels_AddViewModel))]
         public string? ChassisAndBodyCondition { get; set; }
 
+        [Required(ErrorMessageResourceName = "RequiredInputErrorMassage", ErrorMessageResourceType = typeof(Divar.Localization.ViewModels_AddViewModel))]
+        [Range(10000000, 999999999, ErrorMessageResourceName = "BasePriseRangeErrorMassage", ErrorMessageResourceType = typeof(Divar.Localization.ViewModels_AddViewModel))]
         public decimal? BasePrice { get; set; }
 
         public string? EngineCondition { get; set; }
@@ -45,6 +61,9 @@ namespace Divar.ViewModels
 
         public string Nationality { get; set; } = null!;
 
+        [Required(ErrorMessageResourceName = "RequiredInputErrorMassage", ErrorMessageResourceType = typeof(Divar.Localization.ViewModels_AddViewModel))]
+        [MinLength(10, ErrorMessageResourceName = "NationalCodeLengthErrorMassage", ErrorMessageResourceType = typeof(Divar.Localization.ViewModels_AddViewModel))]
+        [MaxLength(10, ErrorMessageResourceName = "NationalCodeLengthErrorMassage", ErrorMessageResourceType = typeof(Divar.Localization.ViewModels_AddViewModel))]
         public string NationalCode { get; set; } = null!;
 
         public int? CityId { get; set; }

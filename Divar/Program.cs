@@ -93,7 +93,7 @@ var app = builder.Build();
 
 
 
-app.UseMiddleware<LocalizationMiddleware>();
+//app.UseMiddleware<LocalizationMiddleware>();
 
 app.UseRequestLocalization(requestLocalizationOptions);
 

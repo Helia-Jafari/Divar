@@ -117,76 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BrandAdd" xml:space="preserve">
-    <value>نام برند و نام مدل و تیپ:</value>
+  <data name="RequiredInputErrorMassage" xml:space="preserve">
+    <value>This fild is required</value>
   </data>
-  <data name="ItsModelAdd" xml:space="preserve">
-    <value>مدل:</value>
+  <data name="TitleMinLengthErrorMassage" xml:space="preserve">
+    <value>This title must have at least 6 charackters</value>
   </data>
-  <data name="ColorAdd" xml:space="preserve">
-    <value>رنگ:</value>
+  <data name="BasePriseRangeErrorMassage" xml:space="preserve">
+    <value>The base price must be between 10000000 and 999999999</value>
   </data>
-  <data name="FunctionKilometersAdd" xml:space="preserve">
-    <value>کارکرد:</value>
-  </data>
-  <data name="ChassisAndBodyConditionAdd" xml:space="preserve">
-    <value>وضعیت بدنه:</value>
-  </data>
-  <data name="BasePriceAdd" xml:space="preserve">
-    <value>قیمت پایه به تومان:</value>
-  </data>
-  <data name="EngineConditionAdd" xml:space="preserve">
-    <value>وضعیت موتور:</value>
-  </data>
-  <data name="RearChassisConditionAdd" xml:space="preserve">
-    <value>وضعیت شاسی عقب:</value>
-  </data>
-  <data name="FrontChassisConditionAdd" xml:space="preserve">
-    <value>وضعیت شاسی جلو:</value>
-  </data>
-  <data name="ThirdPartyInsuranceTermAdd" xml:space="preserve">
-    <value>مهلت بیمٔه شخص ثالث:</value>
-  </data>
-  <data name="GearboxAdd" xml:space="preserve">
-    <value>گیربکس:</value>
-  </data>
-  <data name="DoYouWantToReplaceAdd" xml:space="preserve">
-    <value>آیا مایل به معاوضه هستید؟</value>
-  </data>
-  <data name="IsTheChatActivatedAdd" xml:space="preserve">
-    <value>آیا چت دیوار فعال شود؟</value>
-  </data>
-  <data name="IsThePhoneCallActiveAdd" xml:space="preserve">
-    <value>آیا قابلیت تماس فعال شود؟</value>
-  </data>
-  <data name="TitleAdd" xml:space="preserve">
-    <value>عنوان اگهی:</value>
-  </data>
-  <data name="DescriptionAdd" xml:space="preserve">
-    <value>توضیحات آگهی:</value>
-  </data>
-  <data name="NationalityAdd" xml:space="preserve">
-    <value>ملیت:</value>
-  </data>
-  <data name="NationalCodeAdd" xml:space="preserve">
-    <value>کد ملی:</value>
-  </data>
-  <data name="CategoryIdAdd" xml:space="preserve">
-    <value>دسته بندی:</value>
-  </data>
-  <data name="CityIdAdd" xml:space="preserve">
-    <value>شهر:</value>
-  </data>
-  <data name="SubmitAdd" xml:space="preserve">
-    <value>ثبت آگهی</value>
-  </data>
-  <data name="RequiredInputError" xml:space="preserve">
-    <value>پر کردن این فیلد اجباری است</value>
-  </data>
-  <data name="HomeMenueLayoute" xml:space="preserve">
-    <value>خانه</value>
-  </data>
-  <data name="AddAdMenueLayoute" xml:space="preserve">
-    <value>ثبت آگهی</value>
+  <data name="NationalCodeLengthErrorMassage" xml:space="preserve">
+    <value>This fild must have 10 charackters</value>
   </data>
 </root>
