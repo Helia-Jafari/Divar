@@ -4,8 +4,11 @@
 @using Divar.Db;
 
 @using System.Globalization;
+@using Microsoft.Extensions.Localization;
 
 @inject DivarContext _context;
+
+@inject IStringLocalizer<Divar.Controllers.HomeController> _localizer;
 
 @* <button class="btn btn-primary d-block" id="btnChangeCulture" onclick="changeCulture()"> *@
 @*     <i class="bi bi-translate"></i> *@
@@ -38,11 +41,11 @@
 @*         <button class="btn btn-outline-success" type="submit">@ViewData["SearchHomeViewData"]</button> *@
 @*     </div> *@
 @* </form> *@
-<form asp-controller="Home" asp-action="Index" asp-route-culture="@CultureInfo.CurrentCulture.Name" method="post" onsubmit="keepCultureSearch()">
+<form asp-controller="Home" asp-action="Index" asp-route-culture="@CultureInfo.CurrentCulture.Name" method="post" onsubmit="">
     <div class="d-flex">
-        <input value="@ViewData["serach"]" class="form-control me-2" type="search" placeholder="@ViewData["SearchHomeViewData"]" aria-label="Search" name="SearchString">
+        <input value="@ViewData["serach"]" class="form-control me-2" type="search" placeholder="@_localizer["SearchHome"]" aria-label="Search" name="SearchString">
         <input type="hidden" name="culture" value="@CultureInfo.CurrentCulture.Name" />
-        <button class="btn btn-outline-success" type="submit">@ViewData["SearchHomeViewData"]</button>
+        <button class="btn btn-outline-success" type="submit">@_localizer["SearchHome"]</button>
     </div>
 </form>
 
@@ -57,13 +60,13 @@
             <div class="col-6 border border-primary bg-info">
 
                 <a class="text-decoration-none" style="color:black;" asp-action="Details" asp-controller="Home" asp-route-id="@ad.Id">
-                    <p>@ViewData["TitleHomeViewData"] @ad.Title</p>
-                    <p>@ViewData["ColorHomeViewData"] @ad.Color</p>
-                    <p>@ViewData["BasePriceHomeViewData"] @ad.BasePrice</p>
-                    <p>@ViewData["FunctionKilometersHomeViewData"] @ad.FunctionKilometers</p>
+                    <p>@_localizer["TitleHome"] @ad.Title</p>
+                    <p>@_localizer["ColorHome"] @ad.Color</p>
+                    <p>@_localizer["BasePriceHome"] @ad.BasePrice</p>
+                    <p>@_localizer["FunctionKilometersHome"] @ad.FunctionKilometers</p>
 
                     <p>
-                        @ViewData["CityHomeViewData"]
+                        @_localizer["CityHome"]
                         @ViewData["city" + ad.Id.ToString()]
                     </p>
 

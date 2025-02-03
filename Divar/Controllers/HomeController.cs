@@ -95,16 +95,16 @@ namespace Divar.Controllers
 
 
             // ارسال داده‌ها به ViewData
-            ViewData["TitleHomeViewData"] = _localizer["TitleHome"];
-            ViewData["ColorHomeViewData"] = _localizer["ColorHome"];
-            ViewData["BasePriceHomeViewData"] = _localizer["BasePriceHome"];
-            ViewData["FunctionKilometersHomeViewData"] = _localizer["FunctionKilometersHome"];
-            ViewData["CityHomeViewData"] = _localizer["CityIdHome"];
+            //ViewData["TitleHomeViewData"] = _localizer["TitleHome"];
+            //ViewData["ColorHomeViewData"] = _localizer["ColorHome"];
+            //ViewData["BasePriceHomeViewData"] = _localizer["BasePriceHome"];
+            //ViewData["FunctionKilometersHomeViewData"] = _localizer["FunctionKilometersHome"];
+            //ViewData["CityHomeViewData"] = _localizer["CityIdHome"];
             ViewData["currentDate"] = DateTime.Now.ToString("D", CultureInfo.CurrentCulture);
             //ViewData["currentDate"] = DateTime.Now.ToString("D", new CultureInfo("fa-IR"));
             //ViewData["currentDate"] = DateTime.Now.ToString(CultureInfo.CurrentCulture);
-            ViewData["SearchHomeViewData"] = _localizer["SearchHome"];
-            ViewData["SucceededSearch"] = _localizer["SucceededSearch"];
+            //ViewData["SearchHomeViewData"] = _localizer["SearchHome"];
+            //ViewData["SucceededSearch"] = _localizer["SucceededSearch"];
             //ViewData["HomeMenueLayouteViewData"] = _localizer["HomeMenueLayoute"];
             //ViewData["AddAdMenueLayouteViewData"] = _localizer["AddAdMenueLayoute"];
 
@@ -155,29 +155,29 @@ namespace Divar.Controllers
         public async Task<IActionResult> Details(int id)
         {
             // ارسال داده‌ها به ViewData
-            ViewData["TitleHomeViewData"] = _localizer["TitleHome"];
-            ViewData["ColorHomeViewData"] = _localizer["ColorHome"];
-            ViewData["BasePriceHomeViewData"] = _localizer["BasePriceHome"];
-            ViewData["FunctionKilometersHomeViewData"] = _localizer["FunctionKilometersHome"];
-            ViewData["CityHomeViewData"] = _localizer["CityIdHome"];
-            ViewData["CaegoryHomeViewData"] = _localizer["CategoryIdHome"];
-            ViewData["ChassisAndBodyConditionHomeViewData"] = _localizer["ChassisAndBodyConditionHome"];
-            ViewData["DoYouWantToReplaceHomeViewData"] = _localizer["DoYouWantToReplaceHome"];
-            ViewData["EngineConditionHomeViewData"] = _localizer["EngineConditionHome"];
-            ViewData["FrontChassisConditionHomeViewData"] = _localizer["FrontChassisConditionHome"];
-            ViewData["FunctionKilometersHomeViewData"] = _localizer["FunctionKilometersHome"];
-            ViewData["GearboxHomeViewData"] = _localizer["GearboxHome"];
-            ViewData["IsTheChatActivatedHomeViewData"] = _localizer["IsTheChatActivatedHome"];
-            ViewData["IsThePhoneCallActiveHomeViewData"] = _localizer["IsThePhoneCallActiveHome"];
-            ViewData["ItsModelHomeViewData"] = _localizer["ItsModelHome"];
-            ViewData["RearChassisConditionHomeViewData"] = _localizer["RearChassisConditionHome"];
-            ViewData["ThirdPartyInsuranceTermHomeViewData"] = _localizer["ThirdPartyInsuranceTermHome"];
-            ViewData["SearchHomeViewData"] = _localizer["SearchHome"];
+            //ViewData["TitleHomeViewData"] = _localizer["TitleHome"];
+            //ViewData["ColorHomeViewData"] = _localizer["ColorHome"];
+            //ViewData["BasePriceHomeViewData"] = _localizer["BasePriceHome"];
+            //ViewData["FunctionKilometersHomeViewData"] = _localizer["FunctionKilometersHome"];
+            //ViewData["CityHomeViewData"] = _localizer["CityIdHome"];
+            //ViewData["CaegoryHomeViewData"] = _localizer["CategoryIdHome"];
+            //ViewData["ChassisAndBodyConditionHomeViewData"] = _localizer["ChassisAndBodyConditionHome"];
+            //ViewData["DoYouWantToReplaceHomeViewData"] = _localizer["DoYouWantToReplaceHome"];
+            //ViewData["EngineConditionHomeViewData"] = _localizer["EngineConditionHome"];
+            //ViewData["FrontChassisConditionHomeViewData"] = _localizer["FrontChassisConditionHome"];
+            //ViewData["FunctionKilometersHomeViewData"] = _localizer["FunctionKilometersHome"];
+            //ViewData["GearboxHomeViewData"] = _localizer["GearboxHome"];
+            //ViewData["IsTheChatActivatedHomeViewData"] = _localizer["IsTheChatActivatedHome"];
+            //ViewData["IsThePhoneCallActiveHomeViewData"] = _localizer["IsThePhoneCallActiveHome"];
+            //ViewData["ItsModelHomeViewData"] = _localizer["ItsModelHome"];
+            //ViewData["RearChassisConditionHomeViewData"] = _localizer["RearChassisConditionHome"];
+            //ViewData["ThirdPartyInsuranceTermHomeViewData"] = _localizer["ThirdPartyInsuranceTermHome"];
+            //ViewData["SearchHomeViewData"] = _localizer["SearchHome"];
             ViewData["currentDate"] = DateTime.Now.ToString("D", CultureInfo.CurrentCulture);
             //ViewData["currentDate"] = DateTime.Now.ToString("D", new CultureInfo("fa-IR"));
             //ViewData["currentDate"] = DateTime.Now.ToString(CultureInfo.CurrentCulture);
-            ViewData["SearchHomeViewData"] = _localizer["SearchHome"];
-            ViewData["SucceededSearch"] = _localizer["SucceededSearch"];
+            //ViewData["SearchHomeViewData"] = _localizer["SearchHome"];
+            //ViewData["SucceededSearch"] = _localizer["SucceededSearch"];
             //ViewData["HomeMenueLayouteViewData"] = _localizer["HomeMenueLayoute"];
             //ViewData["AddAdMenueLayouteViewData"] = _localizer["AddAdMenueLayoute"];
 
@@ -195,16 +195,16 @@ namespace Divar.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             // ارسال داده‌ها به ViewData
-            ViewData["TitleHomeViewData"] = _localizer["TitleHome"];
-            ViewData["ColorHomeViewData"] = _localizer["ColorHome"];
-            ViewData["BasePriceHomeViewData"] = _localizer["BasePriceHome"];
-            ViewData["FunctionKilometersHomeViewData"] = _localizer["FunctionKilometersHome"];
-            ViewData["CityHomeViewData"] = _localizer["CityIdHome"];
+            //ViewData["TitleHomeViewData"] = _localizer["TitleHome"];
+            //ViewData["ColorHomeViewData"] = _localizer["ColorHome"];
+            //ViewData["BasePriceHomeViewData"] = _localizer["BasePriceHome"];
+            //ViewData["FunctionKilometersHomeViewData"] = _localizer["FunctionKilometersHome"];
+            //ViewData["CityHomeViewData"] = _localizer["CityIdHome"];
             ViewData["currentDate"] = DateTime.Now.ToString("D", CultureInfo.CurrentCulture);
             //ViewData["currentDate"] = DateTime.Now.ToString("D", new CultureInfo("fa-IR"));
             //ViewData["currentDate"] = DateTime.Now.ToString(CultureInfo.CurrentCulture);
-            ViewData["SearchHomeViewData"] = _localizer["SearchHome"];
-            ViewData["SucceededSearch"] = _localizer["SucceededSearch"];
+            //ViewData["SearchHomeViewData"] = _localizer["SearchHome"];
+            //ViewData["SucceededSearch"] = _localizer["SucceededSearch"];
             //ViewData["HomeMenueLayouteViewData"] = _localizer["HomeMenueLayoute"];
             //ViewData["AddAdMenueLayouteViewData"] = _localizer["AddAdMenueLayoute"];
 
@@ -231,33 +231,33 @@ namespace Divar.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             // ارسال داده‌ها به ViewData
-            ViewData["TitleHomeViewData"] = _localizer["TitleHome"];
-            ViewData["BrandHomeViewData"] = _localizer["BrandHome"];
-            ViewData["DescriptionHomeViewData"] = _localizer["DescriptionHome"];
-            ViewData["ColorHomeViewData"] = _localizer["ColorHome"];
-            ViewData["BasePriceHomeViewData"] = _localizer["BasePriceHome"];
-            ViewData["FunctionKilometersHomeViewData"] = _localizer["FunctionKilometersHome"];
-            ViewData["CityHomeViewData"] = _localizer["CityIdHome"];
-            ViewData["CaegoryHomeViewData"] = _localizer["CategoryIdHome"];
-            ViewData["ChassisAndBodyConditionHomeViewData"] = _localizer["ChassisAndBodyConditionHome"];
-            ViewData["DoYouWantToReplaceHomeViewData"] = _localizer["DoYouWantToReplaceHome"];
-            ViewData["EngineConditionHomeViewData"] = _localizer["EngineConditionHome"];
-            ViewData["FrontChassisConditionHomeViewData"] = _localizer["FrontChassisConditionHome"];
-            ViewData["FunctionKilometersHomeViewData"] = _localizer["FunctionKilometersHome"];
-            ViewData["GearboxHomeViewData"] = _localizer["GearboxHome"];
-            ViewData["IsTheChatActivatedHomeViewData"] = _localizer["IsTheChatActivatedHome"];
-            ViewData["IsThePhoneCallActiveHomeViewData"] = _localizer["IsThePhoneCallActiveHome"];
-            ViewData["ItsModelHomeViewData"] = _localizer["ItsModelHome"];
-            ViewData["RearChassisConditionHomeViewData"] = _localizer["RearChassisConditionHome"];
-            ViewData["ThirdPartyInsuranceTermHomeViewData"] = _localizer["ThirdPartyInsuranceTermHome"];
-            ViewData["NationalityHomeViewData"] = _localizer["NationalityHome"];
-            ViewData["NationalCodeHomeViewData"] = _localizer["NationalCodeHome"];
-            ViewData["SubmitHomeViewData"] = _localizer["SubmitHome"];
+            //ViewData["TitleHomeViewData"] = _localizer["TitleHome"];
+            //ViewData["BrandHomeViewData"] = _localizer["BrandHome"];
+            //ViewData["DescriptionHomeViewData"] = _localizer["DescriptionHome"];
+            //ViewData["ColorHomeViewData"] = _localizer["ColorHome"];
+            //ViewData["BasePriceHomeViewData"] = _localizer["BasePriceHome"];
+            //ViewData["FunctionKilometersHomeViewData"] = _localizer["FunctionKilometersHome"];
+            //ViewData["CityHomeViewData"] = _localizer["CityIdHome"];
+            //ViewData["CaegoryHomeViewData"] = _localizer["CategoryIdHome"];
+            //ViewData["ChassisAndBodyConditionHomeViewData"] = _localizer["ChassisAndBodyConditionHome"];
+            //ViewData["DoYouWantToReplaceHomeViewData"] = _localizer["DoYouWantToReplaceHome"];
+            //ViewData["EngineConditionHomeViewData"] = _localizer["EngineConditionHome"];
+            //ViewData["FrontChassisConditionHomeViewData"] = _localizer["FrontChassisConditionHome"];
+            //ViewData["FunctionKilometersHomeViewData"] = _localizer["FunctionKilometersHome"];
+            //ViewData["GearboxHomeViewData"] = _localizer["GearboxHome"];
+            //ViewData["IsTheChatActivatedHomeViewData"] = _localizer["IsTheChatActivatedHome"];
+            //ViewData["IsThePhoneCallActiveHomeViewData"] = _localizer["IsThePhoneCallActiveHome"];
+            //ViewData["ItsModelHomeViewData"] = _localizer["ItsModelHome"];
+            //ViewData["RearChassisConditionHomeViewData"] = _localizer["RearChassisConditionHome"];
+            //ViewData["ThirdPartyInsuranceTermHomeViewData"] = _localizer["ThirdPartyInsuranceTermHome"];
+            //ViewData["NationalityHomeViewData"] = _localizer["NationalityHome"];
+            //ViewData["NationalCodeHomeViewData"] = _localizer["NationalCodeHome"];
+            //ViewData["SubmitHomeViewData"] = _localizer["SubmitHome"];
             ViewData["currentDate"] = DateTime.Now.ToString("D", CultureInfo.CurrentCulture);
             //ViewData["currentDate"] = DateTime.Now.ToString("D", new CultureInfo("fa-IR"));
             //ViewData["currentDate"] = DateTime.Now.ToString(CultureInfo.CurrentCulture);
-            ViewData["SearchHomeViewData"] = _localizer["SearchHome"];
-            ViewData["SucceededSearch"] = _localizer["SucceededSearch"];
+            //ViewData["SearchHomeViewData"] = _localizer["SearchHome"];
+            //ViewData["SucceededSearch"] = _localizer["SucceededSearch"];
             //ViewData["HomeMenueLayouteViewData"] = _localizer["HomeMenueLayoute"];
             //ViewData["AddAdMenueLayouteViewData"] = _localizer["AddAdMenueLayoute"];
 
@@ -283,28 +283,28 @@ namespace Divar.Controllers
         public async Task<IActionResult> Edit(HomeEditViewModel model)
         {
             // ارسال داده‌ها به ViewData
-            ViewData["TitleHomeViewData"] = _localizer["TitleHome"];
-            ViewData["ColorHomeViewData"] = _localizer["ColorHome"];
-            ViewData["BasePriceHomeViewData"] = _localizer["BasePriceHome"];
-            ViewData["FunctionKilometersHomeViewData"] = _localizer["FunctionKilometersHome"];
-            ViewData["CityHomeViewData"] = _localizer["CityIdHome"];
-            ViewData["CaegoryHomeViewData"] = _localizer["CategoryIdHome"];
-            ViewData["ChassisAndBodyConditionHomeViewData"] = _localizer["ChassisAndBodyConditionHome"];
-            ViewData["DoYouWantToReplaceHomeViewData"] = _localizer["DoYouWantToReplaceHome"];
-            ViewData["EngineConditionHomeViewData"] = _localizer["EngineConditionHome"];
-            ViewData["FrontChassisConditionHomeViewData"] = _localizer["FrontChassisConditionHome"];
-            ViewData["FunctionKilometersHomeViewData"] = _localizer["FunctionKilometersHome"];
-            ViewData["GearboxHomeViewData"] = _localizer["GearboxHome"];
-            ViewData["IsTheChatActivatedHomeViewData"] = _localizer["IsTheChatActivatedHome"];
-            ViewData["IsThePhoneCallActiveHomeViewData"] = _localizer["IsThePhoneCallActiveHome"];
-            ViewData["ItsModelHomeViewData"] = _localizer["ItsModelHome"];
-            ViewData["RearChassisConditionHomeViewData"] = _localizer["RearChassisConditionHome"];
-            ViewData["ThirdPartyInsuranceTermHomeViewData"] = _localizer["ThirdPartyInsuranceTermHome"];
+            //ViewData["TitleHomeViewData"] = _localizer["TitleHome"];
+            //ViewData["ColorHomeViewData"] = _localizer["ColorHome"];
+            //ViewData["BasePriceHomeViewData"] = _localizer["BasePriceHome"];
+            //ViewData["FunctionKilometersHomeViewData"] = _localizer["FunctionKilometersHome"];
+            //ViewData["CityHomeViewData"] = _localizer["CityIdHome"];
+            //ViewData["CaegoryHomeViewData"] = _localizer["CategoryIdHome"];
+            //ViewData["ChassisAndBodyConditionHomeViewData"] = _localizer["ChassisAndBodyConditionHome"];
+            //ViewData["DoYouWantToReplaceHomeViewData"] = _localizer["DoYouWantToReplaceHome"];
+            //ViewData["EngineConditionHomeViewData"] = _localizer["EngineConditionHome"];
+            //ViewData["FrontChassisConditionHomeViewData"] = _localizer["FrontChassisConditionHome"];
+            //ViewData["FunctionKilometersHomeViewData"] = _localizer["FunctionKilometersHome"];
+            //ViewData["GearboxHomeViewData"] = _localizer["GearboxHome"];
+            //ViewData["IsTheChatActivatedHomeViewData"] = _localizer["IsTheChatActivatedHome"];
+            //ViewData["IsThePhoneCallActiveHomeViewData"] = _localizer["IsThePhoneCallActiveHome"];
+            //ViewData["ItsModelHomeViewData"] = _localizer["ItsModelHome"];
+            //ViewData["RearChassisConditionHomeViewData"] = _localizer["RearChassisConditionHome"];
+            //ViewData["ThirdPartyInsuranceTermHomeViewData"] = _localizer["ThirdPartyInsuranceTermHome"];
             ViewData["currentDate"] = DateTime.Now.ToString("D", CultureInfo.CurrentCulture);
             //ViewData["currentDate"] = DateTime.Now.ToString("D", new CultureInfo("fa-IR"));
             //ViewData["currentDate"] = DateTime.Now.ToString(CultureInfo.CurrentCulture);
-            ViewData["SearchHomeViewData"] = _localizer["SearchHome"];
-            ViewData["SucceededSearch"] = _localizer["SucceededSearch"];
+            //ViewData["SearchHomeViewData"] = _localizer["SearchHome"];
+            //ViewData["SucceededSearch"] = _localizer["SucceededSearch"];
             //ViewData["HomeMenueLayouteViewData"] = _localizer["HomeMenueLayoute"];
             //ViewData["AddAdMenueLayouteViewData"] = _localizer["AddAdMenueLayoute"];
 
@@ -389,16 +389,16 @@ namespace Divar.Controllers
 
 
             // ارسال داده‌ها به ViewData
-            ViewData["TitleHomeViewData"] = _localizer["TitleHome"];
-            ViewData["ColorHomeViewData"] = _localizer["ColorHome"];
-            ViewData["BasePriceHomeViewData"] = _localizer["BasePriceHome"];
-            ViewData["FunctionKilometersHomeViewData"] = _localizer["FunctionKilometersHome"];
-            ViewData["CityHomeViewData"] = _localizer["CityIdHome"];
+            //ViewData["TitleHomeViewData"] = _localizer["TitleHome"];
+            //ViewData["ColorHomeViewData"] = _localizer["ColorHome"];
+            //ViewData["BasePriceHomeViewData"] = _localizer["BasePriceHome"];
+            //ViewData["FunctionKilometersHomeViewData"] = _localizer["FunctionKilometersHome"];
+            //ViewData["CityHomeViewData"] = _localizer["CityIdHome"];
             ViewData["currentDate"] = DateTime.Now.ToString("D", CultureInfo.CurrentCulture);
             //ViewData["currentDate"] = DateTime.Now.ToString("D", new CultureInfo("fa-IR"));
             //ViewData["currentDate"] = DateTime.Now.ToString(CultureInfo.CurrentCulture);
-            ViewData["SearchHomeViewData"] = _localizer["SearchHome"];
-            ViewData["SucceededSearch"] = _localizer["SucceededSearch"];
+            //ViewData["SearchHomeViewData"] = _localizer["SearchHome"];
+            //ViewData["SucceededSearch"] = _localizer["SucceededSearch"];
             //ViewData["HomeMenueLayouteViewData"] = _localizer["HomeMenueLayoute"];
             //ViewData["AddAdMenueLayouteViewData"] = _localizer["AddAdMenueLayoute"];
 

@@ -70,30 +70,30 @@ namespace Divar.Controllers
 
             ViewData["categories"] = cs;
 
-            ViewData["BasePriceAddViewData"] = _localizer["BasePriceAdd"];
-            ViewData["BrandAddViewData"] = _localizer["BrandAdd"];
-            ViewData["CategoryIdAddViewData"] = _localizer["CategoryIdAdd"];
-            ViewData["ChassisAndBodyConditionAddViewData"] = _localizer["ChassisAndBodyConditionAdd"];
-            ViewData["CityIdAddViewData"] = _localizer["CityIdAdd"];
-            ViewData["ColorAddViewData"] = _localizer["ColorAdd"];
-            ViewData["DescriptionAddViewData"] = _localizer["DescriptionAdd"];
-            ViewData["DoYouWantToReplaceAddViewData"] = _localizer["DoYouWantToReplaceAdd"];
-            ViewData["EngineConditionAddViewData"] = _localizer["EngineConditionAdd"];
-            ViewData["FrontChassisConditionAddViewData"] = _localizer["FrontChassisConditionAdd"];
-            ViewData["FunctionKilometersAddViewData"] = _localizer["FunctionKilometersAdd"];
-            ViewData["GearboxAddViewData"] = _localizer["GearboxAdd"];
-            ViewData["IsTheChatActivatedAddViewData"] = _localizer["IsTheChatActivatedAdd"];
-            ViewData["IsThePhoneCallActiveAddViewData"] = _localizer["IsThePhoneCallActiveAdd"];
-            ViewData["ItsModelAddViewData"] = _localizer["ItsModelAdd"];
-            ViewData["NationalCodeAddViewData"] = _localizer["NationalCodeAdd"];
-            ViewData["NationalityAddViewData"] = _localizer["NationalityAdd"];
-            ViewData["RearChassisConditionAddViewData"] = _localizer["RearChassisConditionAdd"];
-            ViewData["ThirdPartyInsuranceTermAddViewData"] = _localizer["ThirdPartyInsuranceTermAdd"];
-            ViewData["TitleAddViewData"] = _localizer["TitleAdd"];
-            ViewData["SubmitAddViewData"] = _localizer["SubmitAdd"];
-            ViewData["RequiredInputErrorAddViewData"] = _localizer["RequiredInputError"];
-            ViewData["HomeMenueLayouteViewData"] = _localizer["HomeMenueLayoute"];
-            ViewData["AddAdMenueLayouteViewData"] = _localizer["AddAdMenueLayoute"];
+            //ViewData["BasePriceAddViewData"] = _localizer["BasePriceAdd"];
+            //ViewData["BrandAddViewData"] = _localizer["BrandAdd"];
+            //ViewData["CategoryIdAddViewData"] = _localizer["CategoryIdAdd"];
+            //ViewData["ChassisAndBodyConditionAddViewData"] = _localizer["ChassisAndBodyConditionAdd"];
+            //ViewData["CityIdAddViewData"] = _localizer["CityIdAdd"];
+            //ViewData["ColorAddViewData"] = _localizer["ColorAdd"];
+            //ViewData["DescriptionAddViewData"] = _localizer["DescriptionAdd"];
+            //ViewData["DoYouWantToReplaceAddViewData"] = _localizer["DoYouWantToReplaceAdd"];
+            //ViewData["EngineConditionAddViewData"] = _localizer["EngineConditionAdd"];
+            //ViewData["FrontChassisConditionAddViewData"] = _localizer["FrontChassisConditionAdd"];
+            //ViewData["FunctionKilometersAddViewData"] = _localizer["FunctionKilometersAdd"];
+            //ViewData["GearboxAddViewData"] = _localizer["GearboxAdd"];
+            //ViewData["IsTheChatActivatedAddViewData"] = _localizer["IsTheChatActivatedAdd"];
+            //ViewData["IsThePhoneCallActiveAddViewData"] = _localizer["IsThePhoneCallActiveAdd"];
+            //ViewData["ItsModelAddViewData"] = _localizer["ItsModelAdd"];
+            //ViewData["NationalCodeAddViewData"] = _localizer["NationalCodeAdd"];
+            //ViewData["NationalityAddViewData"] = _localizer["NationalityAdd"];
+            //ViewData["RearChassisConditionAddViewData"] = _localizer["RearChassisConditionAdd"];
+            //ViewData["ThirdPartyInsuranceTermAddViewData"] = _localizer["ThirdPartyInsuranceTermAdd"];
+            //ViewData["TitleAddViewData"] = _localizer["TitleAdd"];
+            //ViewData["SubmitAddViewData"] = _localizer["SubmitAdd"];
+            //ViewData["RequiredInputErrorAddViewData"] = _localizer["RequiredInputError"];
+            //ViewData["HomeMenueLayouteViewData"] = _localizer["HomeMenueLayoute"];
+            //ViewData["AddAdMenueLayouteViewData"] = _localizer["AddAdMenueLayoute"];
 
             //switch (CultureInfo.CurrentCulture.ToString())
             //{
@@ -133,28 +133,28 @@ public async Task<IActionResult> Index(AddViewModel model)
 
             ViewData["categories"] = cs;
 
-            ViewData["BasePriceAddViewData"] = _localizer["BasePriceAdd"];
-            ViewData["BrandAddViewData"] = _localizer["BrandAdd"];
-            ViewData["CategoryIdAddViewData"] = _localizer["CategoryIdAdd"];
-            ViewData["ChassisAndBodyConditionAddViewData"] = _localizer["ChassisAndBodyConditionAdd"];
-            ViewData["CityIdAddViewData"] = _localizer["CityIdAdd"];
-            ViewData["ColorAddViewData"] = _localizer["ColorAdd"];
-            ViewData["DescriptionAddViewData"] = _localizer["DescriptionAdd"];
-            ViewData["DoYouWantToReplaceAddViewData"] = _localizer["DoYouWantToReplaceAdd"];
-            ViewData["EngineConditionAddViewData"] = _localizer["EngineConditionAdd"];
-            ViewData["FrontChassisConditionAddViewData"] = _localizer["FrontChassisConditionAdd"];
-            ViewData["FunctionKilometersAddViewData"] = _localizer["FunctionKilometersAdd"];
-            ViewData["GearboxAddViewData"] = _localizer["GearboxAdd"];
-            ViewData["IsTheChatActivatedAddViewData"] = _localizer["IsTheChatActivatedAdd"];
-            ViewData["IsThePhoneCallActiveAddViewData"] = _localizer["IsThePhoneCallActiveAdd"];
-            ViewData["ItsModelAddViewData"] = _localizer["ItsModelAdd"];
-            ViewData["NationalCodeAddViewData"] = _localizer["NationalCodeAdd"];
-            ViewData["NationalityAddViewData"] = _localizer["NationalityAdd"];
-            ViewData["RearChassisConditionAddViewData"] = _localizer["RearChassisConditionAdd"];
-            ViewData["ThirdPartyInsuranceTermAddViewData"] = _localizer["ThirdPartyInsuranceTermAdd"];
-            ViewData["TitleAddViewData"] = _localizer["TitleAdd"];
-            ViewData["SubmitAddViewData"] = _localizer["SubmitAdd"];
-            ViewData["RequiredInputErrorAddViewData"] = _localizer["RequiredInputErrorAdd"];
+            //ViewData["BasePriceAddViewData"] = _localizer["BasePriceAdd"];
+            //ViewData["BrandAddViewData"] = _localizer["BrandAdd"];
+            //ViewData["CategoryIdAddViewData"] = _localizer["CategoryIdAdd"];
+            //ViewData["ChassisAndBodyConditionAddViewData"] = _localizer["ChassisAndBodyConditionAdd"];
+            //ViewData["CityIdAddViewData"] = _localizer["CityIdAdd"];
+            //ViewData["ColorAddViewData"] = _localizer["ColorAdd"];
+            //ViewData["DescriptionAddViewData"] = _localizer["DescriptionAdd"];
+            //ViewData["DoYouWantToReplaceAddViewData"] = _localizer["DoYouWantToReplaceAdd"];
+            //ViewData["EngineConditionAddViewData"] = _localizer["EngineConditionAdd"];
+            //ViewData["FrontChassisConditionAddViewData"] = _localizer["FrontChassisConditionAdd"];
+            //ViewData["FunctionKilometersAddViewData"] = _localizer["FunctionKilometersAdd"];
+            //ViewData["GearboxAddViewData"] = _localizer["GearboxAdd"];
+            //ViewData["IsTheChatActivatedAddViewData"] = _localizer["IsTheChatActivatedAdd"];
+            //ViewData["IsThePhoneCallActiveAddViewData"] = _localizer["IsThePhoneCallActiveAdd"];
+            //ViewData["ItsModelAddViewData"] = _localizer["ItsModelAdd"];
+            //ViewData["NationalCodeAddViewData"] = _localizer["NationalCodeAdd"];
+            //ViewData["NationalityAddViewData"] = _localizer["NationalityAdd"];
+            //ViewData["RearChassisConditionAddViewData"] = _localizer["RearChassisConditionAdd"];
+            //ViewData["ThirdPartyInsuranceTermAddViewData"] = _localizer["ThirdPartyInsuranceTermAdd"];
+            //ViewData["TitleAddViewData"] = _localizer["TitleAdd"];
+            //ViewData["SubmitAddViewData"] = _localizer["SubmitAdd"];
+            //ViewData["RequiredInputErrorAddViewData"] = _localizer["RequiredInputErrorAdd"];
 
 
 

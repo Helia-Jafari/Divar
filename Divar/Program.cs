@@ -29,6 +29,20 @@ builder.Services.AddScoped<ICityService, CityService>();
 
 builder.Services.AddScoped<ISearchSpecification<Advertisement>, AdvertisementSearchSpecificationService>();
 
+builder.Services.AddMemoryCache();
+
+//builder.Services.AddDistributedMemoryCache(options =>
+//{
+//    options.Configuration = "";
+//    options.InstanceName = "SampleInstance";
+//});
+
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = "localhost:6379";
+    options.InstanceName = "SampleInstance";
+});
+
 
 //builder.Services.AddSingleton<AdvertisementMapper>();
 
