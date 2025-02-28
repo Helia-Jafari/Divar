@@ -5,7 +5,7 @@ namespace Divar.Db;
 
 public partial class ViwShowAdvertisement
 {
-    public byte[] Image { get; set; } = null!;
+    public byte[]? Image { get; set; }
 
     public int? Id { get; set; }
 

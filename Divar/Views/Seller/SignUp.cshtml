@@ -1,0 +1,57 @@
+﻿@using Divar.ViewModels;
+@model SellerSignUpViewModel;
+
+<form asp-controller="Seller" asp-action="SignUp" method="post">
+      <table class="border-0 w-100">
+          <tr>
+
+              <td>
+                <label asp-for="@Model.FirstName" for="Color">FirstName</label>
+                <input asp-for="@Model.FirstName" type="text" class="form-control" id="Color" placeholder=" ">
+                <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
+              </td>
+        </tr>
+        <tr>
+
+            <td>
+                <label asp-for="@Model.LastName" for="Color">LastName</label>
+                <input asp-for="@Model.LastName" type="text" class="form-control" id="Color" placeholder=" ">
+                <span asp-validation-for="@Model.LastName" class="text-danger"></span>
+            </td>
+        </tr>
+          <tr>
+
+              <td>
+                <label asp-for="@Model.PhoneNumber" for="FunctionKilometers">PhoneNumber</label>
+                <input asp-for="@Model.PhoneNumber" type="text" class="form-control" id="FunctionKilometers" placeholder=" ">
+                <span asp-validation-for="@Model.PhoneNumber" class="text-danger"></span>
+              </td>
+          </tr>
+
+          <tr>
+
+            <td>
+                <label asp-for="@Model.NationalCode" for="NationalCode">NationalCode</label>
+                <input asp-for="@Model.NationalCode" type="text" class="form-control" id="NationalCode" placeholder="" >
+                <span asp-validation-for="@Model.NationalCode" class="text-danger"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="validation-summary-errors">
+                    <asp-validation-summary></asp-validation-summary>
+                </div>
+            </td>
+        </tr>
+        <tr class="d-flex justify-content-center">
+
+              <td>
+                <button type="submit" class="btn btn-primary" style="float:right;">Submit</button>
+              </td>
+          </tr>
+
+      </table>
+  </form>
+
+
+<a asp-action="LogIn" asp-controller="Seller" class="nav-link" aria-current="page">log in</a>

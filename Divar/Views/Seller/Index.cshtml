@@ -1,0 +1,31 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<form asp-controller="Seller" asp-action="Index" method="post" onsubmit="">
+    <div class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="SearchString">
+        <button class="btn btn-outline-success" type="submit">search</button>
+    </div>
+</form>
+
+<div class="row mt-4">
+
+    @foreach (var seller in Model)
+    {
+        @if (seller != null)
+        {
+            <div class="col-6 border border-primary bg-info">
+
+                <a class="text-decoration-none" style="color:black;" asp-action="Details" asp-controller="Seller" asp-route-id="@seller.Id">
+                    <p>FirstName: @seller.FirstName</p>
+                    <p>LastName: @seller.LastName</p>
+                    <p>NationalCode: @seller.NationalCode</p>
+                    <p>PhoneNumber: @seller.PhoneNumber</p>
+                </a>
+            </div>
+        }
+
+    }
+</div>

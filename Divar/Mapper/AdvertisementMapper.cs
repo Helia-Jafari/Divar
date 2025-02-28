@@ -175,8 +175,8 @@ namespace Divar.Mapper
                 Nationality = ad.Nationality,
                 ThirdPartyInsuranceTerm = ad.ThirdPartyInsuranceTerm,
                 Title = ad.Title,
-                UpdateDate = ad.UpdateDate,
-                InsertDate = ad.InsertDate
+                InsertDate = ad.InsertDate,
+                Status = ad.Status
             };
             return v;
         }

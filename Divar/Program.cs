@@ -26,8 +26,12 @@ builder.Services.AddScoped<IViewDataService, ViewDataService>();
 builder.Services.AddScoped<IAdvertisementService, AdvertisementService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICityService, CityService>();
+builder.Services.AddScoped<ISellercService, SellercService>();
 
 builder.Services.AddScoped<ISearchSpecification<Advertisement>, AdvertisementSearchSpecificationService>();
+builder.Services.AddScoped<ISearchSpecification<Seller>, SellerSearchSpecificationService>();
+
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddMemoryCache();
 

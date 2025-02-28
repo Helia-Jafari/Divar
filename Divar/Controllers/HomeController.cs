@@ -18,6 +18,7 @@ using System.Text.RegularExpressions;
 using Divar.Mapper;
 using Divar.ViewModels;
 using Microsoft.AspNetCore.Localization;
+using System.Text.Json;
 
 namespace Divar.Controllers
 {
@@ -126,6 +127,25 @@ namespace Divar.Controllers
             //    ViewData["dir"] = "ltr";
             //}
 
+            string sellll = HttpContext.Request.Cookies["sellerId"];
+            if (sellll != null)
+            {
+                int sel = JsonSerializer.Deserialize<int>(sellll);
+                var seller = _context.Sellers.Where(x => x.Id == sel).FirstOrDefault();
+                if (seller != null)
+                {
+                    ViewData["sellerfirstname"] = seller.FirstName + " عزیز خوش آمدی ";
+
+
+                }
+
+
+            }
+            else
+            {
+
+                ViewData["sellerfirstname"] = "ثبت نام نکرده اید";
+            }
             var Viesws = await _advertisementService.GetAllAdvertisementsAsyncHomeVM();
             foreach (var ad in Viesws)
             {
@@ -207,6 +227,25 @@ namespace Divar.Controllers
             //ViewData["SucceededSearch"] = _localizer["SucceededSearch"];
             //ViewData["HomeMenueLayouteViewData"] = _localizer["HomeMenueLayoute"];
             //ViewData["AddAdMenueLayouteViewData"] = _localizer["AddAdMenueLayoute"];
+            string sellll = HttpContext.Request.Cookies["sellerId"];
+            if (sellll != null)
+            {
+                int sel = JsonSerializer.Deserialize<int>(sellll);
+                var seller = _context.Sellers.Where(x => x.Id == sel).FirstOrDefault();
+                if (seller != null)
+                {
+                    ViewData["sellerfirstname"] = seller.FirstName + " عزیز خوش آمدی ";
+
+
+                }
+
+
+            }
+            else
+            {
+
+                ViewData["sellerfirstname"] = "ثبت نام نکرده اید";
+            }
 
             await _advertisementService.DeleteAdvertisementAsync(id);
 
@@ -422,6 +461,25 @@ namespace Divar.Controllers
             //{
             //    ViewData["dir"] = "ltr";
             //}
+            string sellll = HttpContext.Request.Cookies["sellerId"];
+            if (sellll != null)
+            {
+                int sel = JsonSerializer.Deserialize<int>(sellll);
+                var seller = _context.Sellers.Where(x => x.Id == sel).FirstOrDefault();
+                if (seller != null)
+                {
+                    ViewData["sellerfirstname"] = seller.FirstName + " عزیز خوش آمدی ";
+
+
+                }
+
+
+            }
+            else
+            {
+
+                ViewData["sellerfirstname"] = "ثبت نام نکرده اید";
+            }
 
             var memberList = await _advertisementService.GetAllAdvertisementsAsyncHomeVM();
             foreach (var ad in memberList)

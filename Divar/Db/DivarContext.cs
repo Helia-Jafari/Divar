@@ -23,11 +23,13 @@ public partial class DivarContext : DbContext
 
     public virtual DbSet<City> Cities { get; set; }
 
+    public virtual DbSet<Seller> Sellers { get; set; }
+
     public virtual DbSet<ViwShowAdvertisement> ViwShowAdvertisements { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=Divar;Integrated Security=True;Trust Server Certificate=True");
+        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-206H5QD;Initial Catalog=Divar;Integrated Security=True;Encrypt=True;Trust Server Certificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -76,6 +78,11 @@ public partial class DivarContext : DbContext
             entity.HasOne(d => d.City).WithMany(p => p.Advertisements)
                 .HasForeignKey(d => d.CityId)
                 .HasConstraintName("FK_Advertisement_City");
+
+            entity.HasOne(d => d.Seller).WithMany(p => p.Advertisements)
+                .HasForeignKey(d => d.SellerId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Advertisement_Seller");
         });
 
         modelBuilder.Entity<AdvertisementImage>(entity =>
@@ -122,6 +129,29 @@ public partial class DivarContext : DbContext
                 .HasDefaultValue("Active");
         });
 
+        modelBuilder.Entity<Seller>(entity =>
+        {
+            entity.ToTable("Seller");
+
+            entity.Property(e => e.FirstName).HasMaxLength(50);
+            entity.Property(e => e.InsertDate)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.LastName).HasMaxLength(50);
+            entity.Property(e => e.NationalCode)
+                .HasMaxLength(10)
+                .IsFixedLength();
+            entity.Property(e => e.PhoneNumber)
+                .HasMaxLength(11)
+                .IsFixedLength();
+            entity.Property(e => e.Status)
+                .HasMaxLength(15)
+                .HasDefaultValue("Active");
+            entity.Property(e => e.UpdateDate)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+        });
+
         modelBuilder.Entity<ViwShowAdvertisement>(entity =>
         {
             entity
@@ -129,6 +159,7 @@ public partial class DivarContext : DbContext
                 .ToView("ViwShowAdvertisements");
 
             entity.Property(e => e.BasePrice).HasColumnType("money");
+            entity.Property(e => e.Image).HasColumnType("image");
             entity.Property(e => e.InsertDate).HasColumnType("datetime");
             entity.Property(e => e.Title).HasMaxLength(50);
         });

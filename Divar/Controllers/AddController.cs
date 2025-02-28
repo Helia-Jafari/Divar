@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Localization;
 using System;
 using System.Globalization;
+using System.Text.Json;
 
 namespace Divar.Controllers
 {
@@ -20,16 +21,23 @@ namespace Divar.Controllers
         private readonly ILocalizationService _localizationService;
         private readonly IAdvertisementService _advertisementService;
         public List<Category> categories;
+        private readonly ICityService _cityService;
+        private readonly ICategoryService _categoryService;
+
+        List<List<Category>> cats = new List<List<Category>>();
+        Dictionary<string, List<Category>> catsDictionary = new Dictionary<string, List<Category>>();
         //public List<City> cities;
 
         //private readonly AdvertisementMapper _advertisementMapper;
 
-        public AddController(DivarContext db, IStringLocalizer<AddController> localizer, IAdvertisementService advertisementService, ILocalizationService localizationService)
+        public AddController(DivarContext db, IStringLocalizer<AddController> localizer, ICityService cityService, ICategoryService categoryService, IAdvertisementService advertisementService, ILocalizationService localizationService)
         {
             _context = db;
             _localizer = localizer;
             _advertisementService = advertisementService;
             _localizationService = localizationService;
+            _cityService = cityService;
+            _categoryService = categoryService;
             //cities = _context.Cities.ToList();
 
             //_advertisementMapper = advertisementMapper;
@@ -155,16 +163,47 @@ public async Task<IActionResult> Index(AddViewModel model)
             //ViewData["TitleAddViewData"] = _localizer["TitleAdd"];
             //ViewData["SubmitAddViewData"] = _localizer["SubmitAdd"];
             //ViewData["RequiredInputErrorAddViewData"] = _localizer["RequiredInputErrorAdd"];
+            string sellll = HttpContext.Request.Cookies["sellerId"];
+            if (sellll != null)
+            {
+                int sel = JsonSerializer.Deserialize<int>(sellll);
+                var seller = _context.Sellers.Where(x => x.Id == sel).FirstOrDefault();
+                if (seller != null)
+                {
+                    ViewData["sellerfirstname"] = seller.FirstName + " عزیز خوش آمدی ";
+
+
+                }
+
+
+            }
+            else
+            {
+
+                ViewData["sellerfirstname"] = "ثبت نام نکرده اید";
+            }
 
 
 
 
+            var Viesws = await _advertisementService.GetAllAdvertisementsAsyncHomeVM();
+            foreach (var ad in Viesws)
+            {
+                var breadcrumbs = await _categoryService.GetBreadcrumbsAsync((int)ad.CategoryId);
+
+                ViewData["breadcrumbs" + ad.Id.ToString()] = breadcrumbs;
+                catsDictionary["breadcrumbs" + ad.Id.ToString()] = breadcrumbs;
+                this.cats.Add(breadcrumbs);
+
+                var city = await _cityService.GetCityByIdAsync((int)ad.CityId);
+                ViewData["city" + ad.Id.ToString()] = city.Name;
+            }
 
 
             if (!ModelState.IsValid)
             {
                 //Tuple<Advertisement, List<Category>> tuplee = new Tuple<Advertisement, List<Category>>(new Advertisement(), categories);
-                return View("Index");
+                return View("../Home/Index",Viesws);
             };
             //Tuple<Advertisement, List<Category>> tuple = new Tuple<Advertisement, List<Category>>(new Advertisement(), categories);
 
@@ -172,7 +211,7 @@ public async Task<IActionResult> Index(AddViewModel model)
 
             await _advertisementService.AddAdvertisementAsync(model);
 
-            return View("Index");
+            return View("../Home/Index", Viesws);
         }
 
 
